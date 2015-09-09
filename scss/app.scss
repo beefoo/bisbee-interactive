@@ -2,3 +2,13 @@
 
 @import "mixins";
 @import "variables";
+
+.toggle-play {
+  &:before {
+    content: 'Play';
+  }
+
+  &.active:before {
+    content: 'Pause';
+  }
+}
