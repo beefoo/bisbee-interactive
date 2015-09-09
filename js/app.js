@@ -11,6 +11,7 @@ var Bisbee = (function() {
 
     this.sequence = [];
     this.speed = 1.0;
+    this.direction = 1.0;
     this.endTime = 0.0;
 
     if (options.sequence) {
@@ -29,17 +30,20 @@ var Bisbee = (function() {
     $(window).keydown(function(e){
       switch(e.keyCode) {
 
+        case 16: // shift
+          e.preventDefault();
+          _this.speed = 2.0; // faster
+          break;
+
         case 38: // up arrow
           e.preventDefault();
-          _this.speed = 1.0;
-          if (e.shiftKey) _this.speed = 2.0; // faster
+          _this.direction = 1.0;
           _this.play();
           break;
 
         case 40: // down arrow
           e.preventDefault();
-          _this.speed = -1.0; // go in reverse
-          if (e.shiftKey) _this.speed = -2.0; // faster
+          _this.direction = -1.0; // go in reverse
           _this.play();
           break;
       }
@@ -47,6 +51,10 @@ var Bisbee = (function() {
 
     $(window).keyup(function(e){
       switch(e.keyCode) {
+        case 16: // shift
+          e.preventDefault();
+          _this.speed = 1.0; // normal
+          break;
         case 38: // up arrow
         case 40: // down arrow
           e.preventDefault();
@@ -89,11 +97,13 @@ var Bisbee = (function() {
   Bisbee.prototype.progress = function(){
     var _this = this,
         timeNow = new Date(),
-        timeSince = (timeNow - this.timeThen)/1000 * this.speed;
+        timeSince = (timeNow - this.timeThen)/1000 * this.speed * this.direction;
 
     // increment time
     this.currentTime += timeSince;
     this.timeThen = timeNow;
+    this.currentTime = _.max([this.currentTime, 0.0]);
+    this.currentTime = _.min([this.currentTime, this.endTime]);
 
     // determine which steps of sequence are active
     var activeSteps = _.filter(this.sequence, function(step){
@@ -111,16 +121,14 @@ var Bisbee = (function() {
     this.render();
 
     // reached the end
-    if (this.currentTime >= this.endTime && this.speed > 0) {
+    if (this.currentTime >= this.endTime && this.direction > 0) {
       console.log('Reached End');
       this.pause();
-      this.currentTime = this.endTime;
 
     // reached beginning (from reverse)
-    } else if (this.currentTime <= 0 && this.speed < 0) {
+    } else if (this.currentTime <= 0 && this.direction < 0) {
       console.log('Reached Start');
       this.pause();
-      this.currentTime = 0;
 
     // next frame if playing
     } else if (this.playing) {
@@ -135,7 +143,7 @@ var Bisbee = (function() {
 
     // end steps
     _.each(this.endedSteps, function(step, i){
-      if (_this.speed < 0) {
+      if (_this.direction < 0) {
         step.onStart(_this);
       } else {
         step.onEnd(_this);
@@ -144,7 +152,7 @@ var Bisbee = (function() {
 
     // start steps
     _.each(this.startedSteps, function(step, i){
-      if (_this.speed < 0) {
+      if (_this.direction < 0) {
         step.onEnd(_this);
       } else {
         step.onStart(_this);
