@@ -105,6 +105,12 @@ var Bisbee = (function() {
     }
 
     this.speed = utils.lerp(this.minSpeed, this.maxSpeed, percent);
+    if (Math.abs(percent) > 0.5) {
+      $hotspot.addClass('fast');
+    } else {
+      $hotspot.removeClass('fast');
+    }
+
     if (!this.playing) {
       this.play();
     }

@@ -3,6 +3,8 @@
 @import "mixins";
 @import "variables";
 
+$menuHeight: 34px;
+
 body {
   background: $black;
   color: $white;
@@ -56,26 +58,67 @@ button {
   }
 }
 .hotspot {
-  width: 100%;
+  width: 60%;
   height: 200px;
   position: absolute;
-  left: 0;
+  left: 50%;
+  margin-left: -30%;
 
   &.top {
     top: 0;
-    cursor: n-resize;
+    cursor: url(../img/arrow-up.png), n-resize;
+    &.fast {
+      cursor: url(../img/arrow-up-double.png), s-resize;
+    }
   }
 
   &.bottom {
-    bottom: 34px;
-    cursor: s-resize;
+    bottom: $menuHeight;
+    cursor: url(../img/arrow-down.png), s-resize;
+    &.fast {
+      cursor: url(../img/arrow-down-double.png), s-resize;
+    }
+  }
+}
+
+// Character
+
+.character {
+  width: 230px;
+  height: 533px;
+  position: absolute;
+  left: 50%;
+  margin-left: -103px;
+  bottom: $menuHeight + 120px;
+  @include transform-origin(50% 100%);
+  @include transform(scale(0.5));
+
+  .character-shadow {
+    width: 206px;
+    height: 77px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -103px;
+    background: url(../img/character-shadow.png) center no-repeat;
+    opacity: 0.8;
+  }
+  .character-body {
+    width: 230px;
+    height: 506px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -115px;
+    background: url(../img/character-sprite.png) no-repeat;
+    background-position: 0 0;
   }
 }
 
 // Menu
 .menu {
   width: 100%;
-  height: 34px;
+  height: $menuHeight;
   position: absolute;
   left: 0;
   bottom: 0;
