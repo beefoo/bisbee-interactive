@@ -1,11 +1,6 @@
 // Helper functions
 (function() {
   window.utils = {};
-  utils.round = function(num, dec) {
-    num = parseFloat(num);
-    dec = dec || 0;
-    return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
-  };
   utils.formatTime = function(seconds, dec) {
     var s = seconds || 0,
         h = parseInt(s / 3600) % 24,
@@ -38,5 +33,13 @@
       }
     }
     return utils.round(seconds, dec);
+  };
+  utils.lerp = function(start, stop, percent) {
+    return (stop - start) * percent + start;
+  };
+  utils.round = function(num, dec) {
+    num = parseFloat(num);
+    dec = dec || 0;
+    return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
   };
 })();

@@ -1,7 +1,10 @@
 // Bisbee app
 var Bisbee = (function() {
   function Bisbee(options) {
-    var defaults = {};
+    var defaults = {
+      min_speed: 0.5,
+      max_speed: 2.0
+    };
     options = $.extend({}, defaults, options);
     this.init(options);
   }
@@ -13,6 +16,8 @@ var Bisbee = (function() {
     this.speed = 1.0;
     this.direction = 1.0;
     this.endTime = 0.0;
+    this.minSpeed = options.min_speed;
+    this.maxSpeed = options.max_speed;
 
     if (options.sequence) {
       this.loadSequence(options.sequence);
@@ -29,18 +34,15 @@ var Bisbee = (function() {
 
     $(window).keydown(function(e){
       switch(e.keyCode) {
-
         case 16: // shift
           e.preventDefault();
           _this.speed = 2.0; // faster
           break;
-
         case 38: // up arrow
           e.preventDefault();
           _this.direction = 1.0;
           _this.play();
           break;
-
         case 40: // down arrow
           e.preventDefault();
           _this.direction = -1.0; // go in reverse
@@ -63,6 +65,18 @@ var Bisbee = (function() {
       }
     });
 
+    $('.hotspot').on('mouseover', function(e){
+      _this.onHotspot($(this), e.clientY);
+    });
+
+    $('.hotspot').on('mousemove', function(e){
+      _this.onHotspot($(this), e.clientY);
+    });
+
+    $('.hotspot').on('mouseout', function(){
+      _this.pause();
+    });
+
     $('.reset').on('click', function(){
       _this.reset();
     });
@@ -79,6 +93,21 @@ var Bisbee = (function() {
 
       _this.sequence.push(step);
     });
+  };
+
+  Bisbee.prototype.onHotspot = function($hotspot, y){
+    var hHeight = $hotspot.height(),
+        yDelta = $hotspot.hasClass('top') ? hHeight + $hotspot.offset().top - y : y - $hotspot.offset().top,
+        percent = yDelta / hHeight;
+
+    if ($hotspot.hasClass('bottom')) {
+      percent *= -1.0;
+    }
+
+    this.speed = utils.lerp(this.minSpeed, this.maxSpeed, percent);
+    if (!this.playing) {
+      this.play();
+    }
   };
 
   Bisbee.prototype.pause = function(){

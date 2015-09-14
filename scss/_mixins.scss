@@ -47,6 +47,16 @@
     box-sizing:           $type;
 }
 
+@mixin background-gradient($startColor, $endColor, $startOpacity: 1, $endOpacity: 0) {  
+  background: -moz-linear-gradient(top, rgba($startColor,$startOpacity) 0%, rgba($endColor,$endOpacity) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba($startColor,$startOpacity)), color-stop(100%,rgba($endColor,$endOpacity))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, rgba($startColor,$startOpacity) 0%,rgba($endColor,$endOpacity) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba($startColor,$startOpacity) 0%,rgba($endColor,$endOpacity) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba($startColor,$startOpacity) 0%,rgba($endColor,$endOpacity) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba($startColor,$startOpacity) 0%,rgba($endColor,$endOpacity) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$startColor}', endColorstr='#{$endColor}',GradientType=0 ); /* IE6-9 */
+}
+
 @mixin clearfix {
   &:before,
   &:after {
@@ -64,7 +74,7 @@
 
 @mixin keyframes($name) {
   @-webkit-keyframes #{$name} {
-    @content; 
+    @content;
   }
   @-moz-keyframes #{$name} {
     @content;
@@ -74,7 +84,7 @@
   }
   @keyframes #{$name} {
     @content;
-  } 
+  }
 }
 
 @mixin opacity($opacity: 0.5) {
