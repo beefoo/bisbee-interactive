@@ -24,6 +24,9 @@ var Bisbee = (function() {
     this.speed = this.normalSpeed;
     this.speedPercent = this.normalSpeedPercent;
 
+    // Load media
+    this.loadMedia();
+
     // Load sequence
     if (options.sequence) {
       this.loadSequence(options.sequence);
@@ -31,7 +34,7 @@ var Bisbee = (function() {
         this.endTime = this.sequence[this.sequence.length-1]['end'];
     }
 
-    this.reset()
+    this.reset();
     this.loadListeners();
   };
 
@@ -95,6 +98,17 @@ var Bisbee = (function() {
 
     $('.reset').on('click', function(){
       _this.reset();
+    });
+  };
+
+  Bisbee.prototype.loadMedia = function(){
+    var _this = this;
+
+    this.media = {};
+
+    $('video, audio').each(function(){
+      _this.media[$(this).attr('data-id')] = $(this)[0];
+      console.log('Loaded '+$(this)[0].src);
     });
   };
 

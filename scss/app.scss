@@ -17,6 +17,10 @@ button {
   color: $black;
 }
 
+// Utils
+.hide {
+  display: none;
+}
 .debug {
   position: fixed;
   top: 10px;
