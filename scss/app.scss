@@ -2,6 +2,7 @@
 
 @import "mixins";
 @import "variables";
+@import "animations";
 
 $menuHeight: 34px;
 
@@ -112,6 +113,19 @@ button {
     margin-left: -115px;
     background: url(../img/character-sprite.png) no-repeat;
     background-position: 0 0;
+  }
+
+  &.walking {
+    .character-body {
+      background-position: -230px 0;
+      @include animation(walk 1s steps(1) infinite);
+    }
+    &.fast .character-body {
+      @include animation-duration(0.5s);
+    }
+    &.slow .character-body {
+      @include animation-duration(1.5s);
+    }
   }
 }
 

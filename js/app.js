@@ -13,12 +13,18 @@ var Bisbee = (function() {
     var _this = this;
 
     this.sequence = [];
-    this.speed = 1.0;
     this.direction = 1.0;
     this.endTime = 0.0;
     this.minSpeed = options.min_speed;
     this.maxSpeed = options.max_speed;
+    this.normalSpeed = 1.0;
+    this.normalSpeedPercent = (this.normalSpeed - this.minSpeed) / (this.maxSpeed - this.minSpeed);
 
+    // Init speed to normal
+    this.speed = this.normalSpeed;
+    this.speedPercent = this.normalSpeedPercent;
+
+    // Load sequence
     if (options.sequence) {
       this.loadSequence(options.sequence);
       if (this.sequence.length)
@@ -36,15 +42,24 @@ var Bisbee = (function() {
       switch(e.keyCode) {
         case 16: // shift
           e.preventDefault();
-          _this.speed = 2.0; // faster
+          _this.speed = _this.maxSpeed; // faster
+          _this.speedPercent = 1.0;
           break;
         case 38: // up arrow
           e.preventDefault();
+          if (!e.shiftKey) {
+            _this.speed = _this.normalSpeed; // normal
+            _this.speedPercent = _this.normalSpeedPercent;
+          }
           _this.direction = 1.0;
           _this.play();
           break;
         case 40: // down arrow
           e.preventDefault();
+          if (!e.shiftKey) {
+            _this.speed = _this.normalSpeed; // normal
+            _this.speedPercent = -1.0 * _this.normalSpeedPercent;
+          }
           _this.direction = -1.0; // go in reverse
           _this.play();
           break;
@@ -55,7 +70,8 @@ var Bisbee = (function() {
       switch(e.keyCode) {
         case 16: // shift
           e.preventDefault();
-          _this.speed = 1.0; // normal
+          _this.speed = _this.normalSpeed; // normal
+          _this.speedPercent = _this.normalSpeedPercent;
           break;
         case 38: // up arrow
         case 40: // down arrow
@@ -104,8 +120,10 @@ var Bisbee = (function() {
       percent *= -1.0;
     }
 
-    this.speed = utils.lerp(this.minSpeed, this.maxSpeed, percent);
-    if (Math.abs(percent) > 0.5) {
+    this.speedPercent = percent;
+    this.speed = utils.lerp(this.minSpeed, this.maxSpeed, this.speedPercent);
+
+    if (Math.abs(this.speedPercent) > 0.5) {
       $hotspot.addClass('fast');
     } else {
       $hotspot.removeClass('fast');
@@ -118,6 +136,8 @@ var Bisbee = (function() {
 
   Bisbee.prototype.pause = function(){
     this.playing = false;
+    this.speed = 0;
+    this.speedPercent = 0;
   };
 
   Bisbee.prototype.play = function(){
@@ -174,7 +194,19 @@ var Bisbee = (function() {
   Bisbee.prototype.render = function(){
     var _this = this;
 
+    // timecode
     $('#time').text(utils.formatTime(this.currentTime));
+
+    // character
+    if (Math.abs(this.speedPercent) > 0.5) {
+      $('#character').removeClass('slow').addClass('walking fast');
+    } else if (Math.abs(this.speedPercent) > 0.25){
+      $('#character').removeClass('slow fast').addClass('walking');
+    } else if (Math.abs(this.speedPercent) > 0){
+      $('#character').removeClass('fast').addClass('walking slow');
+    } else {
+      $('#character').removeClass('walking fast slow');
+    }
 
     // end steps
     _.each(this.endedSteps, function(step, i){

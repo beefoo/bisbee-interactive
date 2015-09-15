@@ -1,0 +1,11 @@
+@import "mixins";
+@import "variables";
+
+@include keyframes(walk) {
+  0%, 100% {
+    @include transform(scaleX(1));
+  }
+  50% {
+    @include transform(scaleX(-1));
+  }
+}
