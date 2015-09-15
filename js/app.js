@@ -138,6 +138,7 @@ var Bisbee = (function() {
     this.playing = false;
     this.speed = 0;
     this.speedPercent = 0;
+    this.render();
   };
 
   Bisbee.prototype.play = function(){
