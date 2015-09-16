@@ -125,6 +125,32 @@ var Bisbee = (function() {
     });
   };
 
+  Bisbee.prototype.mediaPause = function(ids, reset){
+    var _this = this;
+    ids = ids.constructor === Array ? ids : [ids];
+
+    _.each(ids, function(id){
+      var m = _this.media[id];
+      if (m && m.playing){
+        m.pause();
+        if (reset) m.currentTime = 0;
+      }
+    });
+  };
+
+  Bisbee.prototype.mediaPlay = function(ids, reset){
+    var _this = this;
+    ids = ids.constructor === Array ? ids : [ids];
+
+    _.each(ids, function(id){
+      var m = _this.media[id];
+      if (m && !m.playing){
+        if (reset) m.currentTime = 0;
+        m.play();
+      }
+    });
+  };
+
   Bisbee.prototype.onHotspot = function($hotspot, y){
     var hHeight = $hotspot.height(),
         yDelta = $hotspot.hasClass('top') ? hHeight + $hotspot.offset().top - y : y - $hotspot.offset().top,
@@ -212,16 +238,8 @@ var Bisbee = (function() {
     // timecode
     $('#time').text(utils.formatTime(this.currentTime));
 
-    // character
-    if (Math.abs(this.speedPercent) > 0.5) {
-      $('#character').removeClass('slow').addClass('walking fast');
-    } else if (Math.abs(this.speedPercent) > 0.25){
-      $('#character').removeClass('slow fast').addClass('walking');
-    } else if (Math.abs(this.speedPercent) > 0){
-      $('#character').removeClass('fast').addClass('walking slow');
-    } else {
-      $('#character').removeClass('walking fast slow');
-    }
+    // update character
+    this.renderCharacter();
 
     // end steps
     _.each(this.endedSteps, function(step, i){
@@ -246,6 +264,30 @@ var Bisbee = (function() {
       step.onProgress(_this);
     });
 
+  };
+
+  Bisbee.prototype.renderCharacter = function(){
+    // character animation
+    if (Math.abs(this.speedPercent) > 0.5) {
+      $('#character').removeClass('slow').addClass('walking fast');
+    } else if (Math.abs(this.speedPercent) > 0.25){
+      $('#character').removeClass('slow fast').addClass('walking');
+    } else if (Math.abs(this.speedPercent) > 0){
+      $('#character').removeClass('fast').addClass('walking slow');
+    } else {
+      $('#character').removeClass('walking fast slow');
+    }
+
+    // character audio
+    if (Math.abs(this.speedPercent) > 0.5) {
+      this.mediaPause('footsteps');
+      this.mediaPlay('footsteps-fast');
+    } else if (Math.abs(this.speedPercent) > 0) {
+      this.mediaPause('footsteps-fast');
+      this.mediaPlay('footsteps');
+    } else {
+      this.mediaPause(['footsteps', 'footsteps-fast']);
+    }
   };
 
   Bisbee.prototype.reset = function(){

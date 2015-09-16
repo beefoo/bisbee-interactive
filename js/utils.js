@@ -1,3 +1,10 @@
+// Plugins
+Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
+  get: function(){
+    return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2);
+  }
+});
+
 // Helper functions
 (function() {
   window.utils = {};
