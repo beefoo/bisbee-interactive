@@ -22,7 +22,7 @@ var Bisbee = (function() {
 
     // Init speed to normal
     this.speed = this.normalSpeed;
-    this.speedPercent = this.normalSpeedPercent;
+    this.speedPercent = 0;
 
     // Load media
     this.loadMedia();
@@ -36,10 +36,21 @@ var Bisbee = (function() {
 
     this.reset();
     this.loadListeners();
+    this.modalShow();
   };
 
   Bisbee.prototype.loadListeners = function(){
     var _this = this;
+
+    $('.show-modal').on('click', function(e){
+      e.preventDefault();
+      _this.modalShow();
+    });
+
+    $('.modal').on('click', function(e){
+      e.preventDefault();
+      _this.modalHide();
+    });
 
     $(window).keydown(function(e){
       switch(e.keyCode) {
@@ -61,7 +72,7 @@ var Bisbee = (function() {
           e.preventDefault();
           if (!e.shiftKey) {
             _this.speed = _this.normalSpeed; // normal
-            _this.speedPercent = -1.0 * _this.normalSpeedPercent;
+            _this.speedPercent = _this.normalSpeedPercent;
           }
           _this.direction = -1.0; // go in reverse
           _this.play();
@@ -151,19 +162,32 @@ var Bisbee = (function() {
     });
   };
 
+  Bisbee.prototype.modalHide = function(){
+    $('.modal').removeClass('active');
+    setTimeout(function(){
+      $('.modal').addClass('hide');
+    }, 1000);
+  };
+
+  Bisbee.prototype.modalShow = function(){
+    $('.modal').removeClass('hide').addClass('active');
+  };
+
   Bisbee.prototype.onHotspot = function($hotspot, y){
     var hHeight = $hotspot.height(),
         yDelta = $hotspot.hasClass('top') ? hHeight + $hotspot.offset().top - y : y - $hotspot.offset().top,
         percent = yDelta / hHeight;
 
-    if ($hotspot.hasClass('bottom')) {
-      percent *= -1.0;
-    }
-
     this.speedPercent = percent;
     this.speed = utils.lerp(this.minSpeed, this.maxSpeed, this.speedPercent);
 
-    if (Math.abs(this.speedPercent) > 0.5) {
+    if ($hotspot.hasClass('bottom')) {
+      this.direction = -1;
+    } else {
+      this.direction = 1;
+    }
+
+    if (this.speedPercent > 0.5) {
       $hotspot.addClass('fast');
     } else {
       $hotspot.removeClass('fast');
@@ -237,6 +261,7 @@ var Bisbee = (function() {
 
     // timecode
     $('#time').text(utils.formatTime(this.currentTime));
+    $('#speed').text(utils.round(this.direction*this.speed,2)+'x');
 
     // update character
     this.renderCharacter();
@@ -268,21 +293,21 @@ var Bisbee = (function() {
 
   Bisbee.prototype.renderCharacter = function(){
     // character animation
-    if (Math.abs(this.speedPercent) > 0.5) {
+    if (this.speedPercent > 0.5) {
       $('#character').removeClass('slow').addClass('walking fast');
-    } else if (Math.abs(this.speedPercent) > 0.25){
+    } else if (this.speedPercent > 0.25){
       $('#character').removeClass('slow fast').addClass('walking');
-    } else if (Math.abs(this.speedPercent) > 0){
+    } else if (this.speedPercent > 0){
       $('#character').removeClass('fast').addClass('walking slow');
     } else {
       $('#character').removeClass('walking fast slow');
     }
 
     // character audio
-    if (Math.abs(this.speedPercent) > 0.5) {
+    if (this.speedPercent > 0.5) {
       this.mediaPause('footsteps');
       this.mediaPlay('footsteps-fast');
-    } else if (Math.abs(this.speedPercent) > 0) {
+    } else if (this.speedPercent > 0) {
       this.mediaPause('footsteps-fast');
       this.mediaPlay('footsteps');
     } else {

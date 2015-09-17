@@ -7,9 +7,6 @@
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
-  <!-- Place favicon.ico in the root directory -->
-
   <link rel="stylesheet" href="css/app.css">
   <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
@@ -29,8 +26,14 @@
     <div class="hotspot top"></div>
     <div class="hotspot bottom"></div>
 
+    <div class="modal hide">
+      <div class="curtain left"></div>
+      <div class="curtain right"></div>
+    </div>
+
     <div class="menu"></div>
-    <a href="#menu" class="logo" title="Bisbee">
+
+    <a href="#menu" class="logo show-modal" title="Bisbee">
       <img src="img/bisbee-logo.png" alt="Bisbee" />
     </a>
 
@@ -47,8 +50,10 @@
   </div>
 
   <div class="debug">
+    <div>DEBUG</div>
     <button class="reset">Reset</button>
     <div id="time">--:--</div>
+    <div id="speed"></div>
 
     <div id="step1"></div>
     <div id="step2"></div>
