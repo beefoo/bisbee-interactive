@@ -260,8 +260,8 @@ var Bisbee = (function() {
     var _this = this;
 
     // timecode
-    $('#time').text(utils.formatTime(this.currentTime));
-    $('#speed').text(utils.round(this.direction*this.speed,2)+'x');
+    $('#debug-time').text(utils.formatTime(this.currentTime));
+    $('#debug-speed').text(utils.round(this.direction*this.speed,2)+'x');
 
     // update character
     this.renderCharacter();
