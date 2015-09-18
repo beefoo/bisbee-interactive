@@ -3,7 +3,8 @@ var Bisbee = (function() {
   function Bisbee(options) {
     var defaults = {
       min_speed: 0.5,
-      max_speed: 2.0
+      max_speed: 2.0,
+      debug: true
     };
     options = $.extend({}, defaults, options);
     this.init(options);
@@ -19,6 +20,7 @@ var Bisbee = (function() {
     this.maxSpeed = options.max_speed;
     this.normalSpeed = 1.0;
     this.normalSpeedPercent = (this.normalSpeed - this.minSpeed) / (this.maxSpeed - this.minSpeed);
+    this.debug = options.debug;
 
     // Init speed to normal
     this.speed = this.normalSpeed;
@@ -37,6 +39,8 @@ var Bisbee = (function() {
     this.reset();
     this.loadListeners();
     this.modalShow();
+
+    if (this.debug) $('.debug').removeClass('hide');
   };
 
   Bisbee.prototype.loadListeners = function(){
@@ -260,8 +264,10 @@ var Bisbee = (function() {
     var _this = this;
 
     // timecode
-    $('#debug-time').text(utils.formatTime(this.currentTime));
-    $('#debug-speed').text(utils.round(this.direction*this.speed,2)+'x');
+    if (this.debug) {
+      $('#debug-time').text(utils.formatTime(this.currentTime));
+      $('#debug-speed').text(utils.round(this.direction*this.speed,2)+'x');
+    }
 
     // update character
     this.renderCharacter();
@@ -269,6 +275,7 @@ var Bisbee = (function() {
     // end steps
     _.each(this.endedSteps, function(step, i){
       if (_this.direction < 0) {
+        _this.debug && $('#debug-scene').text(this.name);
         step.onStart(_this);
       } else {
         step.onEnd(_this);
@@ -284,9 +291,19 @@ var Bisbee = (function() {
       }
     });
 
+    if (this.debug && (this.startedSteps.length || this.endedSteps)) {
+      $('#debug-scene').text('--');
+      $('#debug-progress').text('--');
+    }
+
     // active steps
     _.each(this.previousSteps, function(step, i){
-      step.onProgress(_this);
+      var progress = (_this.currentTime-step.start)/(step.end-step.start);
+      if (_this.debug) {
+        $('#debug-scene').text(step.name);
+        $('#debug-progress').text(Math.round(progress*100)+'%');
+      }
+      step.onProgress(progress, _this);
     });
 
   };
@@ -317,6 +334,11 @@ var Bisbee = (function() {
 
   Bisbee.prototype.reset = function(){
     var _this = this;
+
+    if (this.debug) {
+      $('#debug-scene').text('--');
+      $('#debug-progress').text('--');
+    }
 
     this.currentTime = 0;
     this.startedSteps = [];
