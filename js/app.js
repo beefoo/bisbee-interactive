@@ -175,6 +175,11 @@ var Bisbee = (function() {
 
   Bisbee.prototype.modalShow = function(){
     $('.modal').removeClass('hide').addClass('active');
+    if (this.currentTime > 0) {
+      $('.modal .guide-confirm').addClass('active');
+    } else {
+      $('.modal .guide-confirm').removeClass('active');
+    }
   };
 
   Bisbee.prototype.onHotspot = function($hotspot, y){

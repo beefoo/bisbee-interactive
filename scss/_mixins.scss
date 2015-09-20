@@ -3,10 +3,10 @@
   -moz-animation:    $animation;
   -o-animation:      $animation;
   animation:         $animation;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  -o-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: both;
+  -moz-animation-fill-mode: both;
+  -o-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
 @mixin animation-delay($animation_delay) {
