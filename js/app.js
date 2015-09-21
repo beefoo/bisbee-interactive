@@ -133,6 +133,9 @@ var Bisbee = (function() {
     _.each(sequence, function(step, i){
       // parse seconds
       step.id = i;
+      step.name = step.el;
+      step.$el = $(step.el);
+      step.state = INACTIVE;
       step.start = utils.getSeconds(step.start);
       step.end = utils.getSeconds(step.end);
 
@@ -234,17 +237,24 @@ var Bisbee = (function() {
     this.currentTime = _.max([this.currentTime, 0.0]);
     this.currentTime = _.min([this.currentTime, this.endTime]);
 
-    // determine which steps of sequence are active
-    var activeSteps = _.filter(this.sequence, function(step){
-      return _this.currentTime >= step.start && _this.currentTime < step.end;
-    });
-    var activeStepIds = _.pluck(activeSteps, 'id');
-    var previousStepIds = _.pluck(this.previousSteps, 'id');
+    _.each(this.sequence, function(step, i){
+      // starting, active
+      if (_this.currentTime >= step.start && _this.currentTime < step.end) {
+        if (step.state===INACTIVE) {
+          _this.sequence[i].state = STARTING;
+        } else {
+          _this.sequence[i].state = ACTIVE;
+        }
 
-    // determine which steps were not in previous or no longer active
-    this.startedSteps = _.filter(activeSteps, function(step){ return _.indexOf(previousStepIds, step.id) < 0;});
-    this.endedSteps = _.filter(this.previousSteps, function(step){ return _.indexOf(activeStepIds, step.id) < 0;});
-    this.previousSteps = activeSteps;
+      // ending
+      } else if (step.state===ACTIVE || step.state===STARTING) {
+        _this.sequence[i].state = ENDING;
+
+      // inactive
+      } else {
+        _this.sequence[i].state = INACTIVE;
+      }
+    });
 
     // render current frame
     this.render();
@@ -277,39 +287,50 @@ var Bisbee = (function() {
     // update character
     this.renderCharacter();
 
-    // end steps
-    _.each(this.endedSteps, function(step, i){
-      if (_this.direction < 0) {
-        _this.debug && $('#debug-scene').text(this.name);
-        step.onStart(_this);
-      } else {
-        step.onEnd(_this);
+    var started = 0,
+        ended = 0;
+
+    _.each(this.sequence, function(step, i){
+      switch(step.state) {
+
+        case INACTIVE:
+          step.off(_this);
+          break;
+
+        case ACTIVE:
+          var progress = (_this.currentTime-step.start)/(step.end-step.start);
+          if (_this.debug) {
+            $('#debug-scene').text(step.name);
+            $('#debug-progress').text(Math.round(progress*100)+'%');
+          }
+          step.onProgress(progress, _this);
+          break;
+
+        case STARTING:
+          if (_this.direction < 0) {
+            step.onEnd(_this);
+          } else {
+            step.onStart(_this);
+          }
+          started++;
+          break;
+
+        case ENDING:
+          if (_this.direction < 0) {
+            step.onStart(_this);
+          } else {
+            step.onEnd(_this);
+          }
+          ended++;
+          break;
+
       }
     });
 
-    // start steps
-    _.each(this.startedSteps, function(step, i){
-      if (_this.direction < 0) {
-        step.onEnd(_this);
-      } else {
-        step.onStart(_this);
-      }
-    });
-
-    if (this.debug && (this.startedSteps.length || this.endedSteps)) {
+    if (this.debug && (started || ended)) {
       $('#debug-scene').text('--');
       $('#debug-progress').text('--');
     }
-
-    // active steps
-    _.each(this.previousSteps, function(step, i){
-      var progress = (_this.currentTime-step.start)/(step.end-step.start);
-      if (_this.debug) {
-        $('#debug-scene').text(step.name);
-        $('#debug-progress').text(Math.round(progress*100)+'%');
-      }
-      step.onProgress(progress, _this);
-    });
 
   };
 
@@ -346,12 +367,9 @@ var Bisbee = (function() {
     }
 
     this.currentTime = 0;
-    this.startedSteps = [];
-    this.endedSteps = [];
-    this.previousSteps = [];
 
     _.each(this.sequence, function(step, i){
-      step.onReset(_this);
+      _this.sequence[i].state = INACTIVE;
     });
 
     this.render();

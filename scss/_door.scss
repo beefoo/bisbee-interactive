@@ -43,7 +43,7 @@
 
   &.from-left,
   &.from-right {
-    left: 0;
+    left: -100%;
     @include transform-origin(0 50%);
     @include transform(scale(0.5));
 
@@ -65,7 +65,7 @@
 
   &.from-right {
     left: auto;
-    right: 0;
+    right: -100%;
     @include transform-origin(100% 50%);
     @include transform(scale(0.75));
 
@@ -77,7 +77,7 @@
   }
 
   &.from-top {
-    top: 0;
+    top: -100%;
     left: 50%;
     margin-top: 0;
     margin-left: -130px;

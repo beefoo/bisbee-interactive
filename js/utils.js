@@ -5,6 +5,12 @@ Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
   }
 });
 
+// constants
+var INACTIVE = 0;
+var ACTIVE = 1;
+var STARTING = 2;
+var ENDING = 3;
+
 // Helper functions
 (function() {
   window.utils = {};
