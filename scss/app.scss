@@ -4,8 +4,6 @@
 @import "variables";
 @import "animations";
 
-$menuHeight: 34px;
-
 body {
   background: $black;
   color: $white;
@@ -108,215 +106,6 @@ button {
   }
 }
 
-// Modal
-.modal {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-
-  .curtain {
-
-    &, &:before {
-      position: absolute;
-      width: 50%;
-      height: 100%;
-      top: 0;
-      background: #222 no-repeat;
-      background-size: cover;
-    }
-
-    &:before {
-      content: ' ';
-      width: 100%;
-      left: 0;
-      opacity: 0.5;
-    }
-
-    &.left {
-      left: 0;
-      background-image: url(../img/bisbee-bg-left.jpg);
-
-      &, &:before {
-        background-position: right center;
-        @include animation(bounce-out-left 0.75s);
-      }
-
-      &:before {
-        background-image: url(../img/curtain-bg-left.jpg);
-        @include animation-duration(1s);
-      }
-    }
-
-    &.right {
-      right: 0;
-      background-image: url(../img/bisbee-bg-right.jpg);
-
-      &, &:before {
-        background-position: left center;
-        @include animation(bounce-out-right 0.75s);
-      }
-
-      &:before {
-        background-image: url(../img/curtain-bg-right.jpg);
-        @include animation-duration(1s);
-      }
-    }
-  }
-
-  .guide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    @include animation(bounceOutUp 1s);
-
-    &:before,
-    &:after {
-      content: ' ';
-      width: 128px;
-      height: 39px;
-      position: absolute;
-      left: 50%;
-      margin-left: -64px;
-      opacity: 0;
-    }
-
-    &:before {
-      background: url(../img/arrow-up.png);
-      top: 50px;
-    }
-    &:after {
-      background: url(../img/arrow-down.png);
-      bottom: 50px + $menuHeight;
-    }
-
-    .guide-content {
-      position: relative;
-      width: 500px;
-      margin: 0 auto;
-      padding: 30px;
-      top: 50%;
-      text-align: center;
-      background: rgba($black, 0.5);
-      @include transform(translateY(-50%));
-
-      p {
-        font-size: 1.2em;
-        line-height: 1.8;
-      }
-
-      > p:first-child {
-        margin-top: 0;
-      }
-
-      .key {
-        font-size: 0.8em;
-        padding: 4px 6px;
-        background: rgba($medium, 0.7);
-      }
-    }
-
-    .guide-confirm {
-      &:before {
-        content: 'Okay, Let\'s Begin';
-      }
-      &.active:before {
-        content: 'Okay, Continue';
-      }
-    }
-  }
-
-  &.active {
-    display: block;
-
-    .curtain {
-
-      &.left {
-        &, &:before {
-          @include animation(bounce-in-left 1s);
-        }
-
-        &:before {
-          @include animation-duration(1.25s);
-        }
-      }
-
-      &.right {
-        &, &:before {
-          @include animation(bounce-in-right 1s);
-        }
-
-        &:before {
-          @include animation-duration(1.25s);
-        }
-      }
-
-    }
-
-    .guide {
-      @include animation(bounceInDown 1s);
-      @include animation-delay(1s);
-
-      &:before,
-      &:after {
-        @include animation(blink 2s infinite);
-        @include animation-delay(3s);
-      }
-    }
-
-  }
-}
-
-
-// Character
-.character {
-  width: 230px;
-  height: 533px;
-  position: absolute;
-  left: 50%;
-  margin-left: -103px;
-  bottom: $menuHeight + 120px;
-  @include transform-origin(50% 100%);
-  @include transform(scale(0.5));
-
-  .character-shadow {
-    width: 206px;
-    height: 77px;
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    margin-left: -103px;
-    background: url(../img/character-shadow.png) center no-repeat;
-    opacity: 0.8;
-  }
-  .character-body {
-    width: 230px;
-    height: 506px;
-    position: absolute;
-    left: 50%;
-    top: 0;
-    margin-left: -115px;
-    background: url(../img/character-sprite.png) no-repeat;
-    background-position: 0 0;
-  }
-
-  &.walking {
-    .character-body {
-      background-position: -230px 0;
-      @include animation(walk 1s steps(1) infinite);
-    }
-    &.fast .character-body {
-      @include animation-duration(0.5s);
-    }
-    &.slow .character-body {
-      @include animation-duration(1.5s);
-    }
-  }
-}
-
 // Menu
 .menu {
   width: 100%;
@@ -327,3 +116,10 @@ button {
   background: rgba($medium, 0.8);
   @include box-shadow(0, -2px, 2px);
 }
+
+// Components
+@import "modal";
+@import "character";
+
+// Set pieces
+@import "door";

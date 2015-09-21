@@ -1,0 +1,47 @@
+@import "mixins";
+@import "variables";
+
+.character {
+  width: 230px;
+  height: 533px;
+  position: absolute;
+  left: 50%;
+  margin-left: -103px;
+  bottom: 10%;
+  @include transform-origin(50% 100%);
+  @include transform(scale(0.5));
+
+  .character-shadow {
+    width: 206px;
+    height: 77px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -103px;
+    background: url(../img/character-shadow.png) center no-repeat;
+    opacity: 0.8;
+  }
+  .character-body {
+    width: 230px;
+    height: 506px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    margin-left: -115px;
+    background: url(../img/character-sprite.png) no-repeat;
+    background-position: 0 0;
+  }
+
+  &.walking {
+    .character-body {
+      background-position: -230px 0;
+      @include animation(walk 1s steps(1) infinite);
+    }
+    &.fast .character-body {
+      @include animation-duration(0.5s);
+    }
+    &.slow .character-body {
+      @include animation-duration(1.5s);
+    }
+  }
+}
