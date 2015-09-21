@@ -122,4 +122,11 @@ button {
 @import "character";
 
 // Set pieces
+.prop {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
 @import "door";

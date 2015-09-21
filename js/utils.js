@@ -5,6 +5,10 @@ Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
   }
 });
 
+Number.prototype.between = function(min, max) {
+  return this >= min && this <= max;
+};
+
 // constants
 var INACTIVE = 0;
 var ACTIVE = 1;

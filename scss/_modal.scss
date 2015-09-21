@@ -1,6 +1,9 @@
 @import "mixins";
 @import "variables";
 
+$curtainDuration: 4s;
+$bgDuration: 3.75s;
+
 .modal {
   position: absolute;
   width: 100%;
@@ -32,12 +35,12 @@
 
       &, &:before {
         background-position: right center;
-        @include animation(bounce-out-left 0.75s);
+        @include animation(bounce-out-left ($bgDuration + 1s));
       }
 
       &:before {
         background-image: url(../img/curtain-bg-left.jpg);
-        @include animation-duration(1s);
+        @include animation-duration(($curtainDuration + 1s));
       }
     }
 
@@ -47,12 +50,12 @@
 
       &, &:before {
         background-position: left center;
-        @include animation(bounce-out-right 0.75s);
+        @include animation(bounce-out-right ($bgDuration + 1s));
       }
 
       &:before {
         background-image: url(../img/curtain-bg-right.jpg);
-        @include animation-duration(1s);
+        @include animation-duration(($curtainDuration + 1s));
       }
     }
   }
@@ -128,34 +131,34 @@
 
       &.left {
         &, &:before {
-          @include animation(bounce-in-left 1s);
+          @include animation(bounce-in-left $bgDuration);
         }
 
         &:before {
-          @include animation-duration(1.25s);
+          @include animation-duration($curtainDuration);
         }
       }
 
       &.right {
         &, &:before {
-          @include animation(bounce-in-right 1s);
+          @include animation(bounce-in-right $bgDuration);
         }
 
         &:before {
-          @include animation-duration(1.25s);
+          @include animation-duration($curtainDuration);
         }
       }
 
     }
 
     .guide {
-      @include animation(bounceInDown 1s);
-      @include animation-delay(1s);
+      @include animation(bounceInDown 2s);
+      @include animation-delay($curtainDuration);
 
       &:before,
       &:after {
-        @include animation(blink 2s infinite);
-        @include animation-delay(3s);
+        @include animation(blink 3s infinite);
+        @include animation-delay(curtainDuration + 2s);
       }
     }
 

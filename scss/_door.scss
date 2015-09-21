@@ -8,6 +8,7 @@
   top: 50%;
   left: 0;
   margin-top: -232.5px;
+  margin-left: -130px;
 
   .door {
     position: absolute;
@@ -66,6 +67,8 @@
   &.from-right {
     left: auto;
     right: -100%;
+    margin-left: auto;
+    margin-right: -130px;
     @include transform-origin(100% 50%);
     @include transform(scale(0.75));
 
@@ -80,7 +83,6 @@
     top: -100%;
     left: 50%;
     margin-top: 0;
-    margin-left: -130px;
     @include transform-origin(50% 0);
 
     &:before,

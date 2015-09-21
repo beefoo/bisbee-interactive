@@ -134,7 +134,7 @@ var Bisbee = (function() {
       // parse seconds
       step.id = i;
       step.name = step.el;
-      step.$el = $(step.el);
+      step.$el = $('#'+step.el);
       step.state = INACTIVE;
       step.start = utils.getSeconds(step.start);
       step.end = utils.getSeconds(step.end);
@@ -170,10 +170,16 @@ var Bisbee = (function() {
   };
 
   Bisbee.prototype.modalHide = function(){
+    var _this = this;
+
     $('.modal').removeClass('active');
     setTimeout(function(){
+      _this.mediaPlay('curtain-closing', true);
+    }, 500);
+    this.mediaPause('crickets-bark');
+    setTimeout(function(){
       $('.modal').addClass('hide');
-    }, 1000);
+    }, 4000);
   };
 
   Bisbee.prototype.modalShow = function(){
@@ -183,6 +189,7 @@ var Bisbee = (function() {
     } else {
       $('.modal .guide-confirm').removeClass('active');
     }
+    this.mediaPlay(['curtain-opening', 'crickets-bark']);
   };
 
   Bisbee.prototype.onHotspot = function($hotspot, y){
@@ -294,6 +301,7 @@ var Bisbee = (function() {
       switch(step.state) {
 
         case INACTIVE:
+          step.$el.removeClass('active');
           step.off(_this);
           break;
 
@@ -303,6 +311,7 @@ var Bisbee = (function() {
             $('#debug-scene').text(step.name);
             $('#debug-progress').text(Math.round(progress*100)+'%');
           }
+          step.$el.addClass('active');
           step.onProgress(progress, _this);
           break;
 

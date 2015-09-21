@@ -18,13 +18,13 @@
       <div class="void"></div>
     </div>
 
-    <div id="door-from-left" class="door-container from-left moving-horizontal">
+    <div id="door-from-left" class="prop door-container from-left moving-horizontal">
       <div class="door"></div>
     </div>
-    <div id="door-from-right" class="door-container from-right moving-horizontal">
+    <div id="door-from-right" class="prop door-container from-right moving-horizontal">
       <div class="door"></div>
     </div>
-    <div id="door-from-top" class="door-container from-top moving-vertical">
+    <div id="door-from-top" class="prop door-container from-top moving-vertical">
       <div class="door"></div>
     </div>
 
@@ -60,6 +60,19 @@
   <div class="audio hide">
     <audio data-id="footsteps" src="audio/footsteps_on_stage.mp3" preload="auto" loop></audio>
     <audio data-id="footsteps-fast" src="audio/fast_footsteps.mp3" preload="auto" loop></audio>
+    <audio data-id="crickets-bark" preload="auto" loop>
+      <source src="audio/crickets_dog_barks.ogg" type="audio/ogg">
+      <source src="audio/crickets_dog_barks.mp3" type="audio/mpeg">
+    </audio>
+    <audio data-id="curtain-opening" src="audio/curtain_opening.mp3" preload="auto"></audio>
+    <audio data-id="curtain-closing" src="audio/curtain_closing.mp3" preload="auto"></audio>
+
+    <audio data-id="door-in" src="audio/whoosh_in_lotr.mp3" preload="auto" loop></audio>
+    <audio data-id="door-out" src="audio/whoosh_out_center_to_left.mp3" preload="auto" loop></audio>
+    <audio data-id="door-down" src="audio/door_clattering_down.mp3" preload="auto" loop></audio>
+    <audio data-id="door-open" src="audio/door_opening.mp3" preload="auto" loop></audio>
+
+
   </div>
 
   <div class="video hide">
@@ -80,8 +93,9 @@
   <script src="js/vendor/underscore-min.js"></script>
   <script src="js/vendor/hammer.min.js"></script>
   <script src="js/vendor/jquery.hammer.js"></script>
-  <script src="js/vendor/dynamics.min.js"></script>
+  <script src="js/vendor/easing.js"></script>
   <script src="js/utils.js"></script>
+  <script src="js/tween.js"></script>
   <script src="js/sequence.js"></script>
   <script src="js/app.js"></script>
 
