@@ -1,3 +1,19 @@
+var BSUtils = {
+  playSounds: function(sounds, p, b){
+    _.each(sounds, function(sound, i){
+      if ((b.direction > 0 && p > sound.p || sound.reverse && b.direction < 0 && p < sound.p) && !sound.played) {
+        sounds[i].played = true;
+        b.mediaPlay(sound.name, true);
+      }
+    });
+  },
+  resetSounds: function(sounds){
+    _.each(sounds, function(sound, i){
+      sounds[i].played = false;
+    });
+  }
+};
+
 var BisbeeSequence = [
   {
     el: 'door-from-left',
@@ -6,11 +22,12 @@ var BisbeeSequence = [
     animate: {
       left: [-100, 50, '%']
     },
-    played_door_in: false,
-    played_door_out: false,
+    sounds: [
+      {name: 'door-in', p: 0.2, played: false, reverse: true},
+      {name: 'door-out', p: 0.7, played: false, reverse: true}
+    ],
     off: function(b){
-      this.played_door_in = false;
-      this.played_door_out = false;
+      BSUtils.resetSounds(this.sounds);
     },
     onStart: function(b){},
     onProgress: function(p,b){
@@ -22,15 +39,7 @@ var BisbeeSequence = [
       else this.$el.addClass('moving-horizontal');
 
       // sounds
-      var sound_delay = 0.2;
-      if ((b.direction > 0 && p > sound_delay || b.direction < 0 && p < sound_delay) && !this.played_door_in) {
-        this.played_door_in = true;
-        b.mediaPlay('door-in', true);
-      }
-      if ((b.direction > 0 && p > (0.5+sound_delay) || b.direction < 0 && p < (0.5+sound_delay)) && !this.played_door_out) {
-        this.played_door_out = true;
-        b.mediaPlay('door-out', true);
-      }
+      BSUtils.playSounds(this.sounds, p, b);
     },
     onEnd: function(b){}
   },{
@@ -40,11 +49,12 @@ var BisbeeSequence = [
     animate: {
       right: [-100, 50, '%']
     },
-    played_door_in: false,
-    played_door_out: false,
+    sounds: [
+      {name: 'door-in', p: 0.2, played: false, reverse: true},
+      {name: 'door-out', p: 0.7, played: false, reverse: true}
+    ],
     off: function(b){
-      this.played_door_in = false;
-      this.played_door_out = false;
+      BSUtils.resetSounds(this.sounds);
     },
     onStart: function(b){},
     onProgress: function(p,b){
@@ -56,15 +66,7 @@ var BisbeeSequence = [
       else this.$el.addClass('moving-horizontal');
 
       // sounds
-      var sound_delay = 0.2;
-      if ((b.direction > 0 && p > sound_delay || b.direction < 0 && p < sound_delay) && !this.played_door_in) {
-        this.played_door_in = true;
-        b.mediaPlay('door-in', true);
-      }
-      if ((b.direction > 0 && p > (0.5+sound_delay) || b.direction < 0 && p < (0.5+sound_delay)) && !this.played_door_out) {
-        this.played_door_out = true;
-        b.mediaPlay('door-out', true);
-      }
+      BSUtils.playSounds(this.sounds, p, b);
     },
     onEnd: function(b){}
   },{
@@ -74,13 +76,13 @@ var BisbeeSequence = [
     animate: {
       top: [-100, 50, '%']
     },
-    played_door_in: false,
-    played_door_out: false,
-    played_door_open: false,
+    sounds: [
+      {name: 'door-in', p: 0.2, played: false, reverse: true},
+      {name: 'door-out', p: 0.7, played: false, reverse: true},
+      {name: 'door-open', p: 0.5, played: false, reverse: false}
+    ],
     off: function(b){
-      this.played_door_in = false;
-      this.played_door_out = false;
-      this.played_door_open = false;
+      BSUtils.resetSounds(this.sounds);
     },
     onStart: function(b){},
     onProgress: function(p,b){
@@ -91,24 +93,11 @@ var BisbeeSequence = [
       if (p.between(0.3, 0.7)) this.$el.removeClass('moving-vertical');
       else this.$el.addClass('moving-vertical');
 
-      var door_open_p = 0.5;
-      if (p > door_open_p) this.$el.addClass('open');
+      if (p > 0.5) this.$el.addClass('open');
       else this.$el.removeClass('open');
 
       // sounds
-      var sound_delay = 0.2;
-      if ((b.direction > 0 && p > sound_delay || b.direction < 0 && p < sound_delay) && !this.played_door_in) {
-        this.played_door_in = true;
-        b.mediaPlay('door-in', true);
-      }
-      if ((b.direction > 0 && p > (0.5+sound_delay) || b.direction < 0 && p < (0.5+sound_delay)) && !this.played_door_out) {
-        this.played_door_out = true;
-        b.mediaPlay('door-out', true);
-      }
-      if (b.direction > 0 && p > door_open_p && !this.played_door_open) {
-        this.played_door_open = true;
-        b.mediaPlay('door-open', true);
-      }
+      BSUtils.playSounds(this.sounds, p, b);
     },
     onEnd: function(b){}
   }
