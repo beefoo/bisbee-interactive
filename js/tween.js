@@ -1,7 +1,7 @@
 var BisbeeTween = {
   // no easing, no acceleration
   inPauseOut: function (p, pause, easing_function) {
-    easing_function = easing_function || 'easeInOutCubic';
+    easing_function = easing_function || 'easeInOutQuint';
 
     var a_dur = (1.0 - pause) * 0.5;
 

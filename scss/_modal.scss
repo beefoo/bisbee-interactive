@@ -158,7 +158,7 @@ $bgDuration: 3.75s;
       &:before,
       &:after {
         @include animation(blink 3s infinite);
-        @include animation-delay(curtainDuration + 2s);
+        @include animation-delay($curtainDuration + 3s);
       }
     }
 
