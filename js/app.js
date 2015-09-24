@@ -31,7 +31,7 @@ var Bisbee = (function() {
 
     // Load sequence
     if (options.sequence) {
-      this.loadSequence(options.sequence);
+      this.loadSequence(options.sequence, options.sequenceStepDefaults);
       if (this.sequence.length)
         this.endTime = this.sequence[this.sequence.length-1]['end'];
     }
@@ -127,18 +127,28 @@ var Bisbee = (function() {
     });
   };
 
-  Bisbee.prototype.loadSequence = function(sequence){
+  Bisbee.prototype.loadSequence = function(sequence, stepDefaults){
     var _this = this;
 
-    _.each(sequence, function(step, i){
-      // parse seconds
+    _.each(sequence, function(_step, i){
+      // apply defaults
+      var step = _.extend({}, stepDefaults, _step);
       step.id = i;
-      step.name = step.el;
-      step.$el = $('#'+step.el);
+      step.name = step.name || step.el || 'Step ' + i;
       step.state = INACTIVE;
+      // parse seconds
       step.start = utils.getSeconds(step.start);
       step.end = utils.getSeconds(step.end);
-
+      // determine $els
+      if (step.el) step.$el = $('#'+step.el);
+      _.each(step.animate, function(a, i){
+        var el = a.el || step.el;
+        step.animate[i].$el = $('#'+el);
+      });
+      _.each(step.classNames, function(c, i){
+        var el = c.el || step.el;
+        step.classNames[i].$el = $('#'+el);
+      });
       _this.sequence.push(step);
     });
   };
@@ -297,22 +307,16 @@ var Bisbee = (function() {
     var started = 0,
         ended = 0;
 
+    // render sequence steps
     _.each(this.sequence, function(step, i){
       switch(step.state) {
 
         case INACTIVE:
-          step.$el.removeClass('active');
-          step.off(_this);
+          _this.stepOff(_this.sequence[i]);
           break;
 
         case ACTIVE:
-          var progress = (_this.currentTime-step.start)/(step.end-step.start);
-          if (_this.debug) {
-            $('#debug-scene').text(step.name);
-            $('#debug-progress').text(Math.round(progress*100)+'%');
-          }
-          step.$el.addClass('active');
-          step.onProgress(progress, _this);
+          _this.stepProgress(_this.sequence[i]);
           break;
 
         case STARTING:
@@ -321,6 +325,7 @@ var Bisbee = (function() {
           } else {
             step.onStart && step.onStart(_this);
           }
+          _this.stepProgress(_this.sequence[i]);
           started++;
           break;
 
@@ -384,6 +389,28 @@ var Bisbee = (function() {
     this.render();
   };
 
+  Bisbee.prototype.stepOff = function(step){
+    step.$el.removeClass('active');
+    BSUtils.resetSounds(step.sounds);
+    step.off && step.off(this);
+  };
+
+  Bisbee.prototype.stepProgress = function(step){
+    var progress = (this.currentTime-step.start)/(step.end-step.start),
+        tweenProgress = BisbeeTween[step.tweenMethod](progress, step.pauseAmount);
+
+    if (this.debug) {
+      $('#debug-scene').text(step.name);
+      $('#debug-progress').text(Math.round(progress*100)+'%');
+    }
+
+    step.$el.addClass('active');
+    BisbeeTween.tween(step.animate, tweenProgress);
+    BSUtils.doClassNames(step.classNames, progress);
+    BSUtils.playSounds(step.sounds, progress, this);
+    step.onProgress && step.onProgress(progress, this);
+  };
+
   return Bisbee;
 
 })();
@@ -391,6 +418,7 @@ var Bisbee = (function() {
 // Load app on ready
 $(function() {
   var app = new Bisbee({
-    sequence: BisbeeSequence
+    sequence: BisbeeSequence,
+    sequenceStepDefaults: BisbeeSequenceStepDefaults
   });
 });

@@ -18,10 +18,10 @@ var BisbeeTween = {
     return Easing[easing_function](p);
   },
 
-  tween: function($el, animate, t){
-    _.each(animate, function(values, key){
-      var value = utils.lerp(values[0], values[1], t);
-      $el.css(key, value + values[2]);
+  tween: function(animate, t){
+    _.each(animate, function(a, i){
+      var value = utils.lerp(a.start, a.end, t);
+      a.$el.css(a.prop, value + a.unit);
     });
   }
 }
