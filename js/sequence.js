@@ -29,7 +29,6 @@ var BisbeeSequence = [
     off: function(b){
       BSUtils.resetSounds(this.sounds);
     },
-    onStart: function(b){},
     onProgress: function(p,b){
       var t = BisbeeTween.inPauseOut(p, 0.1);
       BisbeeTween.tween(this.$el, this.animate, t);
@@ -40,8 +39,7 @@ var BisbeeSequence = [
 
       // sounds
       BSUtils.playSounds(this.sounds, p, b);
-    },
-    onEnd: function(b){}
+    }
   },{
     el: 'door-from-right',
     start: '0:08',
@@ -56,7 +54,6 @@ var BisbeeSequence = [
     off: function(b){
       BSUtils.resetSounds(this.sounds);
     },
-    onStart: function(b){},
     onProgress: function(p,b){
       var t = BisbeeTween.inPauseOut(p, 0.1);
       BisbeeTween.tween(this.$el, this.animate, t);
@@ -67,8 +64,7 @@ var BisbeeSequence = [
 
       // sounds
       BSUtils.playSounds(this.sounds, p, b);
-    },
-    onEnd: function(b){}
+    }
   },{
     el: 'door-from-top',
     start: '0:14',
@@ -84,7 +80,6 @@ var BisbeeSequence = [
     off: function(b){
       BSUtils.resetSounds(this.sounds);
     },
-    onStart: function(b){},
     onProgress: function(p,b){
       var t = BisbeeTween.inPauseOut(p, 0.1);
       BisbeeTween.tween(this.$el, this.animate, t);
@@ -98,7 +93,6 @@ var BisbeeSequence = [
 
       // sounds
       BSUtils.playSounds(this.sounds, p, b);
-    },
-    onEnd: function(b){}
+    }
   }
 ];

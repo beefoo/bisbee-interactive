@@ -317,18 +317,18 @@ var Bisbee = (function() {
 
         case STARTING:
           if (_this.direction < 0) {
-            step.onEnd(_this);
+            step.onEnd && step.onEnd(_this);
           } else {
-            step.onStart(_this);
+            step.onStart && step.onStart(_this);
           }
           started++;
           break;
 
         case ENDING:
           if (_this.direction < 0) {
-            step.onStart(_this);
+            step.onStart && step.onStart(_this);
           } else {
-            step.onEnd(_this);
+            step.onEnd && step.onEnd(_this);
           }
           ended++;
           break;
