@@ -30,6 +30,10 @@ var ENDING = 3;
     if (string[0] == '0') string = string.substring(1, string.length);
     return string;
   };
+  utils.getParameterByName = function(name) {
+    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+  };
   utils.getSeconds = function(string, dec) {
     var parts = string.split(':').reverse(),
         seconds = 0;

@@ -4,6 +4,7 @@ var Bisbee = (function() {
     var defaults = {
       min_speed: 0.5,
       max_speed: 2.0,
+      currentTime: 0,
       debug: true
     };
     options = $.extend({}, defaults, options);
@@ -20,6 +21,7 @@ var Bisbee = (function() {
     this.maxSpeed = options.max_speed;
     this.normalSpeed = 1.0;
     this.normalSpeedPercent = (this.normalSpeed - this.minSpeed) / (this.maxSpeed - this.minSpeed);
+    this.currentTime = options.currentTime;
     this.debug = options.debug;
 
     // Init speed to normal
@@ -36,9 +38,14 @@ var Bisbee = (function() {
         this.endTime = this.sequence[this.sequence.length-1]['end'];
     }
 
-    this.reset();
     this.loadListeners();
-    this.modalShow();
+
+    if (this.currentTime) {
+      this.play();
+    } else {
+      this.reset();
+      this.modalShow();
+    }
 
     if (this.debug) $('.debug').removeClass('hide');
   };
@@ -420,8 +427,11 @@ var Bisbee = (function() {
 
 // Load app on ready
 $(function() {
+  var currentTime = utils.getParameterByName('t') || 0;
+  if (currentTime) currentTime = utils.getSeconds(currentTime, 1);
   var app = new Bisbee({
     sequence: BisbeeSequence,
-    sequenceStepDefaults: BisbeeSequenceStepDefaults
+    sequenceStepDefaults: BisbeeSequenceStepDefaults,
+    currentTime: currentTime
   });
 });
