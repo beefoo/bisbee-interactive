@@ -1,0 +1,258 @@
+@import "mixins";
+@import "variables";
+
+// Set pieces
+.prop,
+.prop-container {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+.prop,
+.prop-container > div {
+  position: absolute;
+  background-repeat: no-repeat;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+}
+
+.from-left {
+  left: -100%;
+}
+.from-right {
+  right: -100%;
+}
+.from-top {
+  top: -100%;
+}
+.from-bottom {
+  bottom: -100%;
+}
+.h-center {
+  left: 50%;
+}
+.v-center {
+  top: 50%;
+}
+.vb-center {
+  bottom: 50%;
+}
+.top {
+  top: 0;
+}
+.right {
+  right: 0;
+}
+.bottom {
+  bottom: 0;
+}
+.left {
+  left: 0;
+}
+
+.door-container {
+  width: 260px;
+  height: 465px;
+  margin-top: -232.5px;
+  margin-left: -130px;
+
+  .door {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: url(../img/door-sprite.png) no-repeat;
+    background-position: 0 0;
+    z-index: 0;
+  }
+
+  &.moving-vertical .door {
+    background-position: -260px 0;
+  }
+
+  &.moving-horizontal .door {
+    background-position: (2*-260px) 0;
+  }
+
+  &.open .door {
+    background-position: (3*-260px) 0;
+  }
+
+  &:before,
+  &:after {
+    content: ' ';
+    position: absolute;
+    background: #3e3939;
+    z-index: -1;
+    @include box-shadow(0px, 0px, 6px, #3e3939);
+  }
+
+  &.from-left,
+  &.from-right {
+    // @include transform-origin(0 50%);
+    @include transform(scale(0.5));
+
+    &:before,
+    &:after {
+      height: 8px;
+      width: 2000px;
+      left: -1900px;
+    }
+
+    &:before {
+      top: 50px;
+    }
+
+    &:after {
+      bottom: 50px;
+    }
+  }
+
+  &.from-right {
+    margin-left: auto;
+    margin-right: -130px;
+    @include transform(scale(0.75));
+
+    &:before,
+    &:after {
+      left: auto;
+      right: -1900px;
+    }
+  }
+
+  &.from-top {
+
+    &:before,
+    &:after {
+      width: 8px;
+      height: 2000px;
+      top: -1960px;
+    }
+
+    &:before {
+      left: 50px;
+    }
+
+    &:after {
+      right: 50px;
+    }
+  }
+}
+
+$videoWidth: 1072px;
+$videoHeight: 603px;
+
+#rock-01-from-right {
+  background: url(../img/rock_01_from_right.png);
+  width: 617px;
+  height: 327px;
+  top: ($videoHeight - 327px);
+}
+#rock-02-from-left {
+  background: url(../img/rock_02_from_left.png);
+  width: 620px;
+  height: 302px;
+  top: ($videoHeight - 302px);
+}
+#rock-03-from-left {
+  background: url(../img/rock_04_from_left.png);
+  width: 471px;
+  height: 564px;
+}
+#rock-04-from-right {
+  background: url(../img/rock_05_from_right.png);
+  width: 471px;
+  height: 563px;
+}
+#rock-05-from-top {
+  background: url(../img/rock_03_from_top.png);
+  width: 676px;
+  height: 586px;
+  margin-left: -338px;
+}
+#ants-video {
+  width: $videoWidth;
+  height: $videoHeight;
+  left: -16%;
+}
+#scorpion-video {
+  width: $videoWidth;
+  height: $videoHeight;
+  right: -18%;
+}
+#car {
+  background: url(../img/car.png);
+  width: 563px;
+  height: 503px;
+  right: 2%;
+  margin-top: -125px;
+}
+#rock-06-from-left {
+  background: url(../img/rock_06_from_left.png);
+  width: 608px;
+  height: 176px;
+  bottom: 33%;
+}
+#tire {
+  background: url(../img/tire.png);
+  width: 402px;
+  height: 233px;
+  bottom: 33%;
+}
+#rock-07-from-left {
+  background: url(../img/rock_07_from_left.png);
+  width: 411px;
+  height: 326px;
+  bottom: 33%;
+}
+#rabbit {
+  background: url(../img/rabbit.png);
+  width: 149px;
+  height: 140px;
+  left: 32%;
+}
+#ball {
+  background: url(../img/ball.png);
+  width: 57px;
+  height: 57px;
+  left: 36%;
+}
+#frisbee {
+  background: url(../img/frisbee.png);
+  width: 71px;
+  height: 67px;
+  left: 40%;
+}
+#tree-tire {
+  background: url(../img/tree_tire.png);
+  width: 343px;
+  height: 595px;
+}
+#fence {
+  background: url(../img/fence.png);
+  width: 518px;
+  height: 596px;
+}
+#rock-08-from-right {
+  background: url(../img/rock_08_from_right.png);
+  width: 655px;
+  height: 451px;
+  top: 10%;
+}
+#house {
+  background: url(../img/house.png);
+  width: 400px;
+  height: 320px;
+  right: 15%;
+}
+#fence2 {
+  background: url(../img/fence2.png);
+  width: 500px;
+  height: 347px;
+}

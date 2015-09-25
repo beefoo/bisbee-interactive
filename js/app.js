@@ -123,7 +123,10 @@ var Bisbee = (function() {
 
     $('video, audio').each(function(){
       _this.media[$(this).attr('data-id')] = $(this)[0];
-      console.log('Loaded '+$(this)[0].src);
+      if (_this.debug) {
+        var src = $(this)[0].src || $(this).children('source')[0].src;
+        console.log('Loaded '+src);
+      }
     });
   };
 
@@ -137,8 +140,8 @@ var Bisbee = (function() {
       step.name = step.name || step.el || 'Step ' + i;
       step.state = INACTIVE;
       // parse seconds
-      step.start = utils.getSeconds(step.start);
-      step.end = utils.getSeconds(step.end);
+      step.start = utils.getSeconds(step.start, 1);
+      step.end = utils.getSeconds(step.end, 1);
       // determine $els
       if (step.el) step.$el = $('#'+step.el);
       _.each(step.animate, function(a, i){
@@ -391,7 +394,7 @@ var Bisbee = (function() {
 
   Bisbee.prototype.stepOff = function(step){
     step.$el.removeClass('active');
-    BSUtils.resetSounds(step.sounds);
+    BSUtils.resetSounds(step.sounds, this);
     step.off && step.off(this);
   };
 
