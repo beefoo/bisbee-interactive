@@ -94,7 +94,7 @@ var BisbeeSequence = [
     ],
     sounds: [
       {name: 'hot-day', p: 0.1, played: false, direction: [-1, 1], loop: true},
-      {name: 'rocks-falling', p: 0.5, played: false, direction: [-1, 1]}
+      {name: 'rocks-falling', p: 0.15, played: false, direction: [-1, 1]}
     ]
   },{
     el: 'rocks-set-02',

@@ -1,6 +1,10 @@
 @import "mixins";
 @import "variables";
 
+$ropeThickness: 8px;
+$videoWidth: 1072px;
+$videoHeight: 603px;
+
 // Set pieces
 .prop,
 .prop-container {
@@ -14,6 +18,102 @@
 .prop-container > div {
   position: absolute;
   background-repeat: no-repeat;
+}
+.prop {
+  > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: no-repeat;
+    z-index: 0;
+  }
+
+  &.double-rope:before,
+  &.double-rope:after,
+  &.rope:before {
+    content: ' ';
+    position: absolute;
+    background: #3e3939;
+    z-index: -1;
+    opacity: 0.9;
+    // @include box-shadow(0px, 0px, 6px, #3e3939);
+  }
+
+  &.double-rope,
+  &.rope {
+
+    &.from-left,
+    &.from-right {
+
+      &:before,
+      &:after {
+        height: $ropeThickness;
+        width: 2000px;
+        left: -1960px;
+      }
+    }
+
+    &.from-right {
+
+      &:before,
+      &:after {
+        left: auto;
+        right: -1960px;
+      }
+    }
+
+    &.from-top {
+
+      &:before,
+      &:after {
+        width: $ropeThickness;
+        height: 2000px;
+        top: -1960px;
+      }
+    }
+  }
+
+  &.rope {
+    &.from-left:before,
+    &.from-right:before {
+      top: 50%;
+      margin-top: -($ropeThickness/2);
+    }
+
+    &.from-top:before {
+      left: 50%;
+      margin-left: -($ropeThickness/2);
+    }
+  }
+
+  &.double-rope {
+
+    &.from-left,
+    &.from-right {
+
+      &:before {
+        top: 20%;
+      }
+
+      &:after {
+        bottom: 20%;
+      }
+    }
+
+    &.from-top {
+
+      &:before {
+        left: 20%;
+      }
+
+      &:after {
+        right: 20%;
+      }
+    }
+  }
+
 }
 
 .video-container video {
@@ -62,11 +162,6 @@
   margin-left: -130px;
 
   .door {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
     background: url(../img/door-sprite.png) no-repeat;
     background-position: 0 0;
     z-index: 0;
@@ -84,69 +179,18 @@
     background-position: (3*-260px) 0;
   }
 
-  &:before,
-  &:after {
-    content: ' ';
-    position: absolute;
-    background: #3e3939;
-    z-index: -1;
-    @include box-shadow(0px, 0px, 6px, #3e3939);
-  }
-
   &.from-left,
   &.from-right {
     // @include transform-origin(0 50%);
     @include transform(scale(0.5));
-
-    &:before,
-    &:after {
-      height: 8px;
-      width: 2000px;
-      left: -1900px;
-    }
-
-    &:before {
-      top: 50px;
-    }
-
-    &:after {
-      bottom: 50px;
-    }
   }
 
   &.from-right {
     margin-left: auto;
     margin-right: -130px;
     @include transform(scale(0.75));
-
-    &:before,
-    &:after {
-      left: auto;
-      right: -1900px;
-    }
-  }
-
-  &.from-top {
-
-    &:before,
-    &:after {
-      width: 8px;
-      height: 2000px;
-      top: -1960px;
-    }
-
-    &:before {
-      left: 50px;
-    }
-
-    &:after {
-      right: 50px;
-    }
   }
 }
-
-$videoWidth: 1072px;
-$videoHeight: 603px;
 
 #rock-01-from-right {
   background: url(../img/rock_01_from_right.png);
@@ -187,11 +231,18 @@ $videoHeight: 603px;
   right: -18%;
 }
 #car {
-  background: url(../img/car.png);
   width: 563px;
   height: 503px;
   right: 2%;
   margin-top: -125px;
+  z-index: 1;
+  &:before {
+    z-index: 0;
+    top: -1800px;
+  }
+   > .prop-image {
+     background: url(../img/car.png);
+   }
 }
 #rock-06-from-left {
   background: url(../img/rock_06_from_left.png);
@@ -212,22 +263,40 @@ $videoHeight: 603px;
   bottom: 33%;
 }
 #rabbit {
-  background: url(../img/rabbit.png);
   width: 149px;
   height: 140px;
-  left: 32%;
+  left: 30%;
+  > .prop-image {
+    background: url(../img/rabbit.png);
+  }
 }
 #ball {
-  background: url(../img/ball.png);
   width: 57px;
   height: 57px;
   left: 36%;
+  > .prop-image {
+    background: url(../img/ball.png);
+  }
 }
 #frisbee {
-  background: url(../img/frisbee.png);
   width: 71px;
   height: 67px;
   left: 40%;
+  > .prop-image {
+    background: url(../img/frisbee.png);
+  }
+}
+#rabbit,
+#ball,
+#frisbee {
+  z-index: 1;
+
+  &:before {
+    z-index: 0;
+    width: 2px;
+    margin-left: -1px;
+    opacity: 0.5;
+  }
 }
 #tree-tire {
   background: url(../img/tree_tire.png);
