@@ -23,7 +23,7 @@ This will watch the `scss` folder for changes and automatically updated the css 
 - All styles are found in the [scss](https://github.com/beefoo/bisbee-interactive/tree/master/scss) folder.
 - Assets (images, video, audio) can be found in the `img`, `video`, and `audio` folder respectively
 
-## Adding to or modifying the sequence
+## Modifying the sequence
 
 In [js/sequence.js](https://github.com/beefoo/bisbee-interactive/blob/master/js/sequence.js), there is a variable called `BisbeeSequence` that contains the logic for the overall sequence.
 
