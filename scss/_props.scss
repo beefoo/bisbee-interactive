@@ -19,6 +19,9 @@ $videoHeight: 603px;
   position: absolute;
   background-repeat: no-repeat;
 }
+img.prop {
+  height: auto;
+}
 .prop {
   > div {
     position: absolute;
@@ -226,42 +229,33 @@ $videoHeight: 603px;
   }
 }
 
-#rock-01-from-right {
-  background: url(../img/rock_01_from_right.png);
-  width: 617px;
-  height: 327px;
-  top: ($videoHeight - 327px);
+#rock-01-from-left {
+  width: 45%;
+  bottom: 25%;
 }
-#rock-02-from-left {
-  background: url(../img/rock_02_from_left.png);
-  width: 620px;
-  height: 302px;
-  top: ($videoHeight - 302px);
+#rock-02-from-right {
+  width: 45%;
+  bottom: 25%;
 }
-#rock-03-from-left {
-  background: url(../img/rock_04_from_left.png);
-  width: 471px;
-  height: 564px;
+#rock-03-from-top {
+  width: 38%;
+  margin-left: -19%;
 }
-#rock-04-from-right {
-  background: url(../img/rock_05_from_right.png);
-  width: 471px;
-  height: 563px;
-}
-#rock-05-from-top {
-  background: url(../img/rock_03_from_top.png);
-  width: 676px;
-  height: 586px;
-  margin-left: -338px;
+#insects-videos {
+  .video-container {
+    top: -20%;
+  }
+  video {
+    width: 100%;
+    height: auto;
+  }
 }
 #ants-video {
-  width: $videoWidth;
-  height: $videoHeight;
+  width: 66%;
   left: -16%;
 }
 #scorpion-video {
-  width: $videoWidth;
-  height: $videoHeight;
+  width: 68%;
   right: -18%;
 }
 #car {

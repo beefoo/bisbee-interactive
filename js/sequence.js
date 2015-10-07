@@ -69,14 +69,14 @@ var BisbeeSequence = [
       $('#floor').addClass('active');
     }
   },{
-    el: 'rock-04-from-right',
+    el: 'rock-02-from-right',
     start: '0:13',
     end: '0:33',
     animate: [
       {prop: 'right', start: -100, end: 0, unit: '%'}
     ]
   },{
-    el: 'rock-03-from-left',
+    el: 'rock-01-from-left',
     start: '0:13',
     end: '0:24.6',
     animate: [
@@ -87,15 +87,7 @@ var BisbeeSequence = [
       {name: 'rocks-falling', p: 0.15, played: false, direction: [-1, 1]}
     ]
   },{
-    el: 'rocks-set-02',
-    start: '0:13',
-    end: '0:24.4',
-    animate: [
-      {el: 'rock-02-from-left', prop: 'left', start: -100, end: 0, unit: '%'},
-      {el: 'rock-01-from-right', prop: 'right', start: -100, end: 0, unit: '%'}
-    ]
-  },{
-    el: 'rock-05-from-top',
+    el: 'rock-03-from-top',
     start: '0:14',
     end: '0:24.2',
     animate: [
