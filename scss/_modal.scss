@@ -13,51 +13,25 @@ $bgDuration: 3.75s;
   z-index: 75;
 
   .curtain {
-
-    &, &:before {
-      position: absolute;
-      width: 50%;
-      height: 100%;
-      top: 0;
-      background: #222 no-repeat;
-      background-size: cover;
-    }
-
-    &:before {
-      content: ' ';
-      width: 100%;
-      left: 0;
-      opacity: 0.5;
-    }
+    position: absolute;
+    width: 52%;
+    height: 100%;
+    top: 0;
+    background: #222 no-repeat;
+    background-size: cover;
 
     &.left {
-      left: 0;
-      background-image: url(../img/bisbee-bg-left.jpg);
-
-      &, &:before {
-        background-position: right center;
-        @include animation(bounce-out-left ($bgDuration + 1s));
-      }
-
-      &:before {
-        background-image: url(../img/curtain-bg-left.jpg);
-        @include animation-duration(($curtainDuration + 1s));
-      }
+      left: -2%;
+      background-image: url(../img/intro/curtain-left@2x.jpg);
+      background-position: right center;
+      @include animation(bounceOutLeft ($bgDuration + 1s));
     }
 
     &.right {
-      right: 0;
-      background-image: url(../img/bisbee-bg-right.jpg);
-
-      &, &:before {
-        background-position: left center;
-        @include animation(bounce-out-right ($bgDuration + 1s));
-      }
-
-      &:before {
-        background-image: url(../img/curtain-bg-right.jpg);
-        @include animation-duration(($curtainDuration + 1s));
-      }
+      right: -2%;
+      background-image: url(../img/intro/curtain-right@2x.jpg);
+      background-position: left center;
+      @include animation(bounceOutRight ($bgDuration + 1s));
     }
   }
 
@@ -131,23 +105,11 @@ $bgDuration: 3.75s;
     .curtain {
 
       &.left {
-        &, &:before {
-          @include animation(bounce-in-left $bgDuration);
-        }
-
-        &:before {
-          @include animation-duration($curtainDuration);
-        }
+        @include animation(bounceInLeft $bgDuration);
       }
 
       &.right {
-        &, &:before {
-          @include animation(bounce-in-right $bgDuration);
-        }
-
-        &:before {
-          @include animation-duration($curtainDuration);
-        }
+        @include animation(bounceInRight $bgDuration);
       }
 
     }

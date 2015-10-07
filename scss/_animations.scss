@@ -10,6 +10,47 @@
   }
 }
 
+@include keyframes(fadeIn) {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@include keyframes(fadeOut) {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@include keyframes(fadeInUp) {
+  0% {
+    opacity: 0;
+    @include transform(translate3d(0, 100%, 0));
+  }
+
+  100% {
+    opacity: 1;
+    @include transform(none);
+  }
+}
+
+@include keyframes(fadeOutDown) {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    @include transform(translate3d(0, 100%, 0));
+  }
+}
+
 @include keyframes(bounceInDown) {
   0%, 60%, 75%, 90%, 100% {
     @include animation-timing-function(cubic-bezier(0.215, 0.610, 0.355, 1.000));
@@ -47,16 +88,7 @@
   }
 }
 
-@include keyframes(walk) {
-  0%, 100% {
-    @include transform(scaleX(1));
-  }
-  50% {
-    @include transform(scaleX(-1));
-  }
-}
-
-@include keyframes(bounce-in-left) {
+@include keyframes(bounceInLeft) {
   0%, 60%, 75%, 90%, 100% {
     @include animation-timing-function(cubic-bezier(0.215, 0.610, 0.355, 1.000));
   }
@@ -79,7 +111,7 @@
   }
 }
 
-@include keyframes(bounce-in-right) {
+@include keyframes(bounceInRight) {
   0%, 60%, 75%, 90%, 100% {
     @include animation-timing-function(cubic-bezier(0.215, 0.610, 0.355, 1.000));
   }
@@ -102,7 +134,7 @@
   }
 }
 
-@include keyframes(bounce-out-left) {
+@include keyframes(bounceOutLeft) {
   20% {
     opacity: 1;
     @include transform(translate3d(20px, 0, 0));
@@ -113,7 +145,7 @@
   }
 }
 
-@include keyframes(bounce-out-right) {
+@include keyframes(bounceOutRight) {
   20% {
     opacity: 1;
     @include transform(translate3d(-20px, 0, 0));
@@ -122,4 +154,56 @@
     opacity: 0;
     @include transform(translate3d(2000px, 0, 0));
   }
+}
+
+
+@include keyframes(walk) {
+  0%, 100% { background-position: 0 0; }
+  9.09% { background-position: -230px 0; }
+  18.18% { background-position: -460px 0; }
+  27.27% { background-position: -690px 0; }
+  36.36% { background-position: -920px 0; }
+  45.45% { background-position: -1150px 0; }
+  54.54% { background-position: -1380px 0; }
+  63.63% { background-position: -1610px 0; }
+  72.72% { background-position: -1840px 0; }
+  81.81% { background-position: -2070px 0; }
+  90.90% { background-position: -2300px 0; }
+}
+@include keyframes(walkReverse) {
+  0%, 100% { background-position: 0 0; }
+  9.09% { background-position: -2300px 0; }
+  18.18% { background-position: -2070px 0; }
+  27.27% { background-position: -1840px 0; }
+  36.36% { background-position: -1610px 0; }
+  45.45% { background-position: -1380px 0; }
+  54.54% { background-position: -1150px 0; }
+  63.63% { background-position: -920px 0; }
+  72.72% { background-position: -690px 0; }
+  81.81% { background-position: -460px 0; }
+  90.90% { background-position: -230px 0; }
+}
+@include keyframes(ground) {
+  0%, 100% { left: 0; }
+  10% { left: -100%; }
+  20% { left: -200%; }
+  30% { left: -300%; }
+  40% { left: -400%; }
+  50% { left: -500%; }
+  60% { left: -600%; }
+  70% { left: -700%; }
+  80% { left: -800%; }
+  90% { left: -900%; }
+}
+@include keyframes(groundReverse) {
+  0%, 100% { left: 0; }
+  10% { left: -900%; }
+  20% { left: -800%; }
+  30% { left: -700%; }
+  40% { left: -600%; }
+  50% { left: -500%; }
+  60% { left: -400%; }
+  70% { left: -300%; }
+  80% { left: -200%; }
+  90% { left: -100%; }
 }

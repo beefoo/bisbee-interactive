@@ -29,14 +29,18 @@
     left: 50%;
     top: 0;
     margin-left: -115px;
-    background: url(../img/character-sprite.png) no-repeat;
+    background: url(../img/common/standing_still@2x.png) no-repeat;
     background-position: 0 0;
   }
 
   &.walking {
     .character-body {
       background-position: -230px 0;
+      background-image: url(../img/common/boy-walking-sprites@2x.png);
       @include animation(walk 1s steps(1) infinite);
+    }
+    &.reverse .character-body {
+      @include animation(walkReverse 1s steps(1) infinite);
     }
     &.fast .character-body {
       @include animation-duration(0.5s);

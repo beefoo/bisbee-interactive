@@ -41,13 +41,20 @@ var Bisbee = (function() {
     this.loadListeners();
 
     if (this.currentTime) {
+      this.introHide();
       this.play();
     } else {
       this.reset();
-      this.modalShow();
+      setTimeout(function(){
+        _this.modalShow();
+      }, 4000);
     }
 
     if (this.debug) $('.debug').removeClass('hide');
+  };
+
+  Bisbee.prototype.introHide = function(){
+    $('.intro').removeClass('active');
   };
 
   Bisbee.prototype.loadListeners = function(){
@@ -60,6 +67,7 @@ var Bisbee = (function() {
 
     $('.modal').on('click', function(e){
       e.preventDefault();
+      _this.introHide();
       _this.modalHide();
     });
 
@@ -361,13 +369,20 @@ var Bisbee = (function() {
   Bisbee.prototype.renderCharacter = function(){
     // character animation
     if (this.speedPercent > 0.5) {
-      $('#character').removeClass('slow').addClass('walking fast');
+      $('#character, #ground-image').removeClass('slow').addClass('walking fast');
     } else if (this.speedPercent > 0.25){
-      $('#character').removeClass('slow fast').addClass('walking');
+      $('#character, #ground-image').removeClass('slow fast').addClass('walking');
     } else if (this.speedPercent > 0){
-      $('#character').removeClass('fast').addClass('walking slow');
+      $('#character, #ground-image').removeClass('fast').addClass('walking slow');
     } else {
-      $('#character').removeClass('walking fast slow');
+      $('#character, #ground-image').removeClass('walking fast slow');
+    }
+
+    // character direction
+    if (this.direction >= 0) {
+      $('#character, #ground-image').removeClass('reverse');
+    } else {
+      $('#character, #ground-image').addClass('reverse');
     }
 
     // character audio

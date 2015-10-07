@@ -14,8 +14,12 @@
 
   <div class="stage">
 
-    <div class="floor">
+    <div id="floor" class="floor active">
       <div class="void"></div>
+    </div>
+
+    <div id="ground" class="ground prop">
+      <img src="img/common/road-sprites@2x.jpg" id="ground-image" class="ground-image" />
     </div>
 
     <div id="door-from-left" class="prop door-container from-left moving-horizontal v-center double-rope">
@@ -88,11 +92,16 @@
       </div>
     </div>
 
-    <div class="menu"></div>
+    <div id="intro" class="intro active">
+      <img src="img/intro/quote-1@2x.png" class="quote left" />
+      <img src="img/intro/quote-2@2x.png" class="quote right" />
+    </div>
+
+    <!-- <div class="menu"></div>
 
     <a href="#menu" class="logo show-modal" title="Bisbee">
       <img src="img/bisbee-logo.png" alt="Bisbee" />
-    </a>
+    </a> -->
 
   </div>
 

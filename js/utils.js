@@ -64,3 +64,27 @@ var ENDING = 3;
     return Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
   };
 })();
+
+var BSUtils = {
+  doClassNames: function(classNames, p){
+    _.each(classNames, function(c, i){
+      if (p.between(c.start, c.end) && !c.invert) c.$el.addClass(c.name);
+      else c.$el.removeClass(c.name);
+    });
+  },
+  playSounds: function(sounds, p, b){
+    _.each(sounds, function(sound, i){
+      sound.direction = sound.direction.constructor === Array ? sound.direction : [sound.direction];
+      if ((b.direction > 0 && p > sound.p || b.direction < 0 && p < sound.p) && _.contains(sound.direction, b.direction) && !sound.played) {
+        sounds[i].played = true;
+        b.mediaPlay(sound.name, true);
+      }
+    });
+  },
+  resetSounds: function(sounds, b){
+    _.each(sounds, function(sound, i){
+      sounds[i].played = false;
+      sound.loop && b.mediaPause(sound.name, true);
+    });
+  }
+};

@@ -18,6 +18,16 @@ var BisbeeTween = {
     return Easing[easing_function](p);
   },
 
+  in: function (p, pause, easing_function) {
+    easing_function = easing_function || 'easeInQuint';
+
+    return Easing[easing_function](p);
+  },
+
+  none: function(p){
+    return 1;
+  },
+
   tween: function(animate, t){
     _.each(animate, function(a, i){
       var value = utils.lerp(a.start, a.end, t);

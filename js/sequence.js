@@ -1,27 +1,3 @@
-var BSUtils = {
-  doClassNames: function(classNames, p){
-    _.each(classNames, function(c, i){
-      if (p.between(c.start, c.end) && !c.invert) c.$el.addClass(c.name);
-      else c.$el.removeClass(c.name);
-    });
-  },
-  playSounds: function(sounds, p, b){
-    _.each(sounds, function(sound, i){
-      sound.direction = sound.direction.constructor === Array ? sound.direction : [sound.direction];
-      if ((b.direction > 0 && p > sound.p || b.direction < 0 && p < sound.p) && _.contains(sound.direction, b.direction) && !sound.played) {
-        sounds[i].played = true;
-        b.mediaPlay(sound.name, true);
-      }
-    });
-  },
-  resetSounds: function(sounds, b){
-    _.each(sounds, function(sound, i){
-      sounds[i].played = false;
-      sound.loop && b.mediaPause(sound.name, true);
-    });
-  }
-};
-
 var BisbeeSequenceStepDefaults = {
   tweenMethod: 'inPauseOut',
   pauseAmount: 0.2,
@@ -78,6 +54,20 @@ var BisbeeSequence = [
       {name: 'moving-vertical', start: 0.3, end: 0.7, invert: true},
       {name: 'open', start: 0.5, end: 1.0}
     ]
+  },{
+    el: 'ground',
+    start: '0:13',
+    end: '1:00',
+    tweenMethod: 'none',
+    animate: [
+      {prop: 'opacity', start: 0, end: 1, unit: ''}
+    ],
+    onStart: function(){
+      $('#floor').removeClass('active');
+    },
+    off: function(){
+      $('#floor').addClass('active');
+    }
   },{
     el: 'rock-04-from-right',
     start: '0:13',
