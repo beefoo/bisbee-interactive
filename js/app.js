@@ -45,6 +45,7 @@ var Bisbee = (function() {
       this.play();
     } else {
       this.reset();
+      this.mediaPlay('thunderstrike');
       setTimeout(function(){
         _this.modalShow();
       }, 4000);
@@ -217,6 +218,7 @@ var Bisbee = (function() {
     } else {
       $('.modal .guide-confirm').removeClass('active');
     }
+    this.mediaPause('thunderstrike');
     this.mediaPlay(['curtain-opening', 'crickets-bark']);
   };
 
@@ -367,6 +369,13 @@ var Bisbee = (function() {
   };
 
   Bisbee.prototype.renderCharacter = function(){
+    // character direction
+    if (this.direction >= 0) {
+      $('#character, #ground-image').removeClass('reverse');
+    } else {
+      $('#character, #ground-image').addClass('reverse');
+    }
+
     // character animation
     if (this.speedPercent > 0.5) {
       $('#character, #ground-image').removeClass('slow').addClass('walking fast');
@@ -375,25 +384,26 @@ var Bisbee = (function() {
     } else if (this.speedPercent > 0){
       $('#character, #ground-image').removeClass('fast').addClass('walking slow');
     } else {
-      $('#character, #ground-image').removeClass('walking fast slow');
-    }
-
-    // character direction
-    if (this.direction >= 0) {
-      $('#character, #ground-image').removeClass('reverse');
-    } else {
-      $('#character, #ground-image').addClass('reverse');
+      $('#character, #ground-image').removeClass('walking fast slow reverse');
     }
 
     // character audio
-    if (this.speedPercent > 0.5) {
-      this.mediaPause('footsteps');
-      this.mediaPlay('footsteps-fast');
-    } else if (this.speedPercent > 0) {
-      this.mediaPause('footsteps-fast');
-      this.mediaPlay('footsteps');
+    var footsound = 'footsteps';
+    if (!$('#floor').hasClass('active')) {
+      footsound = 'footsteps-road';
+      this.mediaPause('footsteps', 'footsteps-fast');
     } else {
-      this.mediaPause(['footsteps', 'footsteps-fast']);
+      this.mediaPause('footsteps-road', 'footsteps-road-fast');
+    }
+
+    if (this.speedPercent > 0.5) {
+      this.mediaPause(footsound);
+      this.mediaPlay(footsound+'-fast');
+    } else if (this.speedPercent > 0) {
+      this.mediaPause(footsound+'-fast');
+      this.mediaPlay(footsound);
+    } else {
+      this.mediaPause([footsound, footsound+'-fast']);
     }
   };
 

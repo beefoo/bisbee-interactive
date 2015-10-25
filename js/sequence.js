@@ -105,8 +105,7 @@ var BisbeeSequence = [
       {el: 'scorpion-video', prop: 'opacity', start: 0, end: 1, unit: ''}
     ],
     sounds: [
-      {name: 'impressions', p: 0.1, played: false, direction: 1},
-      {name: 'ants-crawling', p: 0.1, played: false, direction: [-1, 1], loop: true}
+      {name: 'hot-day', p: 0.2, played: false, direction: [-1, 1], loop: true}
     ]
   },{
     el: 'car',
@@ -117,8 +116,7 @@ var BisbeeSequence = [
     ],
     sounds: [
       {name: 'hot-day', p: 0.2, played: false, direction: [-1, 1], loop: true},
-      {name: 'hitchhike', p: 0.2, played: false, direction: [-1, 1]},
-      {name: 'car-passing', p: 0.2, played: false, direction: [-1, 1]},
+      {name: 'impressions', p: 0.2, played: false, direction: [-1, 1]},
       {name: 'rooster-crowing', p: 0.6, played: false, direction: [-1, 1]}
     ]
   },{
