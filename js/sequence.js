@@ -97,6 +97,13 @@ var BisbeeSequence = [
       {name: 'rocks-falling', p: 0.6, played: false, direction: [-1, 1]}
     ]
   },{
+    el: 'rocks-bg',
+    start: '0:16',
+    end: '0:26',
+    animate: [
+      {prop: 'bottom', start: -100, end: 0, unit: '%'}
+    ]
+  },{
     el: 'insects-videos',
     start: '0:16',
     end: '0:22',
@@ -106,6 +113,13 @@ var BisbeeSequence = [
     ],
     sounds: [
       {name: 'hot-day', p: 0.2, played: false, direction: [-1, 1], loop: true}
+    ]
+  },{
+    el: 'hill-bg',
+    start: '0:18',
+    end: '0:40',
+    animate: [
+      {prop: 'bottom', start: -100, end: 0, unit: '%'}
     ]
   },{
     el: 'car',

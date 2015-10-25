@@ -195,40 +195,6 @@ img.prop {
   }
 }
 
-.ground {
-  width: 100%;
-  height: 300px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  @include animation(fadeOutDown 1s);
-
-  &.active {
-    @include animation(fadeInUp 1s);
-  }
-
-  .ground-image {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 1000%;
-    height: auto;
-    &.walking {
-      @include animation(ground 1s steps(1) infinite);
-    }
-    &.reverse {
-      @include animation(groundReverse 1s steps(1) infinite);
-    }
-    &.fast {
-      @include animation-duration(0.5s);
-    }
-    &.slow {
-      @include animation-duration(1.5s);
-    }
-  }
-}
-
 #rock-01-from-left {
   width: 45%;
   bottom: 25%;
@@ -241,9 +207,15 @@ img.prop {
   width: 38%;
   margin-left: -19%;
 }
+#rocks-bg {
+  width: 100%;
+}
+#hill-bg {
+  width: 100%;
+}
 #insects-videos {
   .video-container {
-    top: -20%;
+    top: -25%;
   }
   video {
     width: 100%;
