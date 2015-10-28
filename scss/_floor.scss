@@ -1,11 +1,11 @@
 @import "mixins";
 @import "variables";
 
-$floorHeight: 300px;
+$floorHeight: 300;
 
 .floor {
   width: 100%;
-  height: $floorHeight;
+  height: percentage($floorHeight / $screenH);
   background: url(../img/intro/stage-brown@2x.jpg) center no-repeat;
   background-size: cover;
   position: absolute;
@@ -29,7 +29,7 @@ $floorHeight: 300px;
 
 .ground {
   width: 100%;
-  height: $floorHeight;
+  height: percentage($floorHeight / $screenH);
   position: absolute;
   bottom: 0;
   left: 0;

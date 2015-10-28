@@ -159,27 +159,36 @@ img.prop {
 }
 
 .door-container {
-  width: 260px;
-  height: 465px;
-  margin-top: -232.5px;
-  margin-left: -130px;
+  width: percentage(260 / $screenW);
+  height: percentage(465 / $screenH);
+  margin-top: percentage(-465 / $screenH / 3.3333);
+  margin-left: percentage(-260 / $screenW / 2);
 
   .door {
-    background: url(../img/door-sprite.png) no-repeat;
-    background-position: 0 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     z-index: 0;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 400%;
+      height: auto;
+    }
   }
 
-  &.moving-vertical .door {
-    background-position: -260px 0;
+  &.moving-vertical .door img {
+    left: -100%;
   }
 
-  &.moving-horizontal .door {
-    background-position: (2*-260px) 0;
+  &.moving-horizontal .door img {
+    left: -200%;
   }
 
-  &.open .door {
-    background-position: (3*-260px) 0;
+  &.open .door img {
+    left: -300%;
   }
 
   &.from-left,
@@ -190,7 +199,7 @@ img.prop {
 
   &.from-right {
     margin-left: auto;
-    margin-right: -130px;
+    margin-right: percentage(-260 / $screenW / 2);
     @include transform(scale(0.75));
   }
 }
