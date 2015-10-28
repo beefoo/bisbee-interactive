@@ -6,18 +6,18 @@ $videoWidth: 1072px;
 $videoHeight: 603px;
 
 // Set pieces
-.prop,
-.prop-container {
+.prop {
   display: none;
+  z-index: 10;
+  position: absolute;
 
   &.active {
     display: block;
   }
-}
-.prop,
-.prop-container > div {
-  position: absolute;
-  background-repeat: no-repeat;
+
+  &.bg {
+    z-index: 0;
+  }
 }
 img.prop {
   height: auto;
@@ -29,7 +29,6 @@ img.prop {
     left: 0;
     width: 100%;
     height: 100%;
-    background: no-repeat;
     z-index: 0;
   }
 
@@ -158,6 +157,8 @@ img.prop {
   left: 0;
 }
 
+/* Scene: Doors */
+
 .door-container {
   width: percentage(260 / $screenW);
   height: percentage(465 / $screenH);
@@ -204,25 +205,20 @@ img.prop {
   }
 }
 
-#rock-01-from-left {
+/* Scene: Rocks */
+#rocks-01-from-left {
   width: 45%;
   bottom: 25%;
 }
-#rock-02-from-right {
+#rocks-02-from-right {
   width: 45%;
   bottom: 25%;
 }
-#rock-03-from-top {
+#rocks-03-from-top {
   width: 38%;
   margin-left: -19%;
 }
-#rocks-bg {
-  width: 100%;
-}
-#hill-bg {
-  width: 100%;
-}
-#insects-videos {
+#rocks-insects-videos {
   .video-container {
     top: -25%;
   }
@@ -231,14 +227,25 @@ img.prop {
     height: auto;
   }
 }
-#ants-video {
+#rocks-ants-video {
   width: 66%;
   left: -16%;
 }
-#scorpion-video {
+#rocks-scorpion-video {
   width: 68%;
   right: -18%;
 }
+
+/* Scene: Ramshackle */
+#ramshackle-bg {
+  width: 100%;
+}
+
+/* Scene: Homes */
+#homes-hill-bg {
+  width: 100%;
+}
+
 #car {
   width: 563px;
   height: 503px;

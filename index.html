@@ -14,82 +14,70 @@
 
   <div id="stage" class="stage">
 
-    <!-- Scene: Rocks BG -->
-
-    <img id="rocks-bg" src="img/scene-ramshackle/background-rocks@2x.jpg" class="prop left from-bottom" />
-
-    <div id="insects-videos" class="prop-container">
-      <div id="ants-video" class="video-container"><video data-id="ants" src="video/ants.mp4" preload="auto" autoplay loop></video></div>
-      <div id="scorpion-video" class="video-container"><video data-id="scorpion" src="video/scorpion.mp4" preload="auto" autoplay loop></video></div>
-    </div>
-
-    <!-- / Scene: Rocks BG -->
-
-    <!-- Scene: Home BG -->
-
-    <img id="hill-bg" src="img/scene-stairs-homes/background-hill@2x.jpg" class="prop left from-bottom" />
-
-    <!-- / Scene: Home BG -->
+    <!-- Floor -->
 
     <div id="floor" class="floor active">
       <div class="void"></div>
     </div>
-
     <div id="ground" class="ground prop">
       <img src="img/common/road-sprites@2x.jpg" id="ground-image" class="ground-image" />
     </div>
 
+    <!-- Scene: Doors -->
+
     <div id="door-from-left" class="prop door-container from-left moving-horizontal v-center double-rope">
       <div class="door">
-        <img src="img/door-sprite.png" />
+        <img src="img/scene-doors/door-sprite.png" />
       </div>
     </div>
     <div id="door-from-right" class="prop door-container from-right moving-horizontal v-center double-rope">
       <div class="door">
-        <img src="img/door-sprite.png" />
+        <img src="img/scene-doors/door-sprite.png" />
       </div>
     </div>
     <div id="door-from-top" class="prop door-container from-top moving-vertical h-center double-rope">
       <div class="door">
-        <img src="img/door-sprite.png" />
+        <img src="img/scene-doors/door-sprite.png" />
       </div>
     </div>
 
     <!-- Scene: Rocks -->
 
-    <img id="rock-01-from-left" src="img/scene-rocks/rock-pile-left@2x.png" class="prop from-left" />
-    <img id="rock-02-from-right" src="img/scene-rocks/rock-pile-right@2x.png" class="prop from-right" />
-    <img id="rock-03-from-top" src="img/scene-rocks/rocks-center@2x.png" class="prop h-center from-top" />
+    <div id="rocks-insects-videos" class="prop bg">
+      <div id="rocks-ants-video" class="video-container"><video data-id="ants" src="video/ants.mp4" preload="auto" autoplay loop></video></div>
+      <div id="rocks-scorpion-video" class="video-container"><video data-id="scorpion" src="video/scorpion.mp4" preload="auto" autoplay loop></video></div>
+    </div>
+    <img id="rocks-rock1-from-left" src="img/scene-rocks/rock-pile-left@2x.png" class="prop from-left" />
+    <img id="rocks-rock2-from-right" src="img/scene-rocks/rock-pile-right@2x.png" class="prop from-right" />
+    <img id="rocks-rock3-from-top" src="img/scene-rocks/rocks-center@2x.png" class="prop h-center from-top" />
 
-    <!-- / Scene: Rocks -->
+    <!-- Scene: Ramshackle -->
 
-    <div id="fence2" class="prop from-left top"></div>
+    <img id="ramshackle-bg" src="img/scene-ramshackle/background-rocks@2x.jpg" class="prop left from-bottom bg" />
+    <img id="ramshackle-fence" src="img/scene-ramshackle/no-barking@2x.png" class="prop from-left top" />
+    <img id="ramshackle-tree-tire" src="img/scene-ramshackle/tree-tire@2x.png" class="prop from-left top" />
+    <img id="ramshackle-rock1-from-left" src="img/scene-ramshackle/rock-chunk-left@2x.png" class="prop from-left" />
+    <img id="ramshackle-rock2-from-left" src="img/scene-ramshackle/rocks-left@2x.png" class="prop from-left" />
+    <img id="ramshackle-tire" src="img/scene-ramshackle/tire-grass@2x.png" class="prop from-left" />
+    <img id="ramshackle-bedposts" src="img/scene-ramshackle/bedposts@2x.png" class="prop from-left top" />
+    <img id="ramshackle-rabbit" src="img/scene-ramshackle/stuffed-rabbit@2x.png" class="prop from-top" />
+    <img id="ramshackle-plate" src="img/scene-ramshackle/plate@2x.png" class="prop from-top" />
+    <img id="ramshackle-house" src="img/scene-ramshackle/house@2x.png" class="prop from-top" />
+    <img id="ramshackle-rock3-from-right" src="img/scene-ramshackle/rocks-right@2x.png" class="prop from-right" />
+    <img id="ramshackle-car" src="img/scene-ramshackle/car@2x.png" class="prop from-top" />
+    <img id="ramshackle-ball" src="img/scene-ramshackle/ball@2x.png" class="prop from-top" />
 
-    <div id="tree-tire" class="prop from-left top"></div>
+    <!-- Scene: Homes -->
 
-    <div id="rock-07-from-left" class="prop from-left"></div>
+    <img id="homes-hill-bg" src="img/scene-stairs-homes/background-hill@2x.jpg" class="prop left from-bottom bg" />
 
-    <div id="rock-06-from-left" class="prop from-left"></div>
+    <!-- Scene: Buildings -->
 
-    <div id="tire" class="prop from-left"></div>
-
-    <div id="rabbit" class="prop from-top rope"><div class="prop-image"></div></div>
-
-    <div id="ball" class="prop from-top rope"><div class="prop-image"></div></div>
-
-    <div id="frisbee" class="prop from-top rope"><div class="prop-image"></div></div>
-
-    <div id="house" class="prop from-top"></div>
-
-    <div id="rock-08-from-right" class="prop from-right"></div>
-
-    <div id="fence" class="prop from-right top"></div>
-
-    <div id="car" class="prop from-top double-rope"><div class="prop-image"></div></div>
+    <!-- Scene: Pit -->
 
     <div id="character" class="character">
       <div class="character-shadow">
-        <img src="img/character-shadow.png" />
+        <img src="img/common/character-shadow.png" />
       </div>
       <div class="character-body">
         <img src="img/common/standing_still@2x.png" class="image-still" />
