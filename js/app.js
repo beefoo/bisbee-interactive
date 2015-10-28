@@ -47,14 +47,9 @@ var Bisbee = (function() {
     this.loadListeners();
 
     if (this.currentTime) {
-      this.introHide();
+      $('.start').removeClass('active');
+      this.started = true;
       this.play();
-    } else {
-      this.reset();
-      this.mediaPlay('thunderstrike');
-      setTimeout(function(){
-        _this.modalShow();
-      }, 4000);
     }
 
     if (this.debug) $('.debug').removeClass('hide');
@@ -63,12 +58,8 @@ var Bisbee = (function() {
   Bisbee.prototype.adjustAspectRatio = function(){
     var windowHeight = $(window).height(),
         windowWidth = $(window).width(),
-        w = windowWidth,
-        h = windowHeight,
-        l = 0,
-        t = 0,
-        ml = 0,
-        mt = 0;
+        w = windowWidth, h = windowHeight,
+        l = 0, t = 0, ml = 0, mt = 0;
 
     // Portrait
     if (windowHeight > windowWidth) {
@@ -96,6 +87,22 @@ var Bisbee = (function() {
 
   Bisbee.prototype.introHide = function(){
     $('.intro').removeClass('active');
+    this.mediaPause('thunderstrike');
+  };
+
+  Bisbee.prototype.introShow = function(){
+    var _this = this;
+
+    this.reset();
+    $('.start').removeClass('active');
+    $('.intro').addClass('active');
+    this.mediaPlay('thunderstrike');
+    setTimeout(function(){
+      _this.modalShow();
+      setTimeout(function(){
+        _this.introHide();
+      }, 4000);
+    }, 4000);
   };
 
   Bisbee.prototype.loadListeners = function(){
@@ -171,9 +178,16 @@ var Bisbee = (function() {
       _this.reset();
     });
 
+    $('#start').on('click', function(){
+      if (!_this.started) {
+        _this.started = true;
+        _this.introShow();
+      }
+    });
+
     $(window).on('resize', function(){
       _this.adjustAspectRatio();
-    })
+    });
   };
 
   Bisbee.prototype.loadMedia = function(){
@@ -262,7 +276,6 @@ var Bisbee = (function() {
     } else {
       $('.modal .guide-confirm').removeClass('active');
     }
-    this.mediaPause('thunderstrike');
     this.mediaPlay(['curtain-opening', 'crickets-bark']);
   };
 
