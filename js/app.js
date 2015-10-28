@@ -2,9 +2,10 @@
 var Bisbee = (function() {
   function Bisbee(options) {
     var defaults = {
-      min_speed: 0.5,
-      max_speed: 2.0,
+      minSpeed: 0.5,
+      maxSpeed: 2.0,
       currentTime: 0,
+      aspectRatio: (1280/720),
       debug: true
     };
     options = $.extend({}, defaults, options);
@@ -17,11 +18,12 @@ var Bisbee = (function() {
     this.sequence = [];
     this.direction = 1.0;
     this.endTime = 0.0;
-    this.minSpeed = options.min_speed;
-    this.maxSpeed = options.max_speed;
+    this.minSpeed = options.minSpeed;
+    this.maxSpeed = options.maxSpeed;
     this.normalSpeed = 1.0;
     this.normalSpeedPercent = (this.normalSpeed - this.minSpeed) / (this.maxSpeed - this.minSpeed);
     this.currentTime = options.currentTime;
+    this.aspectRatio = options.aspectRatio;
     this.debug = options.debug;
 
     // Init speed to normal
@@ -38,6 +40,10 @@ var Bisbee = (function() {
         this.endTime = this.sequence[this.sequence.length-1]['end'];
     }
 
+    // Adjust aspect ratio
+    this.adjustAspectRatio();
+
+    // Load listeners
     this.loadListeners();
 
     if (this.currentTime) {
@@ -52,6 +58,40 @@ var Bisbee = (function() {
     }
 
     if (this.debug) $('.debug').removeClass('hide');
+  };
+
+  Bisbee.prototype.adjustAspectRatio = function(){
+    var windowHeight = $(window).height(),
+        windowWidth = $(window).width(),
+        w = windowWidth,
+        h = windowHeight,
+        l = 0,
+        t = 0,
+        ml = 0,
+        mt = 0;
+
+    // Portrait
+    if (windowHeight > windowWidth) {
+      w = h * this.aspectRatio;
+      l = '50%';
+      ml = -(w/2) + 'px';
+
+    // Landscape
+    } else {
+      h = w / this.aspectRatio;
+      t = '50%';
+      mt = -(h/2) + 'px';
+    }
+
+    $('#stage').css({
+      'width': w,
+      'height': h,
+      'left': l,
+      'top': t,
+      'margin-left': ml,
+      'margin-top': mt
+    });
+
   };
 
   Bisbee.prototype.introHide = function(){
@@ -130,6 +170,10 @@ var Bisbee = (function() {
     $('.reset').on('click', function(){
       _this.reset();
     });
+
+    $(window).on('resize', function(){
+      _this.adjustAspectRatio();
+    })
   };
 
   Bisbee.prototype.loadMedia = function(){
