@@ -122,7 +122,7 @@ var BisbeeSequence = [
     animate: [{prop: 'left', start: -100, end: 20, unit: '%'}]
   },{
     el: 'ramshackle-rock2-from-left',
-    start: '0:21.4',
+    start: '0:20',
     end: '0:35.4',
     animate: [{prop: 'left', start: -100, end: 0, unit: '%'}]
   },{
