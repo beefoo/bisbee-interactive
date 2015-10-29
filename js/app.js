@@ -6,7 +6,7 @@ var Bisbee = (function() {
       maxSpeed: 2.0,
       currentTime: 0,
       aspectRatio: (1280/720),
-      debug: true
+      debug: false
     };
     options = $.extend({}, defaults, options);
     this.init(options);

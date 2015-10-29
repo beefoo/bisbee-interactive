@@ -2,26 +2,31 @@
 @import "variables";
 
 #buildings-center {
-
+  width: 17.5%;
+  margin-left: percentage(-17.5/2/100);
 }
 #buildings-wires {
-
+  width: 74.5%;
 }
 #buildings-left {
-
+  width: 46%;
+  bottom: 23%;
 }
 #buildings-graffiti {
-
+  width: 26.8%;
+  bottom: 13.5%;
 }
 #buildings-cacti {
-
+  width: 20.6%;
 }
 #buildings-right {
-
+  width: 45%;
+  bottom: 13%;
 }
 #buildings-plant {
-
+  width: 17.4%;
 }
 #buildings-sign {
-
+  width: 34.8%;
+  right: 6.8%;
 }
