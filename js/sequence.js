@@ -293,7 +293,7 @@ var BisbeeSequence = [
     animate: [{prop: 'right', start: -100, end: 4.5, unit: '%'}],
     sounds: [
       {name: 'amb-pit', p: 0.2, played: false, direction: [-1, 1], loop: true},
-      {name: 'dia-hitchhike', p: 0.6, played: false, direction: [-1, 1]}
+      {name: 'dia-hitchhike', p: 0.8, played: false, direction: [-1, 1]}
     ]
   },{
     el: 'pit-sign-scenic',
