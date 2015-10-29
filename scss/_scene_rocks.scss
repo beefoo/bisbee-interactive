@@ -1,0 +1,34 @@
+@import "mixins";
+@import "variables";
+
+#rocks-rock1-from-left {
+  width: 45%;
+  bottom: 25%;
+}
+#rocks-rock2-from-right {
+  width: 45%;
+  bottom: 23%;
+}
+#rocks-rock3-from-top {
+  width: 38%;
+  margin-left: -19%;
+}
+#rocks-insects-videos {
+  width: 100%;
+  height: 50%;
+  video {
+    width: 100%;
+    height: auto;
+  }
+}
+#rocks-ants-video {
+  width: 66%;
+  left: -16%;
+  top: -36%;
+}
+#rocks-scorpion-video {
+  width: 68%;
+  right: -18%;
+  left: auto;
+  top: -40%;
+}

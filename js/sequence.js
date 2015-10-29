@@ -69,16 +69,16 @@ var BisbeeSequence = [
       $('#floor').addClass('active');
     }
   },{
-    el: 'rock-02-from-right',
-    start: '0:13',
+    el: 'rocks-rock2-from-right',
+    start: '0:12',
     end: '0:33',
     animate: [
       {prop: 'right', start: -100, end: 0, unit: '%'}
     ]
   },{
-    el: 'rock-01-from-left',
+    el: 'rocks-rock1-from-left',
     start: '0:13',
-    end: '0:24.6',
+    end: '0:25.6',
     animate: [
       {prop: 'left', start: -100, end: 0, unit: '%'}
     ],
@@ -87,9 +87,9 @@ var BisbeeSequence = [
       {name: 'rocks-falling', p: 0.15, played: false, direction: [-1, 1]}
     ]
   },{
-    el: 'rock-03-from-top',
-    start: '0:14',
-    end: '0:24.2',
+    el: 'rocks-rock3-from-top',
+    start: '0:13',
+    end: '0:25.2',
     animate: [
       {prop: 'top', start: -100, end: 0, unit: '%'}
     ],
@@ -97,36 +97,29 @@ var BisbeeSequence = [
       {name: 'rocks-falling', p: 0.6, played: false, direction: [-1, 1]}
     ]
   },{
-    el: 'rocks-bg',
-    start: '0:16',
-    end: '0:26',
+    el: 'ramshackle-bg',
+    start: '0:17',
+    end: '0:36',
     animate: [
       {prop: 'bottom', start: -100, end: 0, unit: '%'}
     ]
   },{
-    el: 'insects-videos',
-    start: '0:16',
+    el: 'rocks-insects-videos',
+    start: '0:17',
     end: '0:22',
     animate: [
-      {el: 'ants-video', prop: 'opacity', start: 0, end: 1, unit: ''},
-      {el: 'scorpion-video', prop: 'opacity', start: 0, end: 1, unit: ''}
+      {el: 'rocks-ants-video', prop: 'opacity', start: 0, end: 1, unit: ''},
+      {el: 'rocks-scorpion-video', prop: 'opacity', start: 0, end: 1, unit: ''}
     ],
     sounds: [
       {name: 'hot-day', p: 0.2, played: false, direction: [-1, 1], loop: true}
     ]
   },{
-    el: 'hill-bg',
-    start: '0:18',
-    end: '0:40',
-    animate: [
-      {prop: 'bottom', start: -100, end: 0, unit: '%'}
-    ]
-  },{
-    el: 'car',
+    el: 'ramshackle-car',
     start: '0:20',
-    end: '0:40',
+    end: '0:36',
     animate: [
-      {prop: 'top', start: -100, end: 50, unit: '%'}
+      {prop: 'top', start: -100, end: 33, unit: '%'}
     ],
     sounds: [
       {name: 'hot-day', p: 0.2, played: false, direction: [-1, 1], loop: true},
@@ -134,81 +127,95 @@ var BisbeeSequence = [
       {name: 'rooster-crowing', p: 0.6, played: false, direction: [-1, 1]}
     ]
   },{
-    el: 'rock-06-from-left',
+    el: 'ramshackle-rock1-from-left',
     start: '0:21',
-    end: '0:32',
+    end: '0:34.4',
     animate: [
       {prop: 'left', start: -100, end: 0, unit: '%'}
     ]
   },{
-    el: 'tire',
-    start: '0:21.2',
-    end: '0:38',
+    el: 'ramshackle-tree-tire',
+    start: '0:20.4',
+    end: '0:34.8',
     animate: [
-      {prop: 'left', start: -100, end: 10, unit: '%'}
+      {prop: 'left', start: -100, end: 25.5, unit: '%'}
     ]
   },{
-    el: 'rock-07-from-left',
+    el: 'ramshackle-tire',
+    start: '0:20.2',
+    end: '0:35',
+    animate: [
+      {prop: 'left', start: -100, end: 20, unit: '%'}
+    ]
+  },{
+    el: 'ramshackle-rock2-from-left',
     start: '0:21.4',
-    end: '0:38.4',
+    end: '0:35.4',
     animate: [
       {prop: 'left', start: -100, end: 0, unit: '%'}
     ]
   },{
-    el: 'rabbit',
+    el: 'ramshackle-rabbit',
     start: '0:21.6',
     end: '0:32.6',
     animate: [
-      {prop: 'top', start: -100, end: 69, unit: '%'}
+      {prop: 'top', start: -100, end: 74.2, unit: '%'}
     ]
   },{
-    el: 'ball',
+    el: 'ramshackle-ball',
     start: '0:21.8',
     end: '0:32.8',
     animate: [
-      {prop: 'top', start: -100, end: 74, unit: '%'}
+      {prop: 'top', start: -100, end: 80, unit: '%'}
     ]
   },{
-    el: 'frisbee',
+    el: 'ramshackle-plate',
     start: '0:22',
     end: '0:33',
     animate: [
-      {prop: 'top', start: -100, end: 72, unit: '%'}
+      {prop: 'top', start: -100, end: 76, unit: '%'}
     ]
   },{
-    el: 'tree-tire',
-    start: '0:28',
-    end: '0:39.8',
-    animate: [
-      {prop: 'left', start: -100, end: 22, unit: '%'}
-    ]
-  },{
-    el: 'fence',
-    start: '0:28.2',
-    end: '0:39.6',
-    animate: [
-      {prop: 'right', start: -100, end: 0, unit: '%'}
-    ]
-  },{
-    el: 'rock-08-from-right',
-    start: '0:28.6',
-    end: '0:39.4',
-    animate: [
-      {prop: 'right', start: -100, end: 0, unit: '%'}
-    ]
-  },{
-    el: 'fence2',
-    start: '0:28.8',
-    end: '0:39.2',
+    el: 'ramshackle-bedposts',
+    start: '0:22.2',
+    end: '0:33.6',
     animate: [
       {prop: 'left', start: -100, end: 0, unit: '%'}
     ]
   },{
-    el: 'house',
-    start: '0:29',
-    end: '0:39',
+    el: 'ramshackle-rock3-from-right',
+    start: '0:22.6',
+    end: '0:34.4',
     animate: [
-      {prop: 'top', start: -100, end: 0, unit: '%'}
+      {prop: 'right', start: -100, end: 0, unit: '%'}
+    ]
+  },{
+    el: 'ramshackle-cacti',
+    start: '0:22',
+    end: '0:33',
+    animate: [
+      {prop: 'right', start: -100, end: 0, unit: '%'}
+    ]
+  },{
+    el: 'ramshackle-fence',
+    start: '0:22.8',
+    end: '0:31.2',
+    animate: [
+      {prop: 'left', start: -100, end: 0, unit: '%'}
+    ]
+  },{
+    el: 'ramshackle-house',
+    start: '0:23',
+    end: '0:32',
+    animate: [
+      {prop: 'bottom', start: -100, end: 54, unit: '%'}
+    ]
+  },{
+    el: 'homes-hill-bg',
+    start: '0:28',
+    end: '0:40',
+    animate: [
+      {prop: 'bottom', start: -100, end: 0, unit: '%'}
     ]
   }
 ];

@@ -1,0 +1,48 @@
+@import "mixins";
+@import "variables";
+
+.door-container {
+  width: percentage(260 / $screenW);
+  height: percentage(465 / $screenH);
+  margin-top: percentage(-465 / $screenH / 3.3333);
+  margin-left: percentage(-260 / $screenW / 2);
+
+  .door {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 400%;
+      height: auto;
+    }
+  }
+
+  &.moving-vertical .door img {
+    left: -100%;
+  }
+
+  &.moving-horizontal .door img {
+    left: -200%;
+  }
+
+  &.open .door img {
+    left: -300%;
+  }
+
+  &.from-left,
+  &.from-right {
+    // @include transform-origin(0 50%);
+    @include transform(scale(0.5));
+  }
+
+  &.from-right {
+    margin-left: auto;
+    margin-right: percentage(-260 / $screenW / 2);
+    @include transform(scale(0.75));
+  }
+}

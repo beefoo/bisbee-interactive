@@ -1,0 +1,56 @@
+@import "mixins";
+@import "variables";
+
+#ramshackle-bg {
+  width: 100%;
+}
+#ramshackle-fence {
+  width: 31%;
+}
+#ramshackle-rock1-from-left {
+  width: 33%;
+  bottom: 32%;
+}
+#ramshackle-tree-tire {
+  width: 24%;
+}
+#ramshackle-tire {
+  width: 24%;
+  bottom: 28%;
+}
+#ramshackle-rock2-from-left {
+  width: 42%;
+  bottom: 25%;
+}
+#ramshackle-bedposts {
+  width: 28%;
+  bottom: 17%;
+}
+#ramshackle-rabbit {
+  width: 10%;
+  left: 13%;
+}
+#ramshackle-plate {
+  width: 6%;
+  left: 20%;
+}
+#ramshackle-house {
+  width: 30%;
+  right: 17.5%
+}
+#ramshackle-cacti {
+  width: 21%;
+  top: 4%;
+}
+#ramshackle-rock3-from-right {
+  width: 49%;
+  bottom: 21%;
+}
+#ramshackle-car {
+  width: 40%;
+  right: 2%;
+}
+#ramshackle-ball {
+  width: 4%;
+  right: 2%;
+}
