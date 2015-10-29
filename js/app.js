@@ -37,7 +37,7 @@ var Bisbee = (function() {
     if (options.sequence) {
       this.loadSequence(options.sequence, options.sequenceStepDefaults);
       if (this.sequence.length)
-        this.endTime = this.sequence[this.sequence.length-1]['end'];
+        this.endTime = _.max(_.pluck(this.sequence, 'end'));
     }
 
     // Adjust aspect ratio
@@ -491,10 +491,10 @@ var Bisbee = (function() {
     var progress = (this.currentTime-step.start)/(step.end-step.start),
         tweenProgress = BisbeeTween[step.tweenMethod](progress, step.pauseAmount);
 
-    if (this.debug) {
-      $('#debug-scene').text(step.name);
-      $('#debug-progress').text(Math.round(progress*100)+'%');
-    }
+    // if (this.debug) {
+    //   $('#debug-scene').text(step.name);
+    //   $('#debug-progress').text(Math.round(progress*100)+'%');
+    // }
 
     step.$el.addClass('active');
     BisbeeTween.tween(step.animate, tweenProgress);
