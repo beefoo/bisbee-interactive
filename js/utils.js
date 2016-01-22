@@ -72,19 +72,19 @@ var BSUtils = {
       else c.$el.removeClass(c.name);
     });
   },
-  playSounds: function(sounds, p, b){
+  playSounds: function(sounds, p, pl, b){
     _.each(sounds, function(sound, i){
       sound.direction = sound.direction.constructor === Array ? sound.direction : [sound.direction];
-      if ((b.direction > 0 && p > sound.p || b.direction < 0 && p < sound.p) && _.contains(sound.direction, b.direction) && !sound.played) {
+      if ((pl.direction > 0 && p > sound.p || pl.direction < 0 && p < sound.p) && _.contains(sound.direction, pl.direction) && !sound.played) {
         sounds[i].played = true;
-        b.mediaPlay(sound.name, true);
+        b.play(sound.name, true);
       }
     });
   },
   resetSounds: function(sounds, b){
     _.each(sounds, function(sound, i){
       sounds[i].played = false;
-      sound.loop && b.mediaPause(sound.name, true);
+      sound.loop && b.pause(sound.name, true);
     });
   }
 };

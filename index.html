@@ -23,22 +23,27 @@
       <img src="img/common/road-sprites@2x.jpg" id="ground-image" class="ground-image" />
     </div>
 
-    <!-- Scene: Doors -->
+    <div id="sequence-town" class="sequence">
 
-    <div id="door-from-left" class="prop door-container from-left moving-horizontal v-center double-rope">
-      <div class="door">
-        <img src="img/scene-doors/door-sprite.png" />
+      <!-- Scene: Doors -->
+      <div id="scene-doors" class="scene">
+        <div id="door-from-left" class="prop door-container from-left moving-horizontal v-center double-rope">
+          <div class="door">
+            <img src="img/scene-doors/door-sprite.png" />
+          </div>
+        </div>
+        <div id="door-from-right" class="prop door-container from-right moving-horizontal v-center double-rope">
+          <div class="door">
+            <img src="img/scene-doors/door-sprite.png" />
+          </div>
+        </div>
+        <div id="door-from-top" class="prop door-container from-top moving-vertical h-center double-rope">
+          <div class="door">
+            <img src="img/scene-doors/door-sprite.png" />
+          </div>
+        </div>
       </div>
-    </div>
-    <div id="door-from-right" class="prop door-container from-right moving-horizontal v-center double-rope">
-      <div class="door">
-        <img src="img/scene-doors/door-sprite.png" />
-      </div>
-    </div>
-    <div id="door-from-top" class="prop door-container from-top moving-vertical h-center double-rope">
-      <div class="door">
-        <img src="img/scene-doors/door-sprite.png" />
-      </div>
+
     </div>
 
     <!-- Scene: Rocks -->
@@ -128,6 +133,10 @@
       </div>
     </div>
 
+    <div id="sequence-intro" class="sequence">
+
+    </div>
+
     <div id="intro" class="intro">
       <video src="video/timelapse.mp4" preload="auto" autoplay loop></video>
       <img src="img/intro/quote-1@2x.png" class="quote left" />
@@ -191,10 +200,18 @@
   <script src="js/vendor/underscore-min.js"></script>
   <script src="js/vendor/hammer.min.js"></script>
   <script src="js/vendor/jquery.hammer.js"></script>
+  <script src="js/vendor/ba-tiny-pubsub.min.js"></script>
   <script src="js/vendor/easing.js"></script>
   <script src="js/utils.js"></script>
   <script src="js/tween.js"></script>
+
   <script src="js/sequence.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/lib/media.js"></script>
+  <script src="js/lib/player.js"></script>
+  <script src="js/lib/sequence.js"></script>
+  <script src="js/views/stage.js"></script>
+  <script src="js/views/character.js"></script>
   <script src="js/app.js"></script>
 
 </body>
