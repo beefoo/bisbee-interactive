@@ -14,13 +14,28 @@
 
   <div id="stage" class="stage">
 
-    <div id="sequence-intro" data-name="intro" data-order="1" class="sequence" start="0:00" end="0:04">
+    <div id="sequence-intro" data-name="intro" data-order="1" class="sequence" start="0:00" end="1:00">
 
-      <div id="intro" class="intro scene" start="0" end="1">
-        <video src="video/timelapse.mp4" preload="auto" autoplay loop></video>
-        <img src="img/intro/quote-1@2x.png" class="quote left" />
-        <img src="img/intro/quote-2@2x.png" class="quote right" />
-        <div class="audio" audio="thunderstrike" audio-start="0"></div>
+      <div id="intro" class="intro scene" start="0" end="0:14">
+
+        <div id="intro-timelapse" start="0" end="0.6" class="prop video-container from-fade">
+          <video src="video/timelapse_resized.mp4" preload="auto" autoplay loop></video>
+        </div>
+
+        <div id="intro-quote" start="0.1" end="0.8" class="prop quote from-fade">
+          <p class="quote-text">
+            "A lonely environment, I found, can produce anything, change one's outlook, dampen one's spirit, diminish one's zeal. On the other hand, just as a high wind carries a tumbleweed, so romance can lift one from boredom."
+          </p>
+          <p class="quote-by">
+            Marguerite Wallace Kennedy<br />
+            <strong>My Home On The Range</strong>
+          </p>
+        </div>
+        <div class="audio" audio="thunderstrike" audio-start="0" loop="true"></div>
+      </div>
+
+      <div id="car-day" class="scene car" start="0:06" end="1">
+
       </div>
 
     </div>
@@ -174,7 +189,7 @@
   </div>
 
   <div class="audio hide">
-    <audio data-id="thunderstrike" src="audio/road_sfx_thunderstrike.mp3" preload="auto"></audio>
+    <audio data-id="thunderstrike" src="audio/road_sfx_thunderstrike.mp3" preload="auto" loop></audio>
 
     <audio data-id="footsteps" src="audio/stage_sfx_footsteps.mp3" preload="auto" loop></audio>
     <audio data-id="footsteps-fast" src="audio/stage_sfx_footsteps_fast.mp3" preload="auto" loop></audio>

@@ -29,45 +29,46 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: url(../img/intro/background-storm@2x.jpg) center center;
-  background-size: cover;
+  background: $black;
   z-index: 70;
   overflow: hidden;
 
-  video {
-    position: absolute;
-    width: 120%;
-    height: auto;
-    top: -20%;
-    left: 50%;
-    margin-left: -60%;
+  .video-container {
+    &,
+    video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .quote {
-    width: 50%;
+    width: 80%;
     height: auto;
-    position: absolute;
-    @include animation(fadeOut 4s);
-    @include animation-delay(2s);
+    position: relative;
+    margin: 0 auto;
+    top: 50%;
+    color: $white;
 
-    &.left {
-      left: 5%;
-      top: 35%;
+    @include transform(translateY(-50%));
+
+    p {
+      line-height: 1.4;
+      letter-spacing: 1px;
     }
 
-    &.right {
-      right: 5%;
-      top: 60%;
-      @include animation-duration(3s);
-      @include animation-delay(3s);
+    .quote-text {
+      font-size: 1.5em;
+      font-style: italic;
+    }
+    .quote-by {
+      font-size: 1.2em;
+      text-align: right;
+      margin-top: 40px;
     }
   }
 
   &.active {
     display: block;
-
-    .quote {
-      @include animation(fadeIn 4s);
-    }
   }
 }
