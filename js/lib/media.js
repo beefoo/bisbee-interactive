@@ -20,10 +20,10 @@ var BisbeeMedia = (function() {
 
     $('video, audio').each(function(){
       _this.media[$(this).attr('data-id')] = $(this)[0];
-      if (_this.debug) {
-        var src = $(this)[0].src || $(this).children('source')[0].src;
-        console.log('Loaded '+src);
-      }
+      // if (_this.debug) {
+      //   var src = $(this)[0].src || $(this).children('source')[0].src;
+      //   console.log('Loaded '+src);
+      // }
     });
   };
 

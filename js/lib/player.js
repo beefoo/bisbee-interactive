@@ -7,6 +7,7 @@ var BisbeePlayer = (function() {
   }
 
   BisbeePlayer.prototype.init = function(options){
+    this.sequence = false;
     this.direction = 1.0;
     this.endTime = 0.0;
     this.minSpeed = options.minSpeed;
@@ -16,7 +17,8 @@ var BisbeePlayer = (function() {
     this.debug = options.debug;
 
     // set sequence
-    this.setSequence(options.sequence);
+    if (options.sequence)
+      this.setSequence(options.sequence);
 
     // Init speed to normal
     this.speed = this.normalSpeed;
@@ -30,7 +32,7 @@ var BisbeePlayer = (function() {
     // load listeners
     this.loadListeners();
 
-    if (this.currentTime) {
+    if (this.currentTime && this.sequence) {
       this.started = true;
       this.play();
     }
@@ -38,6 +40,10 @@ var BisbeePlayer = (function() {
 
   BisbeePlayer.prototype.getCurrentTime = function(){
     return this.currentTime;
+  };
+
+  BisbeePlayer.prototype.isControlsActive = function(){
+    return this.sequence && this.sequence.controls;
   };
 
   BisbeePlayer.prototype.isPlaying = function(){
@@ -49,6 +55,7 @@ var BisbeePlayer = (function() {
 
     // look for keydown up/down/shift keys
     $(window).keydown(function(e){
+      if (!_this.isControlsActive()) return false;
       switch(e.keyCode) {
         case 16: // shift
           e.preventDefault();
@@ -78,6 +85,7 @@ var BisbeePlayer = (function() {
 
     // look for keyup up/down/shift keys
     $(window).keyup(function(e){
+      if (!_this.isControlsActive()) return false;
       switch(e.keyCode) {
         case 16: // shift
           e.preventDefault();
@@ -94,9 +102,11 @@ var BisbeePlayer = (function() {
 
     // look for subscriptions
     $.subscribe('direction-change', function(e, direction){
+      if (!_this.isControlsActive()) return false;
       _this.direction = direction;
     });
     $.subscribe('speed-change', function(e, percent){
+      if (!_this.isControlsActive()) return false;
       _this.setSpeed(percent);
     });
     $.subscribe('player-play', function(e){
@@ -151,8 +161,9 @@ var BisbeePlayer = (function() {
 
     // reached the end
     if (this.currentTime >= this.endTime && this.direction > 0) {
-      console.log('Reached End');
       this.pause();
+      console.log('Reached End');
+      $.publish('sequence-end', this.sequence);
 
     // reached beginning (from reverse)
     } else if (this.currentTime <= 0 && this.direction < 0) {
@@ -166,12 +177,22 @@ var BisbeePlayer = (function() {
   };
 
   BisbeePlayer.prototype.reset = function(){
+    this.currentTime = 0;
+    this.pause();
     this.onReset();
+  };
+
+  BisbeePlayer.prototype.setNormalSpeed = function(){
+    this.speed = this.normalSpeed;
+    this.speedPercent = this.normalSpeedPercent;
   };
 
   BisbeePlayer.prototype.setSequence = function(sequence){
     this.sequence = sequence;
     this.endTime = this.sequence.getEndTime();
+    this.reset();
+
+    $.publish('sequence-set', sequence);
   };
 
   BisbeePlayer.prototype.setSpeed = function(percent){

@@ -8,21 +8,23 @@ var Bisbee = {
 
     // Initialize each sequence
     $('.sequence').each(function(){
-      var name = $(this).attr('data-name');
-      Bisbee.sequences[name] = new BisbeeSequence($.extend({},data,{$el: $(this)}));
+      var $el = $(this);
+      var seq_data = {
+        $el: $el,
+        name: $el.attr('data-name'),
+        order: parseInt($el.attr('data-order')),
+        controls: $el.attr('controls'),
+        character: $el.attr('character')
+      };
+      Bisbee.sequences[seq_data.name] = new BisbeeSequence($.extend({},data,seq_data));
     });
-
-    // Town is the first sequence
-    data.sequence = Bisbee.sequences.town;
 
     Bisbee.media = new BisbeeMedia(data);
     Bisbee.player = new BisbeePlayer(data);
 
     Bisbee.views.character = new BisbeeCharacterView(data);
     Bisbee.views.stage = new BisbeeStageView(data);
-
-    // show debugger
-    if (config.debug) $('.debug').removeClass('hide');
+    Bisbee.views.director = new BisbeeDirectorView(data);
   }
 };
 

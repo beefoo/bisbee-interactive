@@ -105,17 +105,39 @@ button {
   @include box-shadow(0, -2px, 2px);
 }
 
+// Sequence
+.sequence {
+  z-index: -1;
+  @include animation(fadeOut 4s);
+
+  &.active {
+    z-index: 10;
+    @include animation(fadeIn 4s);
+  }
+}
+.stage-controls {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
 // Components
 @import "floor";
-@import "intro";
 @import "modal";
 @import "character";
 @import "props";
 
-// Scenes
-@import "scene_doors";
-@import "scene_rocks";
-@import "scene_ramshackle";
-@import "scene_homes";
-@import "scene_buildings";
-@import "scene_pit";
+// Sequence: intro
+@import "intro";
+
+// Sequence: town
+@import "town";
+  // Scenes
+  @import "scene_doors";
+  @import "scene_rocks";
+  @import "scene_ramshackle";
+  @import "scene_homes";
+  @import "scene_buildings";
+  @import "scene_pit";

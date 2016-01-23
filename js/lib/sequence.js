@@ -12,12 +12,14 @@ var BisbeeSequence = (function() {
     this.sequence = [];
     this.endTime = 0.0;
     this.debug = options.debug;
+    this.name = options.name;
+    this.order = options.order;
+    this.controls = options.controls;
+    this.character = options.character;
 
     // Load sequence
     if (options.$el) {
       this.loadSequenceFromEl(options.$el, options.sequenceStepDefaults);
-      if (this.sequence.length)
-        this.endTime = _.max(_.pluck(this.sequence, 'end'));
     }
   };
 
@@ -43,8 +45,7 @@ var BisbeeSequence = (function() {
         step.animations[i].$el = step.$el;
       });
       _.each(step.classNames, function(c, i){
-        var el = c.el || step.el;
-        step.classNames[i].$el = $('#'+el);
+        step.classNames[i].$el = step.$el;
       });
       _this.sequence.push(step);
     });
@@ -55,6 +56,9 @@ var BisbeeSequence = (function() {
         sequence = [],
         sequence_start = utils.getSeconds($el.attr('start'), 1),
         sequence_end = utils.getSeconds($el.attr('end'), 1);
+
+    this.$el = $el;
+    this.endTime = sequence_end;
 
     // retrieve all scenes from sequence
     var $scenes = $el.children('.scene');
@@ -111,11 +115,7 @@ var BisbeeSequence = (function() {
   };
 
   BisbeeSequence.prototype.onReset = function(player){
-    _.each(this.sequence, function(step, i){
-      _this.sequence[i].state = INACTIVE;
-    });
-
-    this.render(player);
+    this.onProgress(player);
   };
 
   BisbeeSequence.prototype.render = function(player){
@@ -166,7 +166,8 @@ var BisbeeSequence = (function() {
       }
     });
 
-    Bisbee.views.character.render(player);
+    if (this.character)
+      Bisbee.views.character.render(player);
 
   };
 
@@ -298,7 +299,7 @@ var BisbeeSequence = (function() {
       var className = {
         name: $toggle.attr('toggle-name'),
         start: _this._getSeconds($toggle, 'toggle-start', step.start, step.end),
-        end: _this._getSeconds($toggle, 'toggle-start', step.start, step.end),
+        end: _this._getSeconds($toggle, 'toggle-end', step.start, step.end),
         invert: $toggle.attr('toggle-invert')
       };
 

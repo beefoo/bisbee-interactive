@@ -10,9 +10,14 @@
   left: 0;
   z-index: 200;
   background: $black;
+  color: $white;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 2px;
+  font-size: 18px;
 
   &.active {
-    display: block;
+    display: flex;
   }
 }
 

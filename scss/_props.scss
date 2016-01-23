@@ -3,6 +3,11 @@
 
 $ropeThickness: 8px;
 
+.scene .audio,
+.scene .toggle-class {
+  display: none;
+}
+
 // Set pieces
 .prop {
   display: none;

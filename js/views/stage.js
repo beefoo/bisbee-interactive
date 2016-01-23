@@ -16,6 +16,9 @@ var BisbeeStageView = (function() {
 
     // Load listeners
     this.loadListeners();
+
+    // show debugger
+    if (this.debug) $('.debug').removeClass('hide');
   };
 
   BisbeeStageView.prototype.adjustAspectRatio = function(){
@@ -48,25 +51,6 @@ var BisbeeStageView = (function() {
 
   };
 
-  BisbeeStageView.prototype.introHide = function(){
-    $('.intro').removeClass('active');
-    Bisbee.media.pause('thunderstrike');
-  };
-
-  BisbeeStageView.prototype.introShow = function(){
-    var _this = this;
-
-    $('.start').removeClass('active');
-    $('.intro').addClass('active');
-    Bisbee.media.play('thunderstrike');
-    setTimeout(function(){
-      _this.modalShow();
-      setTimeout(function(){
-        _this.introHide();
-      }, 4000);
-    }, 4000);
-  };
-
   BisbeeStageView.prototype.loadListeners = function(){
     var _this = this;
 
@@ -75,9 +59,12 @@ var BisbeeStageView = (function() {
       _this.modalShow();
     });
 
-    $('.modal').on('click', function(e){
+    $.subscribe('show-modal', function(e){
+      _this.modalShow();
+    });
+
+    $('.guide').on('click', function(e){
       e.preventDefault();
-      _this.introHide();
       _this.modalHide();
     });
 
@@ -91,13 +78,6 @@ var BisbeeStageView = (function() {
 
     $('.hotspot').on('mouseout', function(){
       _this.offHotspot();
-    });
-
-    $('#start').on('click', function(){
-      if (!_this.started) {
-        _this.started = true;
-        _this.introShow();
-      }
     });
 
     $(window).on('resize', function(){
