@@ -6,9 +6,14 @@ var Bisbee = {
   initialize: function(){
     var data = config;
 
-    // TODO: read this from UI
-    Bisbee.sequences.main = new BisbeeSequence($.extend({},data,{sequence: SequenceMain}));
-    data.sequence = Bisbee.sequences.main;
+    // Initialize each sequence
+    $('.sequence').each(function(){
+      var name = $(this).attr('data-name');
+      Bisbee.sequences[name] = new BisbeeSequence($.extend({},data,{$el: $(this)}));
+    });
+
+    // Town is the first sequence
+    data.sequence = Bisbee.sequences.town;
 
     Bisbee.media = new BisbeeMedia(data);
     Bisbee.player = new BisbeePlayer(data);

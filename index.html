@@ -14,98 +14,111 @@
 
   <div id="stage" class="stage">
 
-    <!-- Floor -->
+    <div id="sequence-town" data-name="town" class="sequence" start="0:00" end="0:40">
 
-    <div id="floor" class="floor active">
-      <div class="void"></div>
-    </div>
-    <div id="ground" class="ground prop">
-      <img src="img/common/road-sprites@2x.jpg" id="ground-image" class="ground-image" />
-    </div>
+      <!-- Floor -->
 
-    <div id="sequence-town" class="sequence">
+      <div id="floor" class="floor scene" start="0" end="0:13">
+        <div class="void"></div>
+      </div>
+      <div id="ground" class="ground prop scene" start="0:13" end="1">
+        <img src="img/common/road-sprites@2x.jpg" id="ground-image" class="ground-image" />
+      </div>
 
       <!-- Scene: Doors -->
-      <div id="scene-doors" class="scene">
-        <div id="door-from-left" class="prop door-container from-left moving-horizontal v-center double-rope">
-          <div class="door">
-            <img src="img/scene-doors/door-sprite.png" />
-          </div>
+      <div id="scene-doors" class="scene" start="0" end="0:18" pause-amount="0.1">
+        <div id="door-from-left" start="0" end="0.34" animation-end="50" class="prop door-container from-left moving-horizontal v-center double-rope">
+          <div class="door"><img src="img/scene-doors/door-sprite.png" /></div>
+          <div class="audio" audio="door-in" audio-start="0.2"></div>
+          <div class="audio" audio="door-out" audio-start="0.7"></div>
+          <div class="toggle-class" toggle-name="moving-horizontal" toggle-start="0.3" toggle-end="0.7" toggle-invert="true"></div>
         </div>
-        <div id="door-from-right" class="prop door-container from-right moving-horizontal v-center double-rope">
-          <div class="door">
-            <img src="img/scene-doors/door-sprite.png" />
-          </div>
+        <div id="door-from-right" start="0.16" end="0.67" animation-end="50" class="prop door-container from-right moving-horizontal v-center double-rope">
+          <div class="door"><img src="img/scene-doors/door-sprite.png" /></div>
+          <div class="audio" audio="door-in" audio-start="0.2"></div>
+          <div class="audio" audio="door-out" audio-start="0.7"></div>
+          <div class="toggle-class" toggle-name="moving-horizontal" toggle-start="0.3" toggle-end="0.7" toggle-invert="true"></div>
         </div>
-        <div id="door-from-top" class="prop door-container from-top moving-vertical h-center double-rope">
-          <div class="door">
-            <img src="img/scene-doors/door-sprite.png" />
-          </div>
+        <div id="door-from-top" start="0.45" end="1" animation-end="50" class="prop door-container from-top moving-vertical h-center double-rope">
+          <div class="door"><img src="img/scene-doors/door-sprite.png" /></div>
+          <div class="audio" audio="door-in" audio-start="0.2"></div>
+          <div class="audio" audio="door-out" audio-start="0.7"></div>
+          <div class="audio" audio="door-open" audio-start="0.5" direction="forward"></div>
+          <div class="toggle-class" toggle-name="moving-vertical" toggle-start="0.3" toggle-end="0.7" toggle-invert="true"></div>
+          <div class="toggle-class" toggle-name="open" toggle-start="0.5" toggle-end="1.0"></div>
         </div>
       </div>
 
+      <!-- Scene: Rocks -->
+      <div id="scene-rocks" class="scene" start="0:12" end="1">
+        <img id="ramshackle-bg" start="0.07" end="1" src="img/scene-ramshackle/background-rocks@2x.jpg" class="prop left from-bottom bg from-fade" />
+        <div id="rocks-insects-videos" start="0.18" end="0.46" class="prop bg from-fade">
+          <div id="rocks-ants-video" class="video-container"><video data-id="ants" src="video/ants.mp4" preload="auto" autoplay loop></video></div>
+          <div id="rocks-scorpion-video" class="video-container"><video data-id="scorpion" src="video/scorpion.mp4" preload="auto" autoplay loop></video></div>
+        </div>
+        <img id="rocks-rock1-from-left" start="0.035" end="0.48" audio="rocks-falling" audio-start="0.15" src="img/scene-rocks/rock-pile-left@2x.png" class="prop from-left" />
+        <img id="rocks-rock2-from-right" start="0" end="0.75" src="img/scene-rocks/rock-pile-right@2x.png" class="prop from-right" />
+        <img id="rocks-rock3-from-top" start="0.035" end="0.47" audio="rocks-falling" audio-start="0.6" src="img/scene-rocks/rocks-center@2x.png" class="prop h-center from-top" />
+        <div class="audio" audio="hot-day" audio-start="0.07"></div>
+      </div>
+
+      <!-- Scene: Ramshackle -->
+      <!-- <div id="scene-ramshackle" class="scene">
+        <img id="ramshackle-fence" src="img/scene-ramshackle/no-barking@2x.jpg" class="prop from-left top" />
+        <img id="ramshackle-rock1-from-left" src="img/scene-ramshackle/rock-chunk-left@2x.png" class="prop from-left" />
+        <img id="ramshackle-tree-tire" src="img/scene-ramshackle/tree-tire@2x.png" class="prop from-left top" />
+        <img id="ramshackle-tire" src="img/scene-ramshackle/tire-grass@2x.png" class="prop from-left" />
+        <img id="ramshackle-rock2-from-left" src="img/scene-ramshackle/rocks-left@2x.png" class="prop from-left" />
+        <img id="ramshackle-bedposts" src="img/scene-ramshackle/bedposts@2x.png" class="prop from-left" />
+        <img id="ramshackle-rabbit" src="img/scene-ramshackle/stuffed-rabbit@2x.png" class="prop from-top" />
+        <img id="ramshackle-plate" src="img/scene-ramshackle/plate@2x.png" class="prop from-top" />
+        <img id="ramshackle-house" src="img/scene-ramshackle/house@2x.png" class="prop from-bottom bg" />
+        <img id="ramshackle-cacti" src="img/scene-ramshackle/cacti@2x.png" class="prop from-right" />
+        <img id="ramshackle-rock3-from-right" src="img/scene-ramshackle/rocks-right@2x.png" class="prop from-right" />
+        <img id="ramshackle-car" src="img/scene-ramshackle/car@2x.png" class="prop from-top" />
+        <img id="ramshackle-ball" src="img/scene-ramshackle/ball@2x.png" class="prop from-top" />
+      </div> -->
+
+      <!-- Scene: Homes -->
+      <!-- <div id="scene-homes" class="scene">
+        <img id="homes-hill-bg" src="img/scene-stairs-homes/background-hill@2x.jpg" class="prop left from-bottom bg" />
+        <img id="homes-school-building" src="img/scene-stairs-homes/school-building-center@2x.png" class="prop from-bottom h-center bg" />
+        <img id="homes-house-top-left" src="img/scene-stairs-homes/house-top-left@2x.png" class="prop from-left" />
+        <img id="homes-cacti-fence" src="img/scene-stairs-homes/cacti-fence@2x.png" class="prop from-left" />
+        <img id="homes-stacked-left" src="img/scene-stairs-homes/homes-stacked-left@2x.png" class="prop from-left" />
+        <img id="homes-long-stairs-left" src="img/scene-stairs-homes/long-stairs-left@2x.png" class="prop from-left" />
+        <img id="homes-shed" src="img/scene-stairs-homes/shed-top-right@2x.png" class="prop from-bottom" />
+        <img id="homes-car-garage" src="img/scene-stairs-homes/car-garage@2x.png" class="prop from-top" />
+        <img id="homes-car" src="img/scene-stairs-homes/car@2x.png" class="prop from-top" />
+        <img id="homes-foundation" src="img/scene-stairs-homes/house-exposed-foundation@2x.png" class="prop from-right" />
+        <img id="homes-sheds-house" src="img/scene-stairs-homes/sheds-house-right@2x.png" class="prop from-right" />
+        <img id="homes-stairwell" src="img/scene-stairs-homes/stairwell-right@2x.png" class="prop from-right" />
+        <img id="homes-mosaic" src="img/scene-stairs-homes/sign-mailbox-mosaic@2x.png" class="prop from-right bottom" />
+      </div> -->
+
+      <!-- Scene: Buildings -->
+      <!-- <div id="scene-buildings" class="scene">
+        <img id="buildings-center" src="img/scene-buildings/building-center@2x.png" class="prop from-top h-center" />
+        <img id="buildings-wires" src="img/scene-buildings/wires@2x.png" class="prop from-top right" />
+        <img id="buildings-left" src="img/scene-buildings/building-left@2x.png" class="prop from-left" />
+        <img id="buildings-graffiti" src="img/scene-buildings/graffiti-wall@2x.png" class="prop from-left" />
+        <img id="buildings-cacti" src="img/scene-buildings/cacti-left@2x.png" class="prop from-bottom left" />
+        <img id="buildings-right" src="img/scene-buildings/building-right@2x.png" class="prop from-right" />
+        <img id="buildings-sign" src="img/scene-buildings/sign-turn-around@2x.png" class="prop from-bottom right" />
+        <img id="buildings-plant" src="img/scene-buildings/plant-lower-right@2x.png" class="prop from-bottom right" />
+      </div> -->
+
+      <!-- Scene: Pit -->
+      <!-- <div id="scene-pit" class="scene">
+        <img id="pit-bg" src="img/scene-pit/background-sky@2x.jpg" class="prop bg top left" />
+        <img id="pit-pit" src="img/scene-pit/the-pit@2x.png" class="prop from-bottom left bg" />
+        <img id="pit-sign-scenic" src="img/scene-pit/sign-scenic@2x.png" class="prop from-bottom bg" />
+        <img id="pit-bisbee-sign" src="img/scene-pit/bisbee-sign@2x.png" class="prop from-left" />
+        <img id="pit-barb-wire" src="img/scene-pit/barb-wire@2x.png" class="prop from-right" />
+        <img id="pit-mileage-sign" src="img/scene-pit/mileage-sign@2x.png" class="prop from-right" />
+      </div> -->
+
     </div>
-
-    <!-- Scene: Rocks -->
-
-    <img id="ramshackle-bg" src="img/scene-ramshackle/background-rocks@2x.jpg" class="prop left from-bottom bg" />
-    <div id="rocks-insects-videos" class="prop bg">
-      <div id="rocks-ants-video" class="video-container"><video data-id="ants" src="video/ants.mp4" preload="auto" autoplay loop></video></div>
-      <div id="rocks-scorpion-video" class="video-container"><video data-id="scorpion" src="video/scorpion.mp4" preload="auto" autoplay loop></video></div>
-    </div>
-    <img id="rocks-rock1-from-left" src="img/scene-rocks/rock-pile-left@2x.png" class="prop from-left" />
-    <img id="rocks-rock2-from-right" src="img/scene-rocks/rock-pile-right@2x.png" class="prop from-right" />
-    <img id="rocks-rock3-from-top" src="img/scene-rocks/rocks-center@2x.png" class="prop h-center from-top" />
-
-    <!-- Scene: Ramshackle -->
-
-    <img id="ramshackle-fence" src="img/scene-ramshackle/no-barking@2x.jpg" class="prop from-left top" />
-    <img id="ramshackle-rock1-from-left" src="img/scene-ramshackle/rock-chunk-left@2x.png" class="prop from-left" />
-    <img id="ramshackle-tree-tire" src="img/scene-ramshackle/tree-tire@2x.png" class="prop from-left top" />
-    <img id="ramshackle-tire" src="img/scene-ramshackle/tire-grass@2x.png" class="prop from-left" />
-    <img id="ramshackle-rock2-from-left" src="img/scene-ramshackle/rocks-left@2x.png" class="prop from-left" />
-    <img id="ramshackle-bedposts" src="img/scene-ramshackle/bedposts@2x.png" class="prop from-left" />
-    <img id="ramshackle-rabbit" src="img/scene-ramshackle/stuffed-rabbit@2x.png" class="prop from-top" />
-    <img id="ramshackle-plate" src="img/scene-ramshackle/plate@2x.png" class="prop from-top" />
-    <img id="ramshackle-house" src="img/scene-ramshackle/house@2x.png" class="prop from-bottom bg" />
-    <img id="ramshackle-cacti" src="img/scene-ramshackle/cacti@2x.png" class="prop from-right" />
-    <img id="ramshackle-rock3-from-right" src="img/scene-ramshackle/rocks-right@2x.png" class="prop from-right" />
-    <img id="ramshackle-car" src="img/scene-ramshackle/car@2x.png" class="prop from-top" />
-    <img id="ramshackle-ball" src="img/scene-ramshackle/ball@2x.png" class="prop from-top" />
-
-    <!-- Scene: Homes -->
-
-    <img id="homes-hill-bg" src="img/scene-stairs-homes/background-hill@2x.jpg" class="prop left from-bottom bg" />
-    <img id="homes-school-building" src="img/scene-stairs-homes/school-building-center@2x.png" class="prop from-bottom h-center bg" />
-    <img id="homes-house-top-left" src="img/scene-stairs-homes/house-top-left@2x.png" class="prop from-left" />
-    <img id="homes-cacti-fence" src="img/scene-stairs-homes/cacti-fence@2x.png" class="prop from-left" />
-    <img id="homes-stacked-left" src="img/scene-stairs-homes/homes-stacked-left@2x.png" class="prop from-left" />
-    <img id="homes-long-stairs-left" src="img/scene-stairs-homes/long-stairs-left@2x.png" class="prop from-left" />
-    <img id="homes-shed" src="img/scene-stairs-homes/shed-top-right@2x.png" class="prop from-bottom" />
-    <img id="homes-car-garage" src="img/scene-stairs-homes/car-garage@2x.png" class="prop from-top" />
-    <img id="homes-car" src="img/scene-stairs-homes/car@2x.png" class="prop from-top" />
-    <img id="homes-foundation" src="img/scene-stairs-homes/house-exposed-foundation@2x.png" class="prop from-right" />
-    <img id="homes-sheds-house" src="img/scene-stairs-homes/sheds-house-right@2x.png" class="prop from-right" />
-    <img id="homes-stairwell" src="img/scene-stairs-homes/stairwell-right@2x.png" class="prop from-right" />
-    <img id="homes-mosaic" src="img/scene-stairs-homes/sign-mailbox-mosaic@2x.png" class="prop from-right bottom" />
-
-    <!-- Scene: Buildings -->
-    <img id="buildings-center" src="img/scene-buildings/building-center@2x.png" class="prop from-top h-center" />
-    <img id="buildings-wires" src="img/scene-buildings/wires@2x.png" class="prop from-top right" />
-    <img id="buildings-left" src="img/scene-buildings/building-left@2x.png" class="prop from-left" />
-    <img id="buildings-graffiti" src="img/scene-buildings/graffiti-wall@2x.png" class="prop from-left" />
-    <img id="buildings-cacti" src="img/scene-buildings/cacti-left@2x.png" class="prop from-bottom left" />
-    <img id="buildings-right" src="img/scene-buildings/building-right@2x.png" class="prop from-right" />
-    <img id="buildings-sign" src="img/scene-buildings/sign-turn-around@2x.png" class="prop from-bottom right" />
-    <img id="buildings-plant" src="img/scene-buildings/plant-lower-right@2x.png" class="prop from-bottom right" />
-
-    <!-- Scene: Pit -->
-    <img id="pit-bg" src="img/scene-pit/background-sky@2x.jpg" class="prop bg top left" />
-    <img id="pit-pit" src="img/scene-pit/the-pit@2x.png" class="prop from-bottom left bg" />
-    <img id="pit-sign-scenic" src="img/scene-pit/sign-scenic@2x.png" class="prop from-bottom bg" />
-    <img id="pit-bisbee-sign" src="img/scene-pit/bisbee-sign@2x.png" class="prop from-left" />
-    <img id="pit-barb-wire" src="img/scene-pit/barb-wire@2x.png" class="prop from-right" />
-    <img id="pit-mileage-sign" src="img/scene-pit/mileage-sign@2x.png" class="prop from-right" />
 
     <div id="character" class="character">
       <div class="character-shadow">
@@ -131,10 +144,6 @@
           <button class="guide-confirm"></button>
         </div>
       </div>
-    </div>
-
-    <div id="sequence-intro" class="sequence">
-
     </div>
 
     <div id="intro" class="intro">
@@ -202,10 +211,10 @@
   <script src="js/vendor/jquery.hammer.js"></script>
   <script src="js/vendor/ba-tiny-pubsub.min.js"></script>
   <script src="js/vendor/easing.js"></script>
+  
   <script src="js/utils.js"></script>
   <script src="js/tween.js"></script>
 
-  <script src="js/sequence.js"></script>
   <script src="js/config.js"></script>
   <script src="js/lib/media.js"></script>
   <script src="js/lib/player.js"></script>

@@ -6,8 +6,6 @@ var config = {
   sequenceStepDefaults: {
     tweenMethod: 'inPauseOut',
     pauseAmount: 0.2,
-    animate: [],
-    sounds: [],
-    classNames: []
+    type: 'scene'
   }
 };

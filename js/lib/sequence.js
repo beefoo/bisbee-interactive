@@ -14,8 +14,8 @@ var BisbeeSequence = (function() {
     this.debug = options.debug;
 
     // Load sequence
-    if (options.sequence) {
-      this.loadSequence(options.sequence, options.sequenceStepDefaults);
+    if (options.$el) {
+      this.loadSequenceFromEl(options.$el, options.sequenceStepDefaults);
       if (this.sequence.length)
         this.endTime = _.max(_.pluck(this.sequence, 'end'));
     }
@@ -25,25 +25,22 @@ var BisbeeSequence = (function() {
     return this.endTime;
   };
 
-  BisbeeSequence.prototype.loadSequence = function(sequence, stepDefaults){
+  BisbeeSequence.prototype.loadSequence = function(sequence){
     var _this = this;
 
     this.sequence = [];
 
     _.each(sequence, function(_step, i){
       // apply defaults
-      var step = _.extend({}, stepDefaults, _step);
+      var step = $.extend({}, _step);
       step.id = i;
-      step.name = step.name || step.el || 'Step ' + i;
+      step.el = step.$el.attr('id');
+      step.name = step.el || 'Step ' + i;
+
       step.state = INACTIVE;
-      // parse seconds
-      step.start = utils.getSeconds(step.start, 1);
-      step.end = utils.getSeconds(step.end, 1);
       // determine $els
-      if (step.el) step.$el = $('#'+step.el);
-      _.each(step.animate, function(a, i){
-        var el = a.el || step.el;
-        step.animate[i].$el = $('#'+el);
+      _.each(step.animations, function(a, i){
+        step.animations[i].$el = step.$el;
       });
       _.each(step.classNames, function(c, i){
         var el = c.el || step.el;
@@ -51,6 +48,35 @@ var BisbeeSequence = (function() {
       });
       _this.sequence.push(step);
     });
+  };
+
+  BisbeeSequence.prototype.loadSequenceFromEl = function($el, defaults){
+    var _this = this,
+        sequence = [],
+        sequence_start = utils.getSeconds($el.attr('start'), 1),
+        sequence_end = utils.getSeconds($el.attr('end'), 1);
+
+    // retrieve all scenes from sequence
+    var $scenes = $el.children('.scene');
+    $scenes.each(function(){
+      var $scene = $(this);
+      var scene = _this._getStep($scene, sequence_start, sequence_end, defaults);
+      var scene_defaults = $.extend({}, scene);
+
+      sequence.push(scene);
+
+      var $objects = $scene.children('[start]');
+      $objects.each(function(){
+        var $object = $(this);
+        var object = _this._getStep($object, scene.start, scene.end, scene_defaults);
+        object.type = 'object';
+
+        sequence.push(object);
+      });
+    });
+
+    sequence = _.sortBy(sequence, 'start');
+    this.loadSequence(sequence);
   };
 
   BisbeeSequence.prototype.onPause = function(player){
@@ -161,10 +187,125 @@ var BisbeeSequence = (function() {
     // }
 
     step.$el.addClass('active');
-    BisbeeTween.tween(step.animate, tweenProgress);
-    BSUtils.doClassNames(step.classNames, progress);
-    BSUtils.playSounds(step.sounds, progress, player, Bisbee.media);
+    BisbeeTween.tween(step.animations, tweenProgress);
+    BSUtils.doClassNames(step.classNames, time);
+    BSUtils.playSounds(step.sounds, time, player, Bisbee.media);
     step.onProgress && step.onProgress(progress, this);
+  };
+
+  BisbeeSequence.prototype._getAnimations = function($el){
+    var animations = [],
+        animation = {};
+
+    // animate translation
+    if ($el.hasClass('from-left') || $el.hasClass('from-right') || $el.hasClass('from-top') || $el.hasClass('from-bottom')) {
+      animation = {
+        prop: 'left',
+        start: -100,
+        end: 0,
+        unit: '%'
+      }
+      if ($el.hasClass('from-right')) animation.prop = 'right';
+      if ($el.hasClass('from-top')) animation.prop = 'top';
+      if ($el.hasClass('from-bottom')) animation.prop = 'bottom';
+      if ($el.attr('animation-start')) animation.start = parseFloat($el.attr('animation-start'));
+      if ($el.attr('animation-end')) animation.end = parseFloat($el.attr('animation-end'));
+      animations.push(animation);
+    }
+
+    // animate opacity
+    if ($el.hasClass('from-fade')) {
+      animation = {
+        prop: 'opacity',
+        start: 0,
+        end: 1,
+        unit: ''
+      }
+      if ($el.attr('animation-start')) animation.start = parseFloat($el.attr('animation-start'));
+      if ($el.attr('animation-end')) animation.end = parseFloat($el.attr('animation-end'));
+      animations.push(animation);
+    }
+
+    return animations;
+  };
+
+  BisbeeSequence.prototype._getSeconds = function($el, prop, start, end) {
+    var str = $el.attr(prop);
+
+    // empty; just inherit parent
+    if (!str) {
+      return prop.indexOf('start') > -1 ? start : end;
+
+    // e.g. 0:10
+    } else if (str.indexOf(':') > -1) {
+      return utils.getSeconds(str, 1);
+
+    // e.g. 2s
+    } else if (str.indexOf('s') > -1) {
+      var seconds = parseInt(str);
+      return start + seconds;
+
+    // e.g. 0.2
+    } else {
+      var percent = parseFloat(str);
+      return (end - start) * percent + start;
+
+    }
+  };
+
+  BisbeeSequence.prototype._getStep = function($el, start, end, defaults){
+    var _this = this,
+        step = $.extend({}, defaults);
+
+    step.$el = $el;
+    step.start = this._getSeconds($el, 'start', start, end);
+    step.end = this._getSeconds($el, 'end', start, end);
+    if ($el.attr('pause-amount')) step.pauseAmount = parseFloat($el.attr('pause-amount'));
+    if ($el.attr('tween-method')) step.tweenMethod = $el.attr('tween-method');
+
+    // retrieve animations
+    var animations = this._getAnimations($el);
+    step.animations = animations;
+
+    // retrieve sounds
+    var $audios = $el.children('[audio]');
+    step.sounds = [];
+    $audios.each(function(){
+      var $audio = $(this);
+      var sound = {
+        name: $audio.attr('audio'),
+        loop: $audio.attr('loop'),
+        direction: [-1, 1],
+        played: false
+      };
+
+      // get direction
+      var direction = $audio.attr('direction');
+      if (direction == 'forward') sound.direction = 1;
+      else if (direction == 'backward') sound.direction = -1;
+
+      // get start
+      sound.start = _this._getSeconds($audio, 'audio-start', step.start, step.end);
+
+      step.sounds.push(sound);
+    });
+
+    // retrieve classNames
+    var $toggles = $el.children('.toggle-class');
+    step.classNames = [];
+    $toggles.each(function(){
+      var $toggle = $(this);
+      var className = {
+        name: $toggle.attr('toggle-name'),
+        start: _this._getSeconds($toggle, 'toggle-start', step.start, step.end),
+        end: _this._getSeconds($toggle, 'toggle-start', step.start, step.end),
+        invert: $toggle.attr('toggle-invert')
+      };
+
+      step.classNames.push(className);
+    });
+
+    return step;
   };
 
   return BisbeeSequence;

@@ -66,16 +66,16 @@ var ENDING = 3;
 })();
 
 var BSUtils = {
-  doClassNames: function(classNames, p){
+  doClassNames: function(classNames, t){
     _.each(classNames, function(c, i){
-      if (p.between(c.start, c.end) && !c.invert) c.$el.addClass(c.name);
+      if (t.between(c.start, c.end) && !c.invert) c.$el.addClass(c.name);
       else c.$el.removeClass(c.name);
     });
   },
-  playSounds: function(sounds, p, pl, b){
+  playSounds: function(sounds, t, p, b){
     _.each(sounds, function(sound, i){
       sound.direction = sound.direction.constructor === Array ? sound.direction : [sound.direction];
-      if ((pl.direction > 0 && p > sound.p || pl.direction < 0 && p < sound.p) && _.contains(sound.direction, pl.direction) && !sound.played) {
+      if ((p.direction > 0 && t > sound.start || p.direction < 0 && t < sound.start) && _.contains(sound.direction, p.direction) && !sound.played) {
         sounds[i].played = true;
         b.play(sound.name, true);
       }
