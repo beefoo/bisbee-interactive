@@ -19,7 +19,13 @@ var BisbeeMedia = (function() {
     var _this = this;
 
     $('video, audio').each(function(){
-      _this.media[$(this).attr('data-id')] = $(this)[0];
+      var $media = $(this);
+      _this.media[$media.attr('data-id')] = $media[0];
+      // set volume
+      if ($media.attr('volume')) {
+        var volume = parseFloat($media.attr('volume'));
+        _this.media[$media.attr('data-id')].volume = volume;
+      }
       // if (_this.debug) {
       //   var src = $(this)[0].src || $(this).children('source')[0].src;
       //   console.log('Loaded '+src);

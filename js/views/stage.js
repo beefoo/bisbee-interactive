@@ -54,6 +54,32 @@ var BisbeeStageView = (function() {
 
   };
 
+  BisbeeStageView.prototype.changeRadioStation = function(){
+    var $stations = $('.radio-station'),
+        playing_i = 0,
+        min_needle_percent = 30,
+        max_needle_percent = 90,
+        needle_step = (max_needle_percent - min_needle_percent) / $stations.length;
+
+    $stations.each(function(i){
+      var media = $(this)[0];
+
+      if (media && media.playing && media.volume > 0) {
+        playing_i = i;
+        media.volume = 0;
+      }
+    });
+
+    var play_next = playing_i + 1;
+    if (play_next >= $stations.length) play_next = 0;
+    var $next_station = $stations.eq(play_next);
+    var volume = parseFloat($next_station.attr('volume')) || 1;
+    var next_station = $next_station[0];
+    next_station.volume = volume;
+    if (!next_station.playing) next_station.play();
+    $('#radio-needle').css('left', (play_next*needle_step+min_needle_percent) + '%');
+  };
+
   BisbeeStageView.prototype.loadListeners = function(){
     var _this = this;
 
@@ -66,9 +92,23 @@ var BisbeeStageView = (function() {
       _this.modalShow();
     });
 
+    $.subscribe('stop-radio', function(e){
+      _this.stopRadioStations();
+    });
+
     $('.guide').on('click', function(e){
       e.preventDefault();
       _this.modalHide();
+    });
+
+    $('.trigger-popup').on('click', function(e){
+      e.preventDefault();
+      $('#' + $(this).attr('data-popup') ).addClass('active');
+    });
+
+    $('.popup').on('click', function(e){
+      e.preventDefault();
+      $(this).removeClass('active');
     });
 
     $('.hotspot').on('mouseover', function(e){
@@ -81,6 +121,11 @@ var BisbeeStageView = (function() {
 
     $('.hotspot').on('mouseout', function(){
       _this.offHotspot();
+    });
+
+    $('#car-radio').on('click', function(e){
+      e.preventDefault();
+      _this.changeRadioStation();
     });
 
     $(window).on('resize', function(){
@@ -146,6 +191,14 @@ var BisbeeStageView = (function() {
     $.publish('direction-change', direction);
     $.publish('speed-change', percent);
     $.publish('player-play', true);
+  };
+
+  BisbeeStageView.prototype.stopRadioStations = function(){
+
+    $('.radio-station').each(function(i){
+      var media = $(this)[0];
+      if (media) media.pause();
+    });
   };
 
   return BisbeeStageView;

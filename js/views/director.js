@@ -39,6 +39,7 @@ var BisbeeDirectorView = (function() {
       // show modal after intro
       if (sequence.name=='intro') {
         $.publish('show-modal', true);
+        $.publish('stop-radio', true);
       }
 
       // show next sequence
@@ -60,6 +61,9 @@ var BisbeeDirectorView = (function() {
       }
       if (sequence.character) {
         $('.character').addClass('active');
+      }
+      if (_this.debug) {
+        $('#debug-scene').text(sequence.name);
       }
 
     });

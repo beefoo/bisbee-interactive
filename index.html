@@ -14,10 +14,10 @@
 
   <div id="stage" class="stage">
 
-    <div id="sequence-intro" data-name="intro" data-order="1" class="sequence" start="0:00" end="10:00">
+    <div id="sequence-intro" data-name="intro" data-order="1" class="sequence" start="0:00" end="1:12">
 
       <!-- Intro -->
-      <!-- <div id="intro" class="intro scene" start="0" end="0:14">
+      <div id="intro" class="intro scene" start="0" end="0:14">
         <div id="intro-timelapse" start="0" end="0.6" class="prop video-container from-fade">
           <video src="video/timelapse_resized.mp4" preload="auto" autoplay loop></video>
         </div>
@@ -31,30 +31,40 @@
           </p>
         </div>
         <div class="audio" audio="thunderstrike" audio-start="0" loop="true"></div>
-      </div> -->
+      </div>
 
       <!-- Car -->
-      <div id="car" class="scene car" start="0" end="1">
+      <div id="car" class="scene car" start="0:14" end="1:09">
         <div class="road-video-container">
           <div class="drive-center"><video data-id="drive-center-01" src="video/driving_clips/windshield/GOPRO007.1.mp4" preload="auto" autoplay loop></video></div>
           <div class="drive-left"><video data-id="drive-left-01" src="video/driving_clips/side_windows/left_window/GOPRO0010.1.mp4" preload="auto" autoplay loop></video></div>
           <div class="drive-right"><video data-id="drive-right-01" src="video/driving_clips/side_windows/right_window/GOPRO005.1R.mp4" preload="auto" autoplay loop></video></div>
         </div>
+        <div id="road-night" start="0.1" end="1" class="road-night from-fade" tween-method="in">
+          <!-- placeholder -->
+        </div>
+        <img id="deer" src="img/car/deer@1x.png" start="0.995" end="1" class="deer prop" />
         <img src="img/car/windows@1x.png" class="windows" />
-        <div class="radio-container">
+        <div id="car-radio" start="0.44" end="1" class="radio-container">
           <img src="img/car/radio-backing@1x.jpg" class="radio-backing">
           <img src="img/car/radio-numbers@1x.png" class="radio-numbers">
-          <img src="img/car/radio-needle@1x.jpg" class="radio-needle">
+          <img id="radio-needle" src="img/car/radio-needle@1x.jpg" class="radio-needle">
         </div>
-        <div class="photo-container">
-          <img src="img/car/photo@2x.jpg" class="photo" />
+        <div class="photo-container trigger-popup" data-popup="photo-popup">
+          <img src="img/car/photo@1x.jpg" class="photo" />
         </div>
         <img src="img/car/left-seat@1x.png" class="seat-left" />
         <img src="img/car/right-seat@1x.png" class="seat-right" />
         <div id="odometer" class="odometer" value="18200">18200</div>
-        <div class="map-container">
-          <img src="img/car/map-on-box@2x.jpg" class="map-on-box" />
+        <div class="map-container trigger-popup" data-popup="map-popup">
+          <img src="img/car/map-on-box@1x.jpg" class="map-on-box" />
         </div>
+        <div class="audio" audio="car-scene" audio-start="0"></div>
+        <div class="audio" audio="radio-az-fires" audio-start="0.46"></div>
+      </div>
+
+      <div id="pause" class="scene" start="1:09" end="1">
+
       </div>
 
     </div>
@@ -182,6 +192,25 @@
 
     </div>
 
+    <div id="photo-popup" class="popup">
+      <div class="photo-popup-container flip-container">
+        <div class="flipper">
+          <div class="front">
+            <img src="img/car/photo-large@1x.jpg" class="photo-large" />
+          </div>
+          <div class="back">
+            <img src="img/car/photo-large-back@1x.jpg" class="photo-large back" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="map-popup" class="popup">
+      <div class="map-popup-container">
+        <img src="img/car/map-large@1x.jpg" class="map-large" />
+      </div>
+    </div>
+
     <div class="modal hide">
       <div class="curtain left"></div>
       <div class="curtain right"></div>
@@ -209,6 +238,13 @@
 
   <div class="audio hide">
     <audio data-id="thunderstrike" src="audio/road_sfx_thunderstrike.mp3" preload="auto" loop></audio>
+
+    <audio data-id="car-scene" src="audio/Bisbee-Car-Scene.mp3" preload="auto"></audio>
+    <audio data-id="radio-az-fires" src="audio/radio/AZ_FIRES.mp3" class="radio-station" preload="auto" volume="0.05"></audio>
+    <audio data-id="radio-gunsmoke" src="audio/radio/GUNSMOKE.mp3" class="radio-station" preload="auto" volume="0.05"></audio>
+    <audio data-id="radio-desert" src="audio/radio/IN_THE_DESERT.mp3" class="radio-station" preload="auto" volume="0.5"></audio>
+    <audio data-id="radio-time-travel" src="audio/radio/TIME_TRAVEL.mp3" class="radio-station" preload="auto" volume="0.05"></audio>
+    <audio data-id="radio-war" src="audio/radio/WAR_IN_IRAQ.mp3" class="radio-station" preload="auto" volume="0.05"></audio>
 
     <audio data-id="footsteps" src="audio/stage_sfx_footsteps.mp3" preload="auto" loop></audio>
     <audio data-id="footsteps-fast" src="audio/stage_sfx_footsteps_fast.mp3" preload="auto" loop></audio>
@@ -246,8 +282,8 @@
     <button class="reset">Reset</button>
     <div><label>Time:</label> <span id="debug-time">--:--</span></div>
     <div><label>Speed:</label> <span id="debug-speed">--:--</span></div>
-    <!-- <div><label>Scene:</label> <span id="debug-scene"></span></div>
-    <div><label>Scene Progress: <span id="debug-progress"></span></label> -->
+    <div><label>Scene:</label> <span id="debug-scene">--</span></div>
+    <!-- <div><label>Scene Progress: <span id="debug-progress"></span></label> -->
   </div>
 
   <script src="js/vendor/jquery-1.11.3.min.js"></script>
