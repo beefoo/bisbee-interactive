@@ -9,3 +9,9 @@ var config = {
     type: 'scene'
   }
 };
+
+// odometer config
+window.odometerOptions = {
+  auto: true, // Don't automatically initialize everything with class 'odometer'
+  format: 'd', // Change how digit groups are formatted, and how many digits are shown after the decimal point
+};

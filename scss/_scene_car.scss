@@ -1,0 +1,143 @@
+@import "mixins";
+@import "variables";
+
+@import "odometer";
+
+.car {
+
+  > div,
+  > img {
+    position: absolute;
+  }
+
+  $window_ratio: (1440/518);
+  .windows {
+    width: 100%;
+    height: auto;
+    top: 0;
+    left: 0;
+  }
+
+  .photo-container {
+    width: 7%;
+    height: auto;
+    right: 29%;
+    bottom: 28%;
+    background: no-repeat;
+    background-position: center top;
+    background-size: contain;
+    background-image: url(../img/car/photo-o@2x.jpg);
+    @include transform(rotate(-15deg));
+    img {
+      width: 100%;
+      height: auto;
+      opacity: 1;
+      cursor: pointer;
+      @include transition(opacity 0.5s);
+      &:hover {
+        opacity: 0;
+      }
+    }
+  }
+
+  .map-container {
+    width: 40%;
+    height: auto;
+    bottom: 0;
+    left: 50%;
+    margin-left: -20%;
+    background: $black;
+
+    img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      opacity: 0.5;
+      @include transition(opacity 0.5s);
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  .radio-container {
+    width: 10%;
+    height: auto;
+    left: 48%;
+    bottom: 40%;
+
+    > img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
+
+    > img.radio-needle {
+      width: percentage(2/117);
+      height: auto;
+      left: 50%;
+    }
+  }
+
+  .odometer {
+    width: 8%;
+    height: auto;
+    left: 27%;
+    bottom: 30%;
+    position: absolute;
+    opacity: 0.6;
+    @include transform(scale(0.7));
+  }
+
+  .seat-left,
+  .seat-right {
+    width: 27%;
+    bottom: 22%;
+  }
+  .seat-left {
+    width: 40%;
+    left: 0;
+  }
+  .seat-right {
+    right: 0;
+  }
+
+  .road-video-container {
+    width: 100%;
+    height: 100%;
+    .drive-center,
+    .drive-left,
+    .drive-right {
+      position: absolute;
+      top: 0;
+      height: 100%;
+
+      video {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .drive-center {
+      width: 70%;
+      left: 50%;
+      top: 2%;
+      margin-left: -35%;
+    }
+    .drive-left,
+    .drive-right {
+      width: 20%;
+      top: 10.5%;
+    }
+    .drive-left {
+      left: 0;
+      @include transform(rotate(-14deg));
+    }
+    .drive-right {
+      right: 0;
+      @include transform(rotate(14deg));
+    }
+  }
+}

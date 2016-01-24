@@ -14,14 +14,13 @@
 
   <div id="stage" class="stage">
 
-    <div id="sequence-intro" data-name="intro" data-order="1" class="sequence" start="0:00" end="1:00">
+    <div id="sequence-intro" data-name="intro" data-order="1" class="sequence" start="0:00" end="10:00">
 
-      <div id="intro" class="intro scene" start="0" end="0:14">
-
+      <!-- Intro -->
+      <!-- <div id="intro" class="intro scene" start="0" end="0:14">
         <div id="intro-timelapse" start="0" end="0.6" class="prop video-container from-fade">
           <video src="video/timelapse_resized.mp4" preload="auto" autoplay loop></video>
         </div>
-
         <div id="intro-quote" start="0.1" end="0.8" class="prop quote from-fade">
           <p class="quote-text">
             "A lonely environment, I found, can produce anything, change one's outlook, dampen one's spirit, diminish one's zeal. On the other hand, just as a high wind carries a tumbleweed, so romance can lift one from boredom."
@@ -32,10 +31,30 @@
           </p>
         </div>
         <div class="audio" audio="thunderstrike" audio-start="0" loop="true"></div>
-      </div>
+      </div> -->
 
-      <div id="car-day" class="scene car" start="0:06" end="1">
-
+      <!-- Car -->
+      <div id="car" class="scene car" start="0" end="1">
+        <div class="road-video-container">
+          <div class="drive-center"><video data-id="drive-center-01" src="video/driving_clips/windshield/GOPRO007.1.mp4" preload="auto" autoplay loop></video></div>
+          <div class="drive-left"><video data-id="drive-left-01" src="video/driving_clips/side_windows/left_window/GOPRO0010.1.mp4" preload="auto" autoplay loop></video></div>
+          <div class="drive-right"><video data-id="drive-right-01" src="video/driving_clips/side_windows/right_window/GOPRO005.1R.mp4" preload="auto" autoplay loop></video></div>
+        </div>
+        <img src="img/car/windows@1x.png" class="windows" />
+        <div class="radio-container">
+          <img src="img/car/radio-backing@1x.jpg" class="radio-backing">
+          <img src="img/car/radio-numbers@1x.png" class="radio-numbers">
+          <img src="img/car/radio-needle@1x.jpg" class="radio-needle">
+        </div>
+        <div class="photo-container">
+          <img src="img/car/photo@2x.jpg" class="photo" />
+        </div>
+        <img src="img/car/left-seat@1x.png" class="seat-left" />
+        <img src="img/car/right-seat@1x.png" class="seat-right" />
+        <div id="odometer" class="odometer" value="18200">18200</div>
+        <div class="map-container">
+          <img src="img/car/map-on-box@2x.jpg" class="map-on-box" />
+        </div>
       </div>
 
     </div>
@@ -237,6 +256,7 @@
   <script src="js/vendor/jquery.hammer.js"></script>
   <script src="js/vendor/ba-tiny-pubsub.min.js"></script>
   <script src="js/vendor/easing.js"></script>
+  <script src="js/vendor/odometer.js"></script>
 
   <script src="js/utils.js"></script>
   <script src="js/tween.js"></script>

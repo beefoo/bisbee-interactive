@@ -17,6 +17,9 @@ var BisbeeStageView = (function() {
     // Load listeners
     this.loadListeners();
 
+    // Init odometer
+    this.loadOdometer();
+
     // show debugger
     if (this.debug) $('.debug').removeClass('hide');
   };
@@ -83,6 +86,18 @@ var BisbeeStageView = (function() {
     $(window).on('resize', function(){
       _this.adjustAspectRatio();
     });
+  };
+
+  BisbeeStageView.prototype.loadOdometer = function(){
+    var _this = this,
+        $odometer = $('#odometer');
+
+    setTimeout(function(){
+      var val = parseInt($odometer.attr('value')) + 1;
+      $odometer.attr('value', val);
+      $odometer.text(val);
+      _this.loadOdometer();
+    }, 2000);
   };
 
   BisbeeStageView.prototype.modalHide = function(){
