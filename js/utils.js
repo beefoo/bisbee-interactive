@@ -35,6 +35,15 @@ var ENDING = 3;
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
   };
   utils.getSeconds = function(string, dec) {
+    // handle hh:mm:ss+hh:mm:ss
+    if (string.indexOf('+') >= 0) {
+      var total = 0,
+          strings = string.split('+');
+      for (var i=0; i<strings.length; i++) {
+        total += utils.getSeconds(strings[i]);
+      }
+      return total;
+    }
     var parts = string.split(':').reverse(),
         seconds = 0;
     // go from hh:mm:ss to seconds

@@ -6,15 +6,28 @@
 .car {
 
   display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
 
   &.active {
     display: block;
     @include animation(fadeIn 2s);
   }
 
-  > div,
-  > img {
+  .car-prop {
     position: absolute;
+  }
+
+  > div[start],
+  > img[start] {
+    display: none;
+
+    &.active {
+      display: block;
+    }
   }
 
   $window_ratio: (1440/518);
@@ -23,6 +36,18 @@
     height: auto;
     top: 0;
     left: 0;
+  }
+
+  .supporting-objects {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    &.active {
+      @include animation(fadeIn 2s);
+    }
   }
 
   .photo-container {
@@ -85,6 +110,8 @@
       left: 0;
       width: 100%;
       height: auto;
+      opacity: 0.5;
+      @include transition(opacity 0.5s);
     }
 
     > img.radio-needle {
@@ -92,6 +119,10 @@
       height: auto;
       left: 20%;
       @include transition(left 0.5s);
+    }
+
+    &:hover > img {
+      opacity: 1;
     }
   }
 
@@ -109,6 +140,10 @@
   .seat-right {
     width: 27%;
     bottom: 22%;
+
+    &.active {
+      @include animation(fadeIn 2s);
+    }
   }
   .seat-left {
     width: 40%;
@@ -127,6 +162,7 @@
       position: absolute;
       top: 0;
       height: 100%;
+      @include animation(fadeOut 0.5s);
 
       video {
         width: 100%;
@@ -146,22 +182,47 @@
       top: 10.5%;
     }
     .drive-left {
-      left: 0;
-      @include transform(rotate(-14deg));
+      left: -5%;
+      top: 6%;
+      //@include transform(rotate(-14deg));
     }
     .drive-right {
-      right: 0;
-      @include transform(rotate(14deg));
+      right: -5%;
+      //@include transform(rotate(14deg));
+    }
+
+    &.active {
+      .drive-center,
+      .drive-left,
+      .drive-right {
+        @include animation(fadeIn 5s);
+      }
+      .drive-left {
+        @include animation-duration(2s);
+        @include animation-delay(1s);
+      }
+      .drive-right {
+        @include animation-duration(3.5s);
+        @include animation-delay(3s);
+      }
+      .drive-center {
+        @include animation-delay(7s);
+      }
     }
   }
 
   .road-night {
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
+    .drive-left video {
+      @include transform(scaleX(-1));
+    }
+
     &.active {
-      background: rgba($black, 0.9);
+      .drive-center,
+      .drive-left,
+      .drive-right {
+        @include animation-delay(0s);
+        @include animation-duration(5s);
+      }
     }
   }
 

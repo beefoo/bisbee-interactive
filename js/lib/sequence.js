@@ -237,13 +237,18 @@ var BisbeeSequence = (function() {
     if (!str) {
       return prop.indexOf('start') > -1 ? start : end;
 
+    // e.g. +0:02
+    } else if (str.indexOf('+') > -1) {
+      var seconds = utils.getSeconds(str.substring(1), 1);
+      return start + seconds;
+
     // e.g. 0:10
     } else if (str.indexOf(':') > -1) {
       return utils.getSeconds(str, 1);
 
     // e.g. 2s
     } else if (str.indexOf('s') > -1) {
-      var seconds = parseInt(str);
+      var seconds = parseFloat(str);
       return start + seconds;
 
     // e.g. 0.2
@@ -260,7 +265,11 @@ var BisbeeSequence = (function() {
 
     step.$el = $el;
     step.start = this._getSeconds($el, 'start', start, end);
-    step.end = this._getSeconds($el, 'end', start, end);
+    if ($el.attr('duration')) {
+      step.end = step.start + utils.getSeconds($el.attr('duration'), 1);
+    } else {
+      step.end = this._getSeconds($el, 'end', start, end);
+    }
     if ($el.attr('pause-amount')) step.pauseAmount = parseFloat($el.attr('pause-amount'));
     if ($el.attr('tween-method')) step.tweenMethod = $el.attr('tween-method');
 
