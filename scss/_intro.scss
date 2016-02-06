@@ -19,6 +19,14 @@
   &.active {
     display: flex;
   }
+
+  > div:before {
+    content: 'Click to Start';
+  }
+
+  &.loading > div:before {
+    content: 'Loading...';
+  }
 }
 
 // Intro

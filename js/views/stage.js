@@ -57,7 +57,7 @@ var BisbeeStageView = (function() {
   BisbeeStageView.prototype.changeRadioStation = function(){
     var $stations = $('.radio-station'),
         playing_i = 0,
-        min_needle_percent = 30,
+        min_needle_percent = 36,
         max_needle_percent = 90,
         needle_step = (max_needle_percent - min_needle_percent) / $stations.length;
 
@@ -92,8 +92,10 @@ var BisbeeStageView = (function() {
       _this.modalShow();
     });
 
-    $.subscribe('stop-radio', function(e){
+    $.subscribe('step.off.car-radio', function(e){
       _this.stopRadioStations();
+      $('.popup').removeClass('active');
+      $('.car .trigger-popup').off('click');
     });
 
     $('.guide').on('click', function(e){

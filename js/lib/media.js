@@ -17,20 +17,40 @@ var BisbeeMedia = (function() {
 
   BisbeeMedia.prototype.loadMedia = function(){
     var _this = this;
+        required = $('audio.required, video.required').length,
+        loaded_required = 0;
 
     $('video, audio').each(function(){
-      var $media = $(this);
-      _this.media[$media.attr('data-id')] = $media[0];
+      var $media = $(this),
+          id = $media.attr('data-id');
+      _this.media[id] = $media[0];
       // set volume
       if ($media.attr('volume')) {
         var volume = parseFloat($media.attr('volume'));
-        _this.media[$media.attr('data-id')].volume = volume;
+        _this.media[id].volume = volume;
+      }
+      if ($media.hasClass('required') || $media.attr('offset')) {
+        _this.media[id].oncanplay = function(){
+          // required to load
+          if ($media.hasClass('required')) {
+            loaded_required++;
+            if (loaded_required >= required) {
+              $.publish('loaded-required', true);
+            }
+          }
+          // offset
+          if ($media.attr('offset')) {
+            _this.media[id].currentTime = parseFloat($media.attr('offset'));
+          }
+        };
       }
       // if (_this.debug) {
       //   var src = $(this)[0].src || $(this).children('source')[0].src;
       //   console.log('Loaded '+src);
       // }
     });
+
+    if (required <= 0) $.publish('loaded-required', true);
   };
 
   BisbeeMedia.prototype.pause = function(ids, reset){

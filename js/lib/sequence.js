@@ -146,9 +146,9 @@ var BisbeeSequence = (function() {
 
         case STARTING:
           if (direction < 0) {
-            step.onEnd && step.onEnd(_this);
+            if (step.publish) $.publish('step.off.'+step.name, true);
           } else {
-            step.onStart && step.onStart(_this);
+            if (step.publish) $.publish('step.on.'+step.name, true);
           }
           _this.stepProgress(_this.sequence[i], player);
           started++;
@@ -156,9 +156,9 @@ var BisbeeSequence = (function() {
 
         case ENDING:
           if (direction < 0) {
-            step.onStart && step.onStart(_this);
+            if (step.publish) $.publish('step.on.'+step.name, true);
           } else {
-            step.onEnd && step.onEnd(_this);
+            if (step.publish) $.publish('step.off.'+step.name, true);
           }
           ended++;
           break;
@@ -265,6 +265,7 @@ var BisbeeSequence = (function() {
 
     step.$el = $el;
     step.start = this._getSeconds($el, 'start', start, end);
+    if ($el.hasClass('publish')) step.publish = true;
     if ($el.attr('duration')) {
       step.end = step.start + utils.getSeconds($el.attr('duration'), 1);
     } else {

@@ -19,7 +19,7 @@
       <!-- Intro -->
       <div id="intro" class="intro scene" start="0" end="0:21">
         <div id="intro-timelapse" start="0.35" end="0.8" class="prop video-container from-fade">
-          <video src="video/timelapse_resized.mp4" preload="auto" autoplay loop></video>
+          <video src="video/timelapse_resized.mp4" offset="3" preload="auto" autoplay loop></video>
         </div>
         <div id="intro-quote" start="0.4" end="0.9" class="prop quote from-fade">
           <p class="quote-text">
@@ -41,7 +41,7 @@
           <div class="drive-right"><video data-id="drive-right-01" src="video/driving_clips/side_windows/right_window/GOPRO005.1R_edited.mp4" preload="auto" autoplay loop></video></div>
         </div>
         <div id="road-night" class="road-video-container road-night car-prop" start="+0:48" end="+1:21.6">
-          <div class="drive-center"><video data-id="drive-center-night-01" src="video/driving_clips/windshield/NIGHT_WINDSHIELD_edited.mp4" preload="auto" autoplay loop></video></div>
+          <div class="drive-center"><video data-id="drive-center-night-01" src="video/driving_clips/windshield/NIGHT_WINDSHIELD_edited.mp4" offset="1" preload="auto" autoplay loop></video></div>
           <div class="drive-left"><video data-id="drive-left-night-01" src="video/driving_clips/side_windows/right_window/SIDE_WINDOWS_DIP_TO_BLACK_edited.mp4" preload="auto" autoplay loop></video></div>
           <div class="drive-right"><video data-id="drive-right-night-01" src="video/driving_clips/side_windows/right_window/SIDE_WINDOWS_DIP_TO_BLACK_edited.mp4" preload="auto" autoplay loop></video></div>
         </div>
@@ -59,7 +59,7 @@
             <img src="img/car/map-on-box@2x.jpg" class="map-on-box" />
           </div>
         </div>
-        <div id="car-radio" start="+0:52" end="+1:18" class="radio-container car-prop">
+        <div id="car-radio" start="+0:52" end="+1:18" class="radio-container car-prop publish">
           <img src="img/car/radio-backing@2x.jpg" class="radio-backing">
           <img src="img/car/radio-numbers@2x.png" class="radio-numbers">
           <img id="radio-needle" src="img/car/radio-needle@2x.jpg" class="radio-needle">
@@ -68,8 +68,8 @@
         <div class="audio" audio="radio-az-fires" audio-start="+0:52"></div>
       </div>
 
-      <div id="pause" class="scene" start="1:29" end="1">
-
+      <div id="crying" class="scene" start="1:50" end="1">
+        <div class="audio" audio="car-crying" audio-start="0"></div>
       </div>
 
     </div>
@@ -229,8 +229,8 @@
       </div>
     </div>
 
-    <div id="start" class="start active">
-      <div>Click to Start</div>
+    <div id="start" class="start active loading">
+      <div></div>
     </div>
 
     <!-- <div class="menu"></div>
@@ -242,9 +242,10 @@
   </div>
 
   <div class="audio hide">
-    <audio data-id="thunderstrike" src="audio/road_sfx_thunderstrike.mp3" preload="auto" loop></audio>
+    <audio data-id="thunderstrike" src="audio/road_sfx_thunderstrike.mp3" preload="auto" loop class="required"></audio>
 
     <audio data-id="car-scene" src="audio/Bisbee-Car-Scene.mp3" preload="auto"></audio>
+    <audio data-id="car-crying" src="audio/car_crying.mp3" preload="auto"></audio>
     <audio data-id="radio-az-fires" src="audio/radio/AZ_FIRES.mp3" class="radio-station" preload="auto" volume="0.05"></audio>
     <audio data-id="radio-gunsmoke" src="audio/radio/GUNSMOKE.mp3" class="radio-station" preload="auto" volume="0.05"></audio>
     <audio data-id="radio-desert" src="audio/radio/IN_THE_DESERT.mp3" class="radio-station" preload="auto" volume="0.5"></audio>

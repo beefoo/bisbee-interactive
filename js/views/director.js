@@ -28,10 +28,15 @@ var BisbeeDirectorView = (function() {
     var _this = this;
 
     $('#start').on('click', function(){
+      if ($(this).hasClass('loading')) return false;
       if (!_this.started) {
         _this.started = true;
         _this.introShow();
       }
+    });
+
+    $.subscribe('loaded-required', function(e){
+      $('#start').removeClass('loading');
     });
 
     $.subscribe('sequence-end', function(e, sequence) {
@@ -39,7 +44,6 @@ var BisbeeDirectorView = (function() {
       // show modal after intro
       if (sequence.name=='intro') {
         $.publish('show-modal', true);
-        $.publish('stop-radio', true);
       }
 
       // show next sequence

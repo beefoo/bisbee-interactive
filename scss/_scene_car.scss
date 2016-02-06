@@ -94,9 +94,9 @@
 
   .radio-container {
     width: 10%;
-    height: auto;
+    height: percentage(62/$screenH);
     left: 48%;
-    bottom: 40%;
+    bottom: 30%;
     cursor: pointer;
     @include animation(fadeOut 1s);
 
@@ -114,10 +114,17 @@
       @include transition(opacity 0.5s);
     }
 
+    > img.radio-numbers {
+      width: percentage(115/177);
+      left: 26%;
+      top: 11%;
+    }
+
     > img.radio-needle {
-      width: percentage(2/117);
+      width: percentage(2/177);
       height: auto;
-      left: 20%;
+      top: 11%;
+      left: 36%;
       @include transition(left 0.5s);
     }
 
