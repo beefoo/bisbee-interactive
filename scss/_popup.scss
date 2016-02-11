@@ -8,7 +8,7 @@
   top: 0;
   left: 0;
   z-index: 90;
-  @include animation(fadeOutUp 1s);
+  @include animation(outUp 1s);
 
   > div {
     margin: auto;
@@ -18,7 +18,7 @@
   }
 
   &.active {
-    @include animation(fadeInDown 1s);
+    @include animation(inDown 1s);
   }
 }
 

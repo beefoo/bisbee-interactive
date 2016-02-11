@@ -57,7 +57,7 @@
     bottom: 28%;
     background: no-repeat;
     background-position: center top;
-    background-size: contain;
+    background-size: 100% auto;
     background-image: url(../img/car/photo-o@2x.jpg);
     @include transform(rotate(-15deg));
     img {
@@ -202,14 +202,14 @@
       .drive-center,
       .drive-left,
       .drive-right {
-        @include animation(fadeIn 5s);
+        @include animation(fadeIn 0.5s);
       }
       .drive-left {
-        @include animation-duration(2s);
+        @include animation-duration(0.3s);
         @include animation-delay(1s);
       }
       .drive-right {
-        @include animation-duration(3.5s);
+        @include animation-duration(0.4s);
         @include animation-delay(3s);
       }
       .drive-center {
@@ -240,7 +240,7 @@
     top: 30%;
 
     &.active {
-      @include animation(deerIn 0.2s);
+      @include animation(deerIn 0.2s linear);
     }
   }
 }
