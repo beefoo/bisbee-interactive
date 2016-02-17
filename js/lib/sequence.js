@@ -27,6 +27,10 @@ var BisbeeSequence = (function() {
     return this.endTime;
   };
 
+  BisbeeSequence.prototype.getStartTime = function(){
+    return this.startTime;
+  };
+
   BisbeeSequence.prototype.loadSequence = function(sequence){
     var _this = this;
 
@@ -58,6 +62,7 @@ var BisbeeSequence = (function() {
         sequence_end = utils.getSeconds($el.attr('end'), 1);
 
     this.$el = $el;
+    this.startTime = sequence_start;
     this.endTime = sequence_end;
 
     // retrieve all scenes from sequence

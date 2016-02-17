@@ -19,8 +19,11 @@ var BisbeeDirectorView = (function() {
 
     $('.start').removeClass('active');
 
-    Bisbee.player.setSequence(Bisbee.sequences.intro);
-    Bisbee.player.setNormalSpeed();
+    if (!Bisbee.player.sequence || !Bisbee.player.autoplay) {
+      Bisbee.player.setSequence(Bisbee.sequences.intro);
+      Bisbee.player.setNormalSpeed();
+    }
+
     $.publish('player-play', true);
   };
 

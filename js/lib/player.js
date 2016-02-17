@@ -24,18 +24,14 @@ var BisbeePlayer = (function() {
     this.speed = this.normalSpeed;
     this.speedPercent = 0;
 
-    // get currentTime
-    var currentTime = utils.getParameterByName('t') || 0;
-    if (currentTime) currentTime = utils.getSeconds(currentTime, 1);
-    this.currentTime = currentTime;
+    // set current time
+    this.currentTime = options.currentTime || 0;
+
+    // autoplay if time and sequence is passed in
+    if (this.currentTime && this.sequence) this.autoplay = true;
 
     // load listeners
     this.loadListeners();
-
-    if (this.currentTime && this.sequence) {
-      this.started = true;
-      this.play();
-    }
   };
 
   BisbeePlayer.prototype.getCurrentTime = function(){
