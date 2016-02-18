@@ -6,8 +6,8 @@ $floorHeight: 300;
 .floor {
   width: 100%;
   height: percentage($floorHeight / $screenH);
-  background: url(../img/intro/stage-brown@2x.jpg) center no-repeat;
-  background-size: cover;
+  background: url(../img/intro/stage-floor@2x.jpg.png) center top no-repeat;
+  background-size: contain;
   position: absolute;
   bottom: 0;
   left: 0;

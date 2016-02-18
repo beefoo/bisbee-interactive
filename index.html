@@ -14,7 +14,7 @@
 
   <div id="stage" class="stage">
 
-    <div id="sequence-intro" data-name="intro" data-order="1" class="sequence" start="0:00" end="0:20+1:53">
+    <div id="sequence-intro" data-name="intro" data-order="1" class="sequence" start="0:00" end="0:20+1:51">
 
       <!-- Intro -->
       <div id="intro" class="intro scene" start="0" end="0:20">
@@ -32,7 +32,7 @@
       </div>
 
       <!-- Car -->
-      <div id="car" class="scene car" start="0:20" duration="1:53">
+      <div id="car" class="scene car" start="0:20" duration="1:28">
         <div id="road-day" class="road-video-container car-prop" start="+0:05" end="+0:52">
           <div class="drive-center"><video data-id="drive-center-01" src="video/driving_clips/windshield/GOPRO007.1_edited.mp4" preload="auto" autoplay loop></video></div>
           <div class="drive-left"><video data-id="drive-left-01" src="video/driving_clips/side_windows/left_window/GOPRO0010.1_edited.mp4" preload="auto" autoplay loop></video></div>
@@ -66,7 +66,19 @@
         <div class="audio" audio="radio-az-fires" audio-start="+0:52"></div>
       </div>
 
-      <div id="crying" class="scene" start="1:50" end="1">
+      <div id="crying" class="scene car" start="1:50" end="1">
+        <div id="car-floor" class="floor" start="+0:02" end="1">
+          <div class="void"></div>
+        </div>
+
+        <img id="seat-left-stage" src="img/car/left-seat@2x.png" class="seat-left car-prop" start="0" end="1" />
+        <img id="seat-right-stage" src="img/car/right-seat@2x.png" class="seat-right car-prop" start="0" end="1" />
+
+        <div id="road-supporting-objects-stage" class="supporting-objects" start="+0:01" end="1">
+          <div class="photo-container trigger-popup car-prop" data-popup="photo-popup">
+            <img src="img/car/photo@2x.jpg" class="photo" />
+          </div>
+        </div>
         <div class="audio" audio="car-crying" audio-start="0"></div>
       </div>
 
@@ -76,7 +88,7 @@
 
       <!-- Floor -->
 
-      <div id="floor" class="floor scene" start="0" end="0:13">
+      <div id="floor" class="floor scene" start="+0:01" end="0:13">
         <div class="void"></div>
       </div>
       <div id="ground" class="ground prop scene" start="0:13" end="1">

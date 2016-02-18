@@ -243,7 +243,18 @@
       @include animation(deerIn 0.2s linear);
     }
   }
+
+  #car-floor {
+    z-index: 0;
+    @include animation(fadeOut 3s);
+
+    &.active {
+      @include animation(fadeIn 3s);
+    }
+  }
 }
+
+
 
 .photo-popup-container {
   width: 30%;
