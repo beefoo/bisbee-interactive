@@ -1,7 +1,7 @@
 @import "mixins";
 @import "variables";
 
-$ropeThickness: 8px;
+$ropeThickness: 7.5px;
 
 .scene .audio,
 .scene .toggle-class {
@@ -40,7 +40,8 @@ img.prop {
   &.rope:before {
     content: ' ';
     position: absolute;
-    background: #3e3939;
+    background: url(../img/common/chain@2x.png) center repeat-y;
+    background-size: 100% auto;
     z-index: -1;
     opacity: 0.9;
     // @include box-shadow(0px, 0px, 6px, #3e3939);
@@ -56,7 +57,9 @@ img.prop {
       &:after {
         height: $ropeThickness;
         width: 2000px;
-        left: -1960px;
+        left: -1860px;
+        background: url(../img/common/chain-h@2x.png) center repeat-x;
+        background-size: auto 100%;
       }
     }
 
@@ -65,7 +68,7 @@ img.prop {
       &:before,
       &:after {
         left: auto;
-        right: -1960px;
+        right: -1860px;
       }
     }
 
@@ -75,7 +78,7 @@ img.prop {
       &:after {
         width: $ropeThickness;
         height: 2000px;
-        top: -1960px;
+        top: -1860px;
       }
     }
   }

@@ -24,6 +24,14 @@ var BisbeeTween = {
     return Easing[easing_function](p);
   },
 
+  out: function (p, pause, easing_function) {
+    easing_function = easing_function || 'easeInQuint';
+
+    p = 1.0 - p;
+
+    return Easing[easing_function](p);
+  },
+
   none: function(p){
     return 1;
   },

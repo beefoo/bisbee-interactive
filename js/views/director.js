@@ -19,7 +19,7 @@ var BisbeeDirectorView = (function() {
 
     $('.start').removeClass('active');
 
-    if (!Bisbee.player.sequence || !Bisbee.player.autoplay) {
+    if (!Bisbee.player.sequence || !Bisbee.player.autoplay && Bisbee.sequences.intro) {
       Bisbee.player.setSequence(Bisbee.sequences.intro);
       Bisbee.player.setNormalSpeed();
     }

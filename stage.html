@@ -1,0 +1,163 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Bisbee Interactive</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="css/app.css">
+  <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+
+  <div id="stage" class="stage">
+
+    <div id="sequence-town" data-name="town" data-order="1" class="sequence" start="0:00" end="1:10" controls="true" character="true">
+
+      <div id="ground" class="ground prop scene" start="0" end="1">
+        <img src="img/common/road-sprites@2x.jpg" id="ground-image" class="ground-image" />
+      </div>
+
+      <!-- Scene: Town -->
+      <div id="scene-town" class="scene" start="0" end="0:40">
+        <div id="white-bg" class="prop white-bg from-fade" start="0" end="0.4" tween-method="out" easing-function="linear"></div>
+        <img id="hillside-bg" src="img/town/background-b-hill@2x.jpg" start="0" end="1" pause-amount="0.8" class="prop bg top from-fade" />
+
+        <div id="rock-ants-video" class="video-container prop from-fade" start="0.20" end="0.52" pause-amount="0.4"><video data-id="ants" src="video/ants_1.mp4" preload="auto" autoplay loop></video></div>
+        <div id="rock-scorpion-video" class="video-container prop from-fade" start="0.21" end="0.52" pause-amount="0.4"><video data-id="scorpion" src="video/scorpion_1.mp4" preload="auto" autoplay loop></video></div>
+
+        <img id="house-top-right" src="img/town/house-top-right@2x.png" start="0.33" end="1" animation-end="86" class="prop from-bottom" />
+        <img id="graffiti-house" src="img/town/graffiti-house@2x.jpg" start="0.44" end="1" animation-end="65" class="prop from-bottom" />
+        <img id="red-house" src="img/town/red-house@2x.png" start="0.42" end="0.72" animation-end="75" class="prop from-bottom" />
+        <img id="colorful-house" src="img/town/colorful-house@2x.png" start="0.41" end="0.73" animation-end="73" class="prop from-bottom" />
+        <img id="plywood-house" src="img/town/plywood-house@2x.png" start="0.3" end="1" animation-end="3" class="prop from-right" />
+
+        <img id="rock-pile-left" src="img/town/rock-pile-left@2x.png" start="0.07" end="0.76" pause-amount="0.4" animation-end="9" class="prop bottom from-left" />
+        <img id="rock-pile-right" src="img/town/rock-pile-right@2x.png" start="0.1" end="0.75" pause-amount="0.4" animation-end="1" class="prop bottom from-right" />
+        <img id="rock-ring" src="img/town/rock-ring@2x.png" start="0.11" end="0.74" pause-amount="0.4" animation-end="24" class="prop bottom from-left" />
+
+        <img id="house-with-stairs" src="img/town/house-with-stairs@2x.png" start="0.42" end="0.71" animation-end="22" class="prop from-left top" />
+        <img id="green-trim-house" src="img/town/green-trim-house@2x.png" start="0.41" end="1" animation-end="74" class="prop from-bottom bg" />
+        <img id="ledge-sign" src="img/town/ledge-sign@2x.png" start="0.4" end="0.7" animation-end="33" class="prop from-left" />
+        <img id="cacti" src="img/town/cacti@2x.png" start="0.39" end="1" class="prop from-left" />
+        <img id="tire" src="img/town/tire@2x.png" start="0.38" end="0.7" class="prop from-left" />
+
+        <img id="bed-posts" src="img/town/bed-posts@2x.png" start="0.42" end="0.6" animation-end="32" class="prop from-right" />
+
+        <div id="rock-center" start="0.05" end="0.67" animation-end="11" pause-amount="0.4" class="prop from-top h-center double-rope">
+          <div><img id="img-rock-center" src="img/town/rock-center@2x.png" /></div>
+        </div>
+
+        <img id="one51-steps" src="img/town/151-steps@2x.png" start="0.38" end="0.72" animation-end="20" class="prop from-left" />
+
+        <img id="large-stairs-left" src="img/town/large-stairs-left@2x.png" start="0.36" end="0.73" animation-end="-2" class="prop bottom from-left" />
+        <img id="large-stairs-right" src="img/town/large-stairs-right@2x.png" start="0.37" end="0.74" animation-end="3" class="prop from-right" />
+
+        <img id="dilapidated-car" src="img/town/dilapidated-car@2x.png" start="0.45" end="0.58" animation-end="2" class="prop from-right" />
+        <img id="tire-swing" src="img/town/tire-swing@2x.png" start="0.46" end="0.59" animation-end="-10" class="prop h-center from-top" />
+
+        <img id="hotel" src="img/town/hotel@2x.png" start="0.45" end="1" animation-end="30" class="prop h-center bg from-bottom" />
+        <img id="graffiti-wall-entrance" src="img/town/graffiti-wall-entrance@2x.png" start="0.5" end="1" animation-end="30" class="prop from-left" />
+        <img id="graffiti-man-video" src="img/town/graffiti-man-vid-placeholder@2x.jpg" start="0.51" end="1" animation-end="-6" class="prop from-left" />
+        <img id="narrow-road" src="img/town/narrow-road@2x.png" start="0.52" end="0.91" class="prop bottom from-left" />
+        <img id="small-pile-rocks" src="img/town/small-pile-rocks@2x.png" start="0.53" end="0.89" animation-end="25" class="prop bottom from-left" />
+        <img id="cactus-plant" src="img/town/cactus-plant@2x.png" start="0.54" end="0.9" animation-end="20" class="prop bottom from-left" />
+
+        <div id="bar-front" start="0.49" end="0.9" animation-end="37" class="prop from-right">
+          <img class="off" src="img/town/bar-front-sign-off@2x.png" />
+          <img class="on" src="img/town/bar-front@2x.png" />
+        </div>
+        <img id="motorcycle-man" src="img/town/motorcycle-man@2x.png" start="0.54" end="0.91" animation-end="24" class="prop top from-right" />
+        <img id="goggle-guy" src="img/town/goggle-guy@2x.png" start="0.55" end="0.92" animation-end="24" class="prop from-right" />
+        <img id="brewery-gulch-sign" src="img/town/brewery-gulch-sign@2x.png" start="0.47" end="1" animation-end="-1" class="prop from-right" />
+        <img id="ladies" src="img/town/ladies@2x.png" start="0.46" end="1" animation-end="14" class="prop from-right" />
+        <img id="dancer" src="img/town/dancer@2x.png" start="0.45" end="1" animation-end="25" class="prop from-right" />
+        <img id="deer-head-beer" src="img/town/deer-head-beer@2x.png" start="0.51" end="1" animation-end="18" class="prop from-right" />
+        <img id="small-rock-pile-right" src="img/town/small-rock-pile-right@2x.png" start="0.5" end="1" animation-end="30" class="prop bottom from-right" />
+        <img id="fence" src="img/town/fence@2x.png" start="0.48" end="1" animation-end="8" class="prop bottom from-right" />
+
+        <img id="hillside-left" src="img/town/hillside-left@2x.png" start="0.05" end="0.9" pause-amount="0.8" class="prop bottom from-left" />
+        <img id="hillside-right" src="img/town/hillside-right@2x.png" start="0.1" end="1" pause-amount="0.5" class="prop bottom from-right" />
+
+      </div>
+
+      <div id="scene-pit" class="scene" start="0:30" end="1:00">
+        <img id="pit-bg" src="img/scene-pit/background-sky@2x.jpg" start="0" end="1" class="prop bg top left from-fade" />
+        <img id="pit-pit" src="img/scene-pit/the-pit@2x.png" start="0.35" end="0.9" animation-end="24" class="prop from-bottom left bg" />
+        <img id="pit-sign-scenic" src="img/scene-pit/sign-scenic@2x.png" start="0.3" end="0.5" animation-end="30" class="prop from-bottom bg" />
+        <img id="pit-bisbee-sign" src="img/scene-pit/bisbee-sign@2x.png" start="0.6" end="1" animation-end="4.3" class="prop from-left" />
+        <img id="pit-barb-wire" src="img/scene-pit/barb-wire@2x.png" start="0.5" end="1" class="prop from-right" />
+        <img id="pit-mileage-sign" src="img/scene-pit/mileage-sign@2x.png" start="0.2" end="0.4" animation-end="4.5" class="prop from-right" />
+      </div>
+
+    </div>
+
+    <div id="character" class="character">
+      <div class="character-shadow">
+        <img src="img/common/character-shadow.png" />
+      </div>
+      <div class="character-body">
+        <img src="img/common/standing_still@2x.png" class="image-still" />
+        <img src="img/common/boy-walking-sprites@2x.png" class="image-walking" />
+      </div>
+    </div>
+
+    <div id="stage-controls" class="stage-controls">
+
+      <div class="hotspot top"></div>
+      <div class="hotspot bottom"></div>
+
+    </div>
+
+    <div class="modal hide">
+      <div class="curtain left"></div>
+      <div class="curtain right"></div>
+      <div class="guide">
+        <div class="guide-content">
+          <p>Move your cursor to the top or bottom of the screen to move forward or backward in time.
+          You can also use your <span class="key up">up</span> or <span class="key down">down</span> arrow keys
+          (add <span class="key shift">shift</span> key to speed up.)</p>
+          <button class="guide-confirm"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="start" class="start active loading">
+      <div></div>
+    </div>
+
+  </div>
+
+  <div class="debug hide">
+    <div>DEBUG</div>
+    <button class="reset">Reset</button>
+    <div><label>Time:</label> <span id="debug-time">--:--</span></div>
+    <div><label>Speed:</label> <span id="debug-speed">--:--</span></div>
+    <div><label>Scene:</label> <span id="debug-scene">--</span></div>
+    <!-- <div><label>Scene Progress: <span id="debug-progress"></span></label> -->
+  </div>
+
+  <script src="js/vendor/jquery-1.11.3.min.js"></script>
+  <script src="js/vendor/underscore-min.js"></script>
+  <script src="js/vendor/hammer.min.js"></script>
+  <script src="js/vendor/jquery.hammer.js"></script>
+  <script src="js/vendor/ba-tiny-pubsub.min.js"></script>
+  <script src="js/vendor/easing.js"></script>
+  <script src="js/vendor/odometer.js"></script>
+
+  <script src="js/utils.js"></script>
+  <script src="js/tween.js"></script>
+
+  <script src="js/config.js"></script>
+  <script src="js/lib/media.js"></script>
+  <script src="js/lib/player.js"></script>
+  <script src="js/lib/sequence.js"></script>
+  <script src="js/views/stage.js"></script>
+  <script src="js/views/character.js"></script>
+  <script src="js/views/director.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>

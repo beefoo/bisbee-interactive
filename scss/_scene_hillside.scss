@@ -1,0 +1,189 @@
+@import "mixins";
+@import "variables";
+
+.white-bg {
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+#hillside-bg {
+  width: 100%;
+}
+#hillside-left {
+  width: percentage(992/$screenW/2);
+}
+#hillside-right {
+  width: percentage(805/$screenW/2);
+}
+#rock-center {
+  width: percentage(717/$screenW/2);
+  margin-left: percentage(-717/$screenW/4);
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+#rock-pile-left {
+  width: percentage(926/$screenW/2);
+  bottom: 28%;
+}
+#rock-pile-right {
+  width: percentage(1088/$screenW/2);
+}
+#rock-ring {
+  width: percentage(589/$screenW/2);
+}
+#rock-ants-video {
+  width: 46%;
+  right: -6.8%;
+  bottom: 15%;
+  @include transform(rotate(9deg));
+}
+#rock-scorpion-video {
+  width: 18%;
+  bottom: 3%;
+  left: 24%;
+  height: 41%;
+  overflow: hidden;
+  video {
+    height: 100%;
+    width: auto;
+    margin-left: -56%;
+  }
+}
+
+#large-stairs-left {
+  width: percentage(1217/$screenW/2);
+}
+#large-stairs-right {
+  width: percentage(944/$screenW/2);
+  bottom: -3%;
+}
+
+#house-with-stairs {
+  width: percentage(629/$screenW/2);
+}
+#green-trim-house {
+  width: percentage(490/$screenW/2);
+  left: 7%;
+}
+#ledge-sign {
+  width: percentage(391/$screenW/2);
+  top: 3%;
+}
+#cacti {
+  width: percentage(855/$screenW/2);
+  top: 5%;
+}
+#tire {
+  width: percentage(384/$screenW/2);
+  top: 15%;
+}
+#one51-steps {
+  width: percentage(556/$screenW/2);
+  top: 12%;
+}
+
+#house-top-right {
+  width: percentage(431/$screenW/2);
+  right: 0;
+}
+#graffiti-house {
+  width: percentage(219/$screenW/2);
+  right: 0;
+}
+#red-house {
+  width: percentage(557/$screenW/2);
+  right: 15%;
+}
+#colorful-house {
+  width: percentage(433/$screenW/2);
+  right: 23%;
+}
+#bed-posts {
+  width: percentage(384/$screenW/2);
+  top: 14%;
+}
+#plywood-house {
+  width: percentage(800/$screenW/2);
+  top: 4%;
+}
+
+#dilapidated-car {
+  width: percentage(322/$screenW/2);
+  top: 30%;
+}
+#tire-swing {
+  width: percentage(180/$screenW/2);
+  margin-left: percentage(-180/$screenW/4);
+}
+
+#hotel {
+  width: percentage(472/$screenW/2);
+  margin-left: percentage(-472/$screenW/4);
+}
+
+#graffiti-wall-entrance {
+  width: percentage(371/$screenW/2);
+  top: 25%;
+}
+#graffiti-man-video {
+  width: percentage(1010/$screenW/2);
+  bottom: 22%;
+}
+#narrow-road {
+  width: percentage(451/$screenW/2);
+  bottom: 35%;
+}
+#small-pile-rocks {
+  width: percentage(462/$screenW/2);
+  bottom: 10%;
+}
+#cactus-plant {
+  width: percentage(555/$screenW/2);
+}
+
+#bar-front {
+  width: percentage(362/$screenW/2);
+  top: 15%;
+
+  img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+#motorcycle-man {
+  width: percentage(474/$screenW/2);
+}
+#goggle-guy {
+  width: percentage(163/$screenW/2);
+  top: 18%;
+}
+#brewery-gulch-sign {
+  width: percentage(495/$screenW/2);
+  top: 10%;
+}
+#ladies {
+  width: percentage(685/$screenW/2);
+  top: 23%;
+}
+#dancer {
+  width: percentage(492/$screenW/2);
+  bottom: 10%;
+}
+#deer-head-beer {
+  width: percentage(467/$screenW/2);
+  bottom: 34%;
+}
+#small-rock-pile-right {
+  width: percentage(373/$screenW/2);
+  bottom: 4%;
+}
+#fence {
+  width: percentage(764/$screenW/2);
+}

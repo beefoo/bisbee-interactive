@@ -278,6 +278,7 @@ var BisbeeSequence = (function() {
     }
     if ($el.attr('pause-amount')) step.pauseAmount = parseFloat($el.attr('pause-amount'));
     if ($el.attr('tween-method')) step.tweenMethod = $el.attr('tween-method');
+    if ($el.attr('easing-function')) step.easingFunction = $el.attr('easing-function');
 
     // retrieve animations
     var animations = this._getAnimations($el);
