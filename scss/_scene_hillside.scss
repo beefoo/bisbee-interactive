@@ -150,11 +150,22 @@
   top: 15%;
 
   img {
+    display: block;
     width: 100%;
     height: auto;
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  .on {
+    display: none;
+  }
+
+  &.light-on {
+    .on {
+      display: block;
+    }
   }
 }
 #motorcycle-man {

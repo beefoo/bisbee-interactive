@@ -303,6 +303,7 @@ var BisbeeSequence = (function() {
 
       // get start
       sound.start = _this._getSeconds($audio, 'audio-start', step.start, step.end);
+      sound.end = _this._getSeconds($audio, 'audio-end', step.start, step.end);
 
       step.sounds.push(sound);
     });

@@ -84,7 +84,7 @@
 
     </div>
 
-    <div id="sequence-town" data-name="town" data-order="2" class="sequence" start="0:00" end="1:15" controls="true" character="true">
+    <div id="sequence-town" data-name="town" data-order="2" class="sequence" start="0:00" end="1:35" controls="true" character="true">
 
       <!-- Floor -->
 
@@ -120,12 +120,16 @@
       </div>
 
       <!-- Scene: Town -->
-      <div id="scene-town" class="scene" start="0:15" end="0:55">
+      <div id="scene-town" class="scene" start="0:15" end="1:05">
         <div id="white-bg" class="prop white-bg from-fade" start="0" end="0.14"></div>
         <img id="hillside-bg" src="img/town/background-b-hill@2x.jpg" start="0" end="1" pause-amount="0.8" class="prop bg top from-fade" />
 
-        <div id="rock-ants-video" class="video-container prop from-fade" start="0.20" end="0.52" pause-amount="0.4"><video data-id="ants" src="video/ants_1.mp4" preload="auto" autoplay loop></video></div>
-        <div id="rock-scorpion-video" class="video-container prop from-fade" start="0.21" end="0.52" pause-amount="0.4"><video data-id="scorpion" src="video/scorpion_1.mp4" preload="auto" autoplay loop></video></div>
+        <div class="audio" audio="town-desert" audio-start="0" audio-end="0.4" loop="true"></div>
+        <div class="audio" audio="town-bisbee1" audio-start="0.38" audio-end="0.55" loop="true"></div>
+        <div class="audio" audio="town-bisbee2" audio-start="0.53" loop="true"></div>
+
+        <div id="rock-ants-video" class="video-container prop from-fade" start="0.24" end="0.52" pause-amount="0.4"><video data-id="ants" src="video/ants_1.mp4" preload="auto" autoplay loop></video></div>
+        <div id="rock-scorpion-video" class="video-container prop from-fade" start="0.25" end="0.52" pause-amount="0.4"><video data-id="scorpion" src="video/scorpion_1.mp4" preload="auto" autoplay loop></video></div>
 
         <img id="house-top-right" src="img/town/house-top-right@2x.png" start="0.33" end="1" animation-end="86" class="prop from-bottom" />
         <img id="graffiti-house" src="img/town/graffiti-house@2x.jpg" start="0.44" end="1" animation-end="65" class="prop from-bottom" />
@@ -145,7 +149,7 @@
 
         <img id="bed-posts" src="img/town/bed-posts@2x.png" start="0.42" end="0.6" animation-end="32" class="prop from-right" />
 
-        <div id="rock-center" start="0.05" end="0.67" animation-end="11" pause-amount="0.4" class="prop from-top h-center double-rope">
+        <div id="rock-center" start="0.05" end="0.67" animation-end="11" audio="town-rocks" audio-start="0.15" pause-amount="0.4" class="prop from-top h-center double-rope">
           <div><img id="img-rock-center" src="img/town/rock-center@2x.png" /></div>
         </div>
 
@@ -167,6 +171,8 @@
         <div id="bar-front" start="0.49" end="0.9" animation-end="37" class="prop from-right">
           <img class="off" src="img/town/bar-front-sign-off@2x.png" />
           <img class="on" src="img/town/bar-front@2x.png" />
+          <div class="audio" audio="town-neon" audio-start="0.5"></div>
+          <div class="toggle-class" toggle-name="light-on" toggle-start="0.5" toggle-end="1"></div>
         </div>
         <img id="motorcycle-man" src="img/town/motorcycle-man@2x.png" start="0.54" end="0.91" animation-end="24" class="prop top from-right" />
         <img id="goggle-guy" src="img/town/goggle-guy@2x.png" start="0.55" end="0.92" animation-end="24" class="prop from-right" />
@@ -178,78 +184,30 @@
         <img id="fence" src="img/town/fence@2x.png" start="0.48" end="1" animation-end="8" class="prop bottom from-right" />
 
         <img id="hillside-left" src="img/town/hillside-left@2x.png" start="0.05" end="0.9" pause-amount="0.8" class="prop bottom from-left" />
-        <img id="hillside-right" src="img/town/hillside-right@2x.png" start="0.1" end="1" pause-amount="0.5" class="prop bottom from-right" />
+        <img id="hillside-right" src="img/town/hillside-right@2x.png" start="0.06" end="1" pause-amount="0.5" class="prop bottom from-right" />
 
       </div>
 
       <!-- Scene: Pit -->
-      <div id="scene-pit" class="scene" start="0:45" end="1:15">
+      <div id="scene-pit" class="scene" start="0:55" end="1">
+        <div class="audio" audio="town-pit" audio-start="0" audio-end="0.6" loop="true"></div>
+
         <img id="pit-bg" src="img/scene-pit/background-sky@2x.jpg" start="0" end="1" class="prop bg top left from-fade" />
         <img id="pit-pit" src="img/scene-pit/the-pit@2x.png" start="0.35" end="0.9" animation-end="24" class="prop from-bottom left bg" />
         <img id="pit-sign-scenic" src="img/scene-pit/sign-scenic@2x.png" start="0.3" end="0.5" animation-end="30" class="prop from-bottom bg" />
-        <img id="pit-bisbee-sign" src="img/scene-pit/bisbee-sign@2x.png" start="0.6" end="1" animation-end="4.3" class="prop from-left" />
+
         <img id="pit-barb-wire" src="img/scene-pit/barb-wire@2x.png" start="0.5" end="1" class="prop from-right" />
-        <img id="pit-mileage-sign" src="img/scene-pit/mileage-sign@2x.png" start="0.2" end="0.4" animation-end="4.5" class="prop from-right" />
-      </div>
+        <img id="pit-mileage-sign" src="img/scene-pit/mileage-sign@2x.png" start="0.2" end="0.4" audio="town-car" audio-start="0.2" animation-end="4.5" class="prop from-right" />
 
-      <!-- Scene: Rocks -->
-      <!-- <div id="scene-rocks" class="scene" start="0:12" end="1">
-        <img id="ramshackle-bg" start="0.07" end="1" src="img/scene-ramshackle/background-rocks@2x.jpg" class="prop left from-bottom bg from-fade" />
-        <div id="rocks-insects-videos" start="0.18" end="0.38" class="prop bg from-fade">
-          <div id="rocks-ants-video" class="video-container"><video data-id="ants" src="video/ants.mp4" preload="auto" autoplay loop></video></div>
-          <div id="rocks-scorpion-video" class="video-container"><video data-id="scorpion" src="video/scorpion.mp4" preload="auto" autoplay loop></video></div>
+        <div id="pit-bg-dark" start="0.48" end="1" class="prop"></div>
+
+        <div id="pit-bisbee-sign" start="0.4" end="1" animation-end="4.3" pause-amount="0.6" class="prop from-left">
+          <img src="img/scene-pit/bisbee-sign@2x.png" />
+          <video data-id="story-of-copper" src="video/story_of_copper.mp4" audio="story-of-copper" audio-start="0.42" preload="auto" loop="true"></video>
+          <div class="toggle-class" toggle-name="film-on" toggle-start="0.4" toggle-end="1"></div>
         </div>
-        <img id="rocks-rock1-from-left" start="0.035" end="0.48" audio="rocks-falling" audio-start="0.15" src="img/scene-rocks/rock-pile-left@2x.png" class="prop from-left" />
-        <img id="rocks-rock2-from-right" start="0" end="0.75" src="img/scene-rocks/rock-pile-right@2x.png" class="prop from-right" />
-        <img id="rocks-rock3-from-top" start="0.035" end="0.47" audio="rocks-falling2" audio-start="0.6" src="img/scene-rocks/rocks-center@2x.png" class="prop h-center from-top" />
-        <div class="audio" audio="hot-day" audio-start="0.07" loop="true"></div>
-      </div> -->
 
-      <!-- Scene: Ramshackle -->
-      <!-- <div id="scene-ramshackle" class="scene">
-        <img id="ramshackle-fence" src="img/scene-ramshackle/no-barking@2x.jpg" class="prop from-left top" />
-        <img id="ramshackle-rock1-from-left" src="img/scene-ramshackle/rock-chunk-left@2x.png" class="prop from-left" />
-        <img id="ramshackle-tree-tire" src="img/scene-ramshackle/tree-tire@2x.png" class="prop from-left top" />
-        <img id="ramshackle-tire" src="img/scene-ramshackle/tire-grass@2x.png" class="prop from-left" />
-        <img id="ramshackle-rock2-from-left" src="img/scene-ramshackle/rocks-left@2x.png" class="prop from-left" />
-        <img id="ramshackle-bedposts" src="img/scene-ramshackle/bedposts@2x.png" class="prop from-left" />
-        <img id="ramshackle-rabbit" src="img/scene-ramshackle/stuffed-rabbit@2x.png" class="prop from-top" />
-        <img id="ramshackle-plate" src="img/scene-ramshackle/plate@2x.png" class="prop from-top" />
-        <img id="ramshackle-house" src="img/scene-ramshackle/house@2x.png" class="prop from-bottom bg" />
-        <img id="ramshackle-cacti" src="img/scene-ramshackle/cacti@2x.png" class="prop from-right" />
-        <img id="ramshackle-rock3-from-right" src="img/scene-ramshackle/rocks-right@2x.png" class="prop from-right" />
-        <img id="ramshackle-car" src="img/scene-ramshackle/car@2x.png" class="prop from-top" />
-        <img id="ramshackle-ball" src="img/scene-ramshackle/ball@2x.png" class="prop from-top" />
-      </div> -->
-
-      <!-- Scene: Homes -->
-      <!-- <div id="scene-homes" class="scene">
-        <img id="homes-hill-bg" src="img/scene-stairs-homes/background-hill@2x.jpg" class="prop left from-bottom bg" />
-        <img id="homes-school-building" src="img/scene-stairs-homes/school-building-center@2x.png" class="prop from-bottom h-center bg" />
-        <img id="homes-house-top-left" src="img/scene-stairs-homes/house-top-left@2x.png" class="prop from-left" />
-        <img id="homes-cacti-fence" src="img/scene-stairs-homes/cacti-fence@2x.png" class="prop from-left" />
-        <img id="homes-stacked-left" src="img/scene-stairs-homes/homes-stacked-left@2x.png" class="prop from-left" />
-        <img id="homes-long-stairs-left" src="img/scene-stairs-homes/long-stairs-left@2x.png" class="prop from-left" />
-        <img id="homes-shed" src="img/scene-stairs-homes/shed-top-right@2x.png" class="prop from-bottom" />
-        <img id="homes-car-garage" src="img/scene-stairs-homes/car-garage@2x.png" class="prop from-top" />
-        <img id="homes-car" src="img/scene-stairs-homes/car@2x.png" class="prop from-top" />
-        <img id="homes-foundation" src="img/scene-stairs-homes/house-exposed-foundation@2x.png" class="prop from-right" />
-        <img id="homes-sheds-house" src="img/scene-stairs-homes/sheds-house-right@2x.png" class="prop from-right" />
-        <img id="homes-stairwell" src="img/scene-stairs-homes/stairwell-right@2x.png" class="prop from-right" />
-        <img id="homes-mosaic" src="img/scene-stairs-homes/sign-mailbox-mosaic@2x.png" class="prop from-right bottom" />
-      </div> -->
-
-      <!-- Scene: Buildings -->
-      <!-- <div id="scene-buildings" class="scene">
-        <img id="buildings-center" src="img/scene-buildings/building-center@2x.png" class="prop from-top h-center" />
-        <img id="buildings-wires" src="img/scene-buildings/wires@2x.png" class="prop from-top right" />
-        <img id="buildings-left" src="img/scene-buildings/building-left@2x.png" class="prop from-left" />
-        <img id="buildings-graffiti" src="img/scene-buildings/graffiti-wall@2x.png" class="prop from-left" />
-        <img id="buildings-cacti" src="img/scene-buildings/cacti-left@2x.png" class="prop from-bottom left" />
-        <img id="buildings-right" src="img/scene-buildings/building-right@2x.png" class="prop from-right" />
-        <img id="buildings-sign" src="img/scene-buildings/sign-turn-around@2x.png" class="prop from-bottom right" />
-        <img id="buildings-plant" src="img/scene-buildings/plant-lower-right@2x.png" class="prop from-bottom right" />
-      </div> -->
+      </div>
 
     </div>
 
@@ -339,6 +297,14 @@
     <audio data-id="door-down" src="audio/stage_sfx_door_enter.mp3" preload="auto"></audio>
     <audio data-id="door-open" src="audio/stage_sfx_door_open.mp3" preload="auto"></audio>
 
+    <audio data-id="town-bisbee1" src="audio/town/AMB_SCN2_BIS1.mp3" preload="auto" loop></audio>
+    <audio data-id="town-bisbee2" src="audio/town/AMB_SCN2_BIS2.mp3" preload="auto" loop></audio>
+    <audio data-id="town-desert" src="audio/town/AMB_SCN2_DESERT.mp3" preload="auto" loop></audio>
+    <audio data-id="town-pit" src="audio/town/AMB_SCN2_PIT.mp3" preload="auto" loop></audio>
+    <audio data-id="town-car" src="audio/town/SFX_SCN2_CAR.mp3" preload="auto"></audio>
+    <audio data-id="town-neon" src="audio/town/SFX_SCN2_NEON.mp3" preload="auto"></audio>
+    <audio data-id="town-rocks" src="audio/town/SFX_SCN2_ROCKS.mp3" preload="auto"></audio>
+
     <!-- <audio data-id="dia-impressions" src="audio/road_dia_1.mp3" preload="auto"></audio>
     <audio data-id="dia-hitchhike" src="audio/road_dia_2.mp3" preload="auto"></audio>
     <audio data-id="dia-hatedit" src="audio/road_dia_3_hatedit.mp3" preload="auto"></audio>
@@ -347,10 +313,10 @@
     <audio data-id="dia-seemed" src="audio/road_dia_6_seemed.mp3" preload="auto"></audio>
     <audio data-id="dia-who" src="audio/road_dia_7_who.mp3" preload="auto"></audio> -->
 
-    <audio data-id="rocks-falling" src="audio/road_sfx_rockfall_1.mp3" preload="auto"></audio>
+    <!-- <audio data-id="rocks-falling" src="audio/road_sfx_rockfall_1.mp3" preload="auto"></audio>
     <audio data-id="rocks-falling2" src="audio/road_sfx_rockfall_2.mp3" preload="auto"></audio>
 
-    <audio data-id="hot-day" src="audio/road_amb_1_outsidetown.mp3" preload="auto" loop></audio>
+    <audio data-id="hot-day" src="audio/road_amb_1_outsidetown.mp3" preload="auto" loop></audio> -->
     <!-- <audio data-id="rooster-crowing" src="audio/road_amb_2_intown.mp3" preload="auto" loop></audio>
     <audio data-id="amb-town" src="audio/road_amb_2A_intown.mp3" preload="auto" loop></audio>
     <audio data-id="amb-pit" src="audio/road_amb_3_thepit.mp3" preload="auto" loop></audio> -->

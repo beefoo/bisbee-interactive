@@ -84,9 +84,14 @@ var BSUtils = {
   playSounds: function(sounds, t, p, b){
     _.each(sounds, function(sound, i){
       sound.direction = sound.direction.constructor === Array ? sound.direction : [sound.direction];
-      if ((p.direction > 0 && t > sound.start || p.direction < 0 && t < sound.start) && _.contains(sound.direction, p.direction) && !sound.played) {
-        sounds[i].played = true;
-        b.play(sound.name, true);
+      if (t.between(sound.start, sound.end) && _.contains(sound.direction, p.direction)) {
+        if (!sound.played) {
+          sounds[i].played = true;
+          b.play(sound.name, true);
+        }
+      } else if (sound.loop) {
+        sounds[i].played = false;
+        b.pause(sound.name, true);
       }
     });
   },
