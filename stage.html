@@ -14,20 +14,51 @@
 
   <div id="stage" class="stage">
 
-    <div id="sequence-town" data-name="town" data-order="1" class="sequence" start="0:00" end="1:20" controls="true" character="true">
+    <div id="sequence-town" data-name="town" data-order="1" class="sequence" start="0:00" end="1:35" controls="true" character="true">
 
-      <div id="ground" class="ground prop scene" start="0" end="1">
+      <!-- Floor -->
+
+      <div id="floor" class="floor scene" start="0" end="0:13">
+        <div class="void"></div>
+      </div>
+      <div id="ground" class="ground prop scene" start="0:18" end="1">
         <img src="img/common/road-sprites@2x.jpg" id="ground-image" class="ground-image" />
       </div>
 
+      <!-- Scene: Doors -->
+      <div id="scene-doors" class="scene" start="0" end="0:18" pause-amount="0.1">
+        <div id="door-from-left" start="0" end="0.34" animation-end="50" class="prop door-container from-left moving-horizontal v-center double-rope">
+          <div class="door"><img src="img/scene-doors/door-sprite.png" /></div>
+          <div class="audio" audio="door-in" audio-start="0.2"></div>
+          <div class="audio" audio="door-out" audio-start="0.7"></div>
+          <div class="toggle-class" toggle-name="moving-horizontal" toggle-start="0.3" toggle-end="0.7" toggle-invert="true"></div>
+        </div>
+        <div id="door-from-right" start="0.16" end="0.67" animation-end="50" class="prop door-container from-right moving-horizontal v-center double-rope">
+          <div class="door"><img src="img/scene-doors/door-sprite.png" /></div>
+          <div class="audio" audio="door-in" audio-start="0.2"></div>
+          <div class="audio" audio="door-out" audio-start="0.7"></div>
+          <div class="toggle-class" toggle-name="moving-horizontal" toggle-start="0.3" toggle-end="0.7" toggle-invert="true"></div>
+        </div>
+        <div id="door-from-top" start="0.45" end="1" animation-end="50" class="prop door-container from-top moving-vertical h-center double-rope">
+          <div class="door"><img src="img/scene-doors/door-sprite.png" /></div>
+          <div class="audio" audio="door-in" audio-start="0.2"></div>
+          <div class="audio" audio="door-out" audio-start="0.7"></div>
+          <div class="audio" audio="door-open" audio-start="0.5" direction="forward"></div>
+          <div class="toggle-class" toggle-name="moving-vertical" toggle-start="0.3" toggle-end="0.7" toggle-invert="true"></div>
+          <div class="toggle-class" toggle-name="open" toggle-start="0.5" toggle-end="1.0"></div>
+        </div>
+      </div>
+
       <!-- Scene: Town -->
-      <div id="scene-town" class="scene" start="0:00" end="0:50">
+      <div id="scene-town" class="scene" start="0:15" end="1:05">
         <div id="white-bg" class="prop white-bg from-fade" start="0" end="0.14"></div>
         <img id="hillside-bg" src="img/town/background-b-hill@2x.jpg" start="0" end="1" pause-amount="0.8" class="prop bg top from-fade" />
 
         <div class="audio" audio="town-desert" audio-start="0" audio-end="0.4" loop="true"></div>
         <div class="audio" audio="town-bisbee1" audio-start="0.38" audio-end="0.55" loop="true"></div>
         <div class="audio" audio="town-bisbee2" audio-start="0.53" loop="true"></div>
+
+        <div class="audio" audio="town-voice1-first" audio-start="0.1"></div>
 
         <div id="rock-ants-video" class="video-container prop from-fade" start="0.24" end="0.52" pause-amount="0.4"><video data-id="ants" src="video/ants_1.mp4" preload="auto" autoplay loop></video></div>
         <div id="rock-scorpion-video" class="video-container prop from-fade" start="0.25" end="0.52" pause-amount="0.4"><video data-id="scorpion" src="video/scorpion_1.mp4" preload="auto" autoplay loop></video></div>
@@ -54,10 +85,15 @@
           <div><img id="img-rock-center" src="img/town/rock-center@2x.png" /></div>
         </div>
 
+        <div class="audio" audio="town-voice2-orange" audio-start="0.25"></div>
+        <div class="audio" audio="town-voice3-hated" audio-start="0.36"></div>
+
         <img id="one51-steps" src="img/town/151-steps@2x.png" start="0.38" end="0.72" animation-end="20" class="prop from-left" />
 
         <img id="large-stairs-left" src="img/town/large-stairs-left@2x.png" start="0.36" end="0.73" animation-end="-2" class="prop bottom from-left" />
         <img id="large-stairs-right" src="img/town/large-stairs-right@2x.png" start="0.37" end="0.74" animation-end="3" class="prop from-right" />
+
+        <div class="audio" audio="town-voice4-stairs" audio-start="0.46"></div>
 
         <img id="dilapidated-car" src="img/town/dilapidated-car@2x.png" start="0.45" end="0.58" animation-end="2" class="prop from-right" />
         <img id="tire-swing" src="img/town/tire-swing@2x.png" start="0.46" end="0.59" animation-end="-10" class="prop h-center from-top" />
@@ -84,13 +120,16 @@
         <img id="small-rock-pile-right" src="img/town/small-rock-pile-right@2x.png" start="0.5" end="1" animation-end="30" class="prop bottom from-right" />
         <img id="fence" src="img/town/fence@2x.png" start="0.48" end="1" animation-end="8" class="prop bottom from-right" />
 
+        <div class="audio" audio="town-voice5-hippies" audio-start="0.62"></div>
+        <div class="audio" audio="town-voice6-lonely" audio-start="0.75"></div>
+
         <img id="hillside-left" src="img/town/hillside-left@2x.png" start="0.05" end="0.9" pause-amount="0.8" class="prop bottom from-left" />
         <img id="hillside-right" src="img/town/hillside-right@2x.png" start="0.06" end="1" pause-amount="0.5" class="prop bottom from-right" />
 
       </div>
 
       <!-- Scene: Pit -->
-      <div id="scene-pit" class="scene" start="0:40" end="1:20">
+      <div id="scene-pit" class="scene" start="0:55" end="1">
         <div class="audio" audio="town-pit" audio-start="0" audio-end="0.6" loop="true"></div>
 
         <img id="pit-bg" src="img/scene-pit/background-sky@2x.jpg" start="0" end="1" class="prop bg top left from-fade" />
@@ -100,7 +139,11 @@
         <img id="pit-barb-wire" src="img/scene-pit/barb-wire@2x.png" start="0.5" end="1" class="prop from-right" />
         <img id="pit-mileage-sign" src="img/scene-pit/mileage-sign@2x.png" start="0.2" end="0.4" audio="town-car" audio-start="0.2" animation-end="4.5" class="prop from-right" />
 
+        <div class="audio" audio="town-voice7-hitchhike" audio-start="0.25"></div>
+
         <div id="pit-bg-dark" start="0.48" end="1" class="prop"></div>
+
+        <div class="audio" audio="town-voice8-wayout" audio-start="0.5"></div>
 
         <div id="pit-bisbee-sign" start="0.4" end="1" animation-end="4.3" pause-amount="0.6" class="prop from-left">
           <img src="img/scene-pit/bisbee-sign@2x.png" />
@@ -216,6 +259,15 @@
     <audio data-id="town-car" src="audio/town/SFX_SCN2_CAR.mp3" preload="auto"></audio>
     <audio data-id="town-neon" src="audio/town/SFX_SCN2_NEON.mp3" preload="auto"></audio>
     <audio data-id="town-rocks" src="audio/town/SFX_SCN2_ROCKS.mp3" preload="auto"></audio>
+
+    <audio data-id="town-voice1-first" src="audio/town/SCN2_Clip1_FIRST_IMPRESSIONS_2.mp3" preload="auto"></audio>
+    <audio data-id="town-voice2-orange" src="audio/town/SCN2_Clip2_EVERYTHING_ORANGE.mp3" preload="auto"></audio>
+    <audio data-id="town-voice3-hated" src="audio/town/SCN2_Clip3_HATED_IT.mp3" preload="auto"></audio>
+    <audio data-id="town-voice4-stairs" src="audio/town/SCN2_Clip4_THE_STAIRS.mp3" preload="auto"></audio>
+    <audio data-id="town-voice5-hippies" src="audio/town/SCN2_Clip5_WEIRD_HIPPIES.mp3" preload="auto"></audio>
+    <audio data-id="town-voice6-lonely" src="audio/town/SCN2_Clip6_SCARED_GULCH_LONEY_CHILD.mp3" preload="auto"></audio>
+    <audio data-id="town-voice7-hitchhike" src="audio/town/SCN2_Clip7_HITCHHIKE_OUT_OF_BISBEE.mp3" preload="auto"></audio>
+    <audio data-id="town-voice8-wayout" src="audio/town/SCN2_Clip8_WAY_OUT.mp3" preload="auto"></audio>
 
   </div>
 
