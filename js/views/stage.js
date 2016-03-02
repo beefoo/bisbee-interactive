@@ -54,6 +54,21 @@ var BisbeeStageView = (function() {
 
   };
 
+  BisbeeStageView.prototype.bisbeeSign = function($el){
+    var $bg = $('#pit-bg-dark');
+
+    if ($el.hasClass('film-on')) {
+      $el.removeClass('film-on');
+      $bg.removeClass('active');
+      Bisbee.media.pause('story-of-copper');
+
+    } else {
+      $el.addClass('film-on');
+      $bg.addClass('active');
+      Bisbee.media.play('story-of-copper');
+    }
+  };
+
   BisbeeStageView.prototype.changeRadioStation = function(){
     var $stations = $('.radio-station'),
         playing_i = 0,
@@ -110,7 +125,7 @@ var BisbeeStageView = (function() {
 
     $('.popup').on('click', function(e){
       e.preventDefault();
-      $(this).removeClass('active');
+      _this.onClickPopup($(this));
     });
 
     $('.hotspot').on('mouseover', function(e){
@@ -128,6 +143,11 @@ var BisbeeStageView = (function() {
     $('#car-radio').on('click', function(e){
       e.preventDefault();
       _this.changeRadioStation();
+    });
+
+    $('#pit-bisbee-sign').on('click', function(e){
+      e.preventDefault();
+      _this.bisbeeSign($(this));
     });
 
     $(window).on('resize', function(){
@@ -155,6 +175,7 @@ var BisbeeStageView = (function() {
       Bisbee.media.play('curtain-closing', true);
     }, 500);
     Bisbee.media.pause('crickets-bark');
+
     setTimeout(function(){
       $('.modal').addClass('hide');
     }, 4000);
@@ -168,6 +189,28 @@ var BisbeeStageView = (function() {
       $('.modal .guide-confirm').removeClass('active');
     }
     Bisbee.media.play(['curtain-opening', 'crickets-bark']);
+  };
+
+  BisbeeStageView.prototype.onClickPopup = function($popup){
+    var $triggers = $popup.find('.trigger-on-click'),
+        triggered = false;
+
+    if ($triggers.length){
+      $triggers.each(function(i){
+        if (!triggered && !$(this).hasClass('active')) {
+          $(this).addClass('active');
+          triggered = true;
+        } else if ($(this).hasClass('active')) {
+          $(this).addClass('seen');
+        }
+      });
+    }
+
+    if (!triggered) {
+      $popup.removeClass('active');
+      if ($triggers.length) $triggers.removeClass('active seen');
+    }
+
   };
 
   BisbeeStageView.prototype.offHotspot = function(){

@@ -24,14 +24,14 @@ $bgDuration: 3.75s;
       left: -2%;
       background-image: url(../img/intro/curtain-left@2x.jpg);
       background-position: right center;
-      @include animation(bounceOutLeft ($bgDuration + 1s));
+      @include animation(outLeft ($bgDuration + 1s));
     }
 
     &.right {
       right: -2%;
       background-image: url(../img/intro/curtain-right@2x.jpg);
       background-position: left center;
-      @include animation(bounceOutRight ($bgDuration + 1s));
+      @include animation(outRight ($bgDuration + 1s));
     }
   }
 
@@ -105,11 +105,11 @@ $bgDuration: 3.75s;
     .curtain {
 
       &.left {
-        @include animation(bounceInLeft $bgDuration);
+        @include animation(inLeft $bgDuration);
       }
 
       &.right {
-        @include animation(bounceInRight $bgDuration);
+        @include animation(inRight $bgDuration);
       }
 
     }

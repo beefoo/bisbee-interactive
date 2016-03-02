@@ -35,6 +35,7 @@
 #pit-bisbee-sign {
   width: 29.5%;
   bottom: 18%;
+  cursor: pointer;
 
   img,
   video {
@@ -50,10 +51,25 @@
     @include transform(perspective(400px) rotateY(15deg) translateX(9%) translateY(12%) scale(0.82, 0.74) rotate(-2deg));
   }
 
+  .sign-placeholder {
+    @include animation(fadeOut 2s);
+    position: absolute;
+    width: 76%;
+    left: 17%;
+    top: 15%;
+  }
+
+  &.active .sign-placeholder {
+    @include animation(fadeIn 4s);
+  }
+
   &.film-on {
     video {
       @include animation(fadeIn 1s);
       display: block;
+    }
+    .sign-placeholder {
+      display: none;
     }
   }
 }

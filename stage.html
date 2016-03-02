@@ -30,7 +30,6 @@
         <div id="door-from-left" start="0" end="0.34" animation-end="50" class="prop door-container from-left moving-horizontal v-center double-rope">
           <div class="door"><img src="img/scene-doors/door-sprite.png" /></div>
           <div class="audio" audio="door-in" audio-start="0.2"></div>
-          <div class="audio" audio="door-out" audio-start="0.7"></div>
           <div class="toggle-class" toggle-name="moving-horizontal" toggle-start="0.3" toggle-end="0.7" toggle-invert="true"></div>
         </div>
         <div id="door-from-right" start="0.16" end="0.67" animation-end="50" class="prop door-container from-right moving-horizontal v-center double-rope">
@@ -60,8 +59,8 @@
 
         <div class="audio" audio="town-voice1-first" audio-start="0.1"></div>
 
-        <div id="rock-ants-video" class="video-container prop from-fade" start="0.24" end="0.52" pause-amount="0.4"><video data-id="ants" src="video/ants_1.mp4" preload="auto" autoplay loop></video></div>
-        <div id="rock-scorpion-video" class="video-container prop from-fade" start="0.25" end="0.52" pause-amount="0.4"><video data-id="scorpion" src="video/scorpion_1.mp4" preload="auto" autoplay loop></video></div>
+        <div id="rock-ants-video" class="video-container prop from-fade" start="0.24" end="0.6" pause-amount="0.4"><video data-id="ants" src="video/ants_1.mp4" preload="auto" autoplay loop></video></div>
+        <div id="rock-scorpion-video" class="video-container prop from-fade" start="0.25" end="0.6" pause-amount="0.4"><video data-id="scorpion" src="video/scorpion_1.mp4" preload="auto" autoplay loop></video></div>
 
         <img id="house-top-right" src="img/town/house-top-right@2x.png" start="0.33" end="1" animation-end="86" class="prop from-bottom" />
         <img id="graffiti-house" src="img/town/graffiti-house@2x.jpg" start="0.44" end="1" animation-end="65" class="prop from-bottom" />
@@ -76,6 +75,9 @@
         <img id="house-with-stairs" src="img/town/house-with-stairs@2x.png" start="0.42" end="0.71" animation-end="22" class="prop from-left top" />
         <img id="green-trim-house" src="img/town/green-trim-house@2x.png" start="0.41" end="1" animation-end="74" class="prop from-bottom bg" />
         <img id="ledge-sign" src="img/town/ledge-sign@2x.png" start="0.4" end="0.7" animation-end="33" class="prop from-left" />
+        <div id="graffiti-man-video" start="0.51" end="0.99" animation-end="-6" class="video-container prop from-left">
+          <video data-id="man_with_feather" src="video/man_with_feather_loop.mp4" preload="auto" autoplay loop></video>
+        </div>
         <img id="cacti" src="img/town/cacti@2x.png" start="0.39" end="1" class="prop from-left" />
         <img id="tire" src="img/town/tire@2x.png" start="0.38" end="0.7" class="prop from-left" />
 
@@ -100,9 +102,6 @@
 
         <img id="hotel" src="img/town/hotel@2x.png" start="0.45" end="1" animation-end="30" class="prop h-center bg from-bottom" />
         <img id="graffiti-wall-entrance" src="img/town/graffiti-wall-entrance@2x.png" start="0.5" end="1" animation-end="30" class="prop from-left" />
-        <div id="graffiti-man-video" start="0.51" end="1" animation-end="-6" class="video-container prop from-left">
-          <video data-id="man_with_feather" src="video/man_with_feather_loop.mp4" preload="auto" autoplay loop></video>
-        </div>
         <img id="narrow-road" src="img/town/narrow-road@2x.png" start="0.52" end="0.91" class="prop bottom from-left" />
         <img id="small-pile-rocks" src="img/town/small-pile-rocks@2x.png" start="0.53" end="0.89" animation-end="25" class="prop bottom from-left" />
         <img id="cactus-plant" src="img/town/cactus-plant@2x.png" start="0.54" end="0.9" animation-end="20" class="prop bottom from-left" />
@@ -143,14 +142,14 @@
 
         <div class="audio" audio="town-voice7-hitchhike" audio-start="0.25"></div>
 
-        <div id="pit-bg-dark" start="0.48" end="1" class="prop"></div>
+        <div id="pit-bg-dark" class="prop"></div>
 
         <div class="audio" audio="town-voice8-wayout" audio-start="0.5"></div>
 
         <div id="pit-bisbee-sign" start="0.4" end="1" animation-end="4.3" pause-amount="0.6" class="prop from-left">
           <img src="img/scene-pit/bisbee-sign@2x.png" />
-          <video data-id="story-of-copper" src="video/story_of_copper.mp4" audio="story-of-copper" audio-start="0.42" preload="auto" loop="true"></video>
-          <div class="toggle-class" toggle-name="film-on" toggle-start="0.4" toggle-end="1"></div>
+          <img src="img/town/sign-gif@2x.gif" class="sign-placeholder" />
+          <video data-id="story-of-copper" src="video/story_of_copper.mp4" preload="auto" loop="true"></video>
         </div>
 
       </div>

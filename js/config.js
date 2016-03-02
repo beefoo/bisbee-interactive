@@ -2,7 +2,7 @@ var config = {
   minSpeed: 0.5,
   maxSpeed: 2.0,
   aspectRatio: (1280/720),
-  debug: true,
+  debug: false,
   sequenceStepDefaults: {
     tweenMethod: 'inPauseOut',
     pauseAmount: 0.2,

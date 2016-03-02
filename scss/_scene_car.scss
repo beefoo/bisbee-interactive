@@ -285,6 +285,22 @@
     @include transform(rotate(0deg));
     @include transition-transform(1s);
   }
+
+  .mileage, .montpelier, .bisbee {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    @include transition(opacity 1s);
+
+    &.active {
+      opacity: 1;
+    }
+
+    &.active.seen {
+      opacity: 0;
+    }
+  }
 }
 .popup.active {
   .map-large {
