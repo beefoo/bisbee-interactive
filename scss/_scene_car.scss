@@ -304,6 +304,6 @@
 }
 .popup.active {
   .map-large {
-    @include transform(rotate(-5deg));
+    @include transform(rotate(-2deg));
   }
 }
